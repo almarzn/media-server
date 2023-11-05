@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: true
+  vars:
+    data_library_basepath: '{{ data_basepath }}/library'
+    containers:
+      directory: /containers
+    data:
+      library:
+        tvshows:
+          path: '{{ data_library_basepath }}/tvshows'
+        movies:
+          path: '{{ data_library_basepath }}/movies'
+        config:
+          path: '{{ data_library_basepath }}/config'
+
+  roles:
+    - default

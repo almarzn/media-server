@@ -1,0 +1,7 @@
+test:
+  hosts:
+    test_ansible_container:
+      ansible_connection: docker
+      inside_docker: yes
+      enable_quicksync: no
+      data_basepath: '{{ playbook_dir }}/test/data'
