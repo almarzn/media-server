@@ -1,0 +1,8 @@
+[Install]
+WantedBy=default.target
+
+[Container]
+ContainerName=test_vpn
+Image=caddy:latest
+Exec=caddy reverse-proxy --change-host-header --from :{{ wireguard.ports.caddy }} --to https://ip.me:443
+Network=container:protonwire

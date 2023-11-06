@@ -1,0 +1,19 @@
+[Install]
+WantedBy=default.target
+
+[Container]
+ContainerName=protonwire
+Image=ghcr.io/tprasadtp/protonwire:7
+Tmpfs=/tmp
+Secret={{ wireguard.secret_name }},mode=600
+Environment=PROTONVPN_SERVER='{{ wireguard.server }}'
+AddCapability=NET_ADMIN
+Sysctl=net.ipv4.conf.all.rp_filter=2 net.ipv6.conf.all.disable_ipv6=1 \
+HealthStartPeriod=10s
+HealthInterval="${IPCHECK_INTERVAL}s"
+HealthCmd="protonwire check --container --silent"
+HealthOnFailure=stop
+Notify=true
+{% for service,port in wireguard.ports.items()  %}
+PublishPort={{ port }}:{{ port }}
+{% endfor %}

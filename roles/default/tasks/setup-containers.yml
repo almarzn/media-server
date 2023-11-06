@@ -1,11 +1,26 @@
-- name: Copy container-compose.yml
-  ansible.builtin.template:
-    src: ../files/container-compose.yml
-    dest: '{{ containers.directory }}/container-compose.yml'
-
-- name: Run container-compose
-  community.docker.docker_compose:
+- name: Create wireguard secret
+  containers.podman.podman_secret:
     state: present
-    project_src: '{{ containers.directory }}'
-    files:
-     - container-compose.yml
+    name: '{{ wireguard.secret_name }}'
+    data: '{{ private.proton_key }}'
+
+- name: Install protonwire.container
+  template:
+    src: ../files/protonwire.container.j2
+    dest: $HOME/.config/containers/systemd/protonwire.container
+
+- name: Install testvpn.service
+  template:
+    src: ../files/testvpn.service.j2
+    dest: $HOME/.config/containers/systemd/testvpn.service
+
+- name: Reload systemd daemon
+  systemd:
+    daemon_reload: true
+    user: true
+
+- name: Start testvpn service
+  systemd:
+    state: started
+    name: testvpn.service
+    user: true
