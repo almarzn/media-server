@@ -22,6 +22,11 @@
   pip:
     name: docker-compose
 
+- name: Copy daemon.json
+  copy:
+    src: ../files/daemon.json
+    dest: /etc/docker/daemon.json
+
 - name: Start docker service
   service:
     name: docker

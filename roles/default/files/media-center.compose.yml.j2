@@ -1,4 +1,6 @@
 version: '2.3'
+volumes:
+  portainer_data:
 services:
   plex:
     image: lscr.io/linuxserver/plex:latest
@@ -30,18 +32,21 @@ services:
     cap_add:
       - NET_ADMIN
     ports:
-      - 8000:80
+{% for key, port in wireguard.ports.items() %}
+      - {{ port }}:{{ port }}
+{% endfor %}
     sysctls:
       net.ipv4.conf.all.rp_filter: 2
       net.ipv6.conf.all.disable_ipv6: 1
     volumes:
       - type: tmpfs
         target: /tmp
+
   test_proxy:
     image: caddy:latest
     network_mode: service:protonwire
     command: |
       caddy reverse-proxy \
           --change-host-header \
-          --from :80 \
+          --from :{{ wireguard.ports.caddy }} \
           --to https://ip.me:443

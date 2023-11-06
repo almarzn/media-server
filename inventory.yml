@@ -5,3 +5,4 @@ test:
       inside_docker: yes
       enable_quicksync: no
       data_basepath: '{{ playbook_dir }}/test/data'
+      containers_basepath: '{{ playbook_dir }}/test/containers'

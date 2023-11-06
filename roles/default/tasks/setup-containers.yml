@@ -1,11 +1,28 @@
-- name: Copy container-compose.yml
+- name: Template media-center.yml
   ansible.builtin.template:
-    src: ../files/container-compose.yml
-    dest: '{{ containers.directory }}/container-compose.yml'
+    src: ../files/media-center.compose.yml.j2
+    dest: '{{ containers.directory }}/media-center.yml'
 
-- name: Run container-compose
+- name: Template monitoring.yml
+  ansible.builtin.template:
+    src: ../files/monitoring.compose.yml.j2
+    dest: '{{ containers.directory }}/monitoring.yml'
+
+- name: Template prometheus.yml
+  ansible.builtin.template:
+    src: ../files/prometheus.yml.j2
+    dest: '{{ prometheus.config }}'
+
+- name: Run media-center
   community.docker.docker_compose:
     state: present
     project_src: '{{ containers.directory }}'
     files:
-     - container-compose.yml
+     - media-center.yml
+
+- name: Run monitoring
+  community.docker.docker_compose:
+    state: present
+    project_src: '{{ containers.directory }}'
+    files:
+      - monitoring.yml
