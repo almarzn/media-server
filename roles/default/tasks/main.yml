@@ -1,4 +1,0 @@
-- include_tasks: setup-base-packages.yml
-- include_tasks: setup-podman.yml
-- include_tasks: file-structure.yml
-- include_tasks: setup-containers.yml

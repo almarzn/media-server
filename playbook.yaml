@@ -1,8 +1,16 @@
 ---
 - hosts: all
-  become: true
   vars:
     private:
+      docker_hub_user: almarzn
+      docker_hub_token: !vault |
+        $ANSIBLE_VAULT;1.1;AES256
+        39616335383761653863336638663638343661383132306330306464656161636435323234326234
+        6431383765343862346461643834626239626461303730380a346539396534306464386465303462
+        30313335396236396237613430356437326137663936653162366635383332346633646430643131
+        3466663036323965640a343566393565373666646465626639346239363137663135353633396164
+        66343136383730623261663830663336326562343732383936626336646165386666616166613966
+        3039396139353165656161363963666463386631346437346436
       proton_key: !vault |
         $ANSIBLE_VAULT;1.1;AES256
         37663161643235343965663332336335393966353236626630666465333135643934363064313630
@@ -12,13 +20,16 @@
         34346138323231633439336464333863326339663365666365666531646663636161393335616666
         3532353532313935363134333636303832383437643361613739
     wireguard:
-      server: FR#61
-      secret_name: proton_private_key
+      server: node-fr-13.protonvpn.net
+      secret_name: protonwire-private-key
       ports:
         caddy: 8000
     data_library_basepath: '{{ data_basepath }}/library'
     containers:
       directory: /containers
+      unit:
+        system: /etc/containers/systemd
+        user: $HOME/.config/containers/systemd
     data:
       library:
         tvshows:
@@ -26,7 +37,8 @@
         movies:
           path: '{{ data_library_basepath }}/movies'
         config:
-          path: '{{ data_library_basepath }}/config'
+          path: '/var/plex/config'
 
   roles:
-    - default
+    - podman
+    - torrent

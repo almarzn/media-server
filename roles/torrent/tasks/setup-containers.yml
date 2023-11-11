@@ -1,0 +1,20 @@
+- name: Create wireguard secret
+  become: true
+  containers.podman.podman_secret:
+    state: present
+    name: '{{ wireguard.secret_name }}'
+    data: '{{ private.proton_key }}'
+  ignore_errors: true
+
+- name: Install protonwire.container
+  become: true
+  template:
+    src: ../files/protonwire.container.j2
+    dest: '{{ containers.unit.system }}/protonwire.container'
+  register: protonwire_container
+
+- name: Install testvpn.container
+  become: true
+  template:
+    src: ../files/testvpn.container.j2
+    dest: '{{ containers.unit.system }}/testvpn.container'
