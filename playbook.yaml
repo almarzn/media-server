@@ -27,6 +27,7 @@
     data_library_basepath: '{{ data_basepath }}/library'
     containers:
       directory: /containers
+      config: '{{ ansible_env.HOME }}/.containers'
       unit:
         system: /etc/containers/systemd
         user: $HOME/.config/containers/systemd
@@ -41,4 +42,5 @@
 
   roles:
     - podman
-    - torrent
+    - monitoring
+#    - torrent

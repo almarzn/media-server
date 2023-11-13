@@ -1,0 +1,19 @@
+[Install]
+WantedBy=default.target
+
+[Container]
+ContainerName=telegraf
+Image=docker.io/library/telegraf:latest
+Network=host
+AddCapability=NET_RAW
+Volume=%h/{{ telegraf_config_path }}:/etc/telegraf/telegraf.conf:ro
+Environment=HOST_ETC=/hostfs/etc
+Environment=HOST_PROC=/hostfs/proc
+Environment=HOST_SYS=/hostfs/sys
+Environment=HOST_VAR=/hostfs/var
+Environment=HOST_RUN=/hostfs/run
+Environment=HOST_MOUNT_PREFIX=/hostfs
+Volume=/:/hostfs:ro
+Volume=%t/podman/podman.sock:/var/run/podman.sock
+Volume=/proc/net/dev:/proc/net/dev
+Volume=/sys/class/powercap:/sys/class/powercap
