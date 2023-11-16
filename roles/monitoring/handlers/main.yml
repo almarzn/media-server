@@ -4,3 +4,12 @@
     name: telegraf
     state: restarted
     daemon_reload: true
+
+- name: start_hack
+  become: true
+  systemd:
+    scope: system
+    name: allow-powerstat
+    state: restarted
+    daemon_reload: true
+
