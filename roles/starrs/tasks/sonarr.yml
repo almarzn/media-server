@@ -1,0 +1,10 @@
+- name: create sonarr_config
+  file:
+    path: '{{ sonarr_config }}'
+    state: directory
+
+- template:
+    src: '../templates/sonarr.container.j2'
+    dest: '{{ containers.unit.user }}/sonarr.container'
+  notify: restart_sonarr
+

@@ -1,6 +1,7 @@
 - name: Start caddy
-  become: true
   systemd:
+    daemon_reload: true
+    scope: user
     name: testvpn
     state: started
 

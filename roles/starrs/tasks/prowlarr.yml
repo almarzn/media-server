@@ -1,0 +1,11 @@
+- name: create prowlarr_config
+  file:
+    path: '{{ prowlarr_config }}'
+    state: directory
+
+- name: Prowlarr
+  template:
+    src: '../templates/prowlarr.container.j2'
+    dest: '{{ containers.unit.user }}/prowlarr.container'
+  notify: restart_prowlarr
+

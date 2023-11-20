@@ -1,0 +1,10 @@
+[Install]
+WantedBy=default.target
+
+[Container]
+ContainerName=prowlarr
+Image=lscr.io/linuxserver/prowlarr:latest
+Environment=TZ=Etc/UTC
+Environment=LOG_LEVEL=debug
+PublishPort={{ prowlarr_port }}:{{ prowlarr_port }}
+Volume={{ prowlarr_config }}:/config

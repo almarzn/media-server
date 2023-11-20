@@ -1,0 +1,10 @@
+[Install]
+WantedBy=default.target
+
+[Container]
+ContainerName=sonarr
+Image=lscr.io/linuxserver/sonarr:latest
+Environment=TZ=Etc/UTC
+PublishPort={{ sonarr_port }}:8989
+Volume={{ data_basepath }}:{{ data_basepath }}
+Volume={{ sonarr_config }}:/config

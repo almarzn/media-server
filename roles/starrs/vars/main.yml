@@ -1,0 +1,10 @@
+radarr_port: 7878
+radarr_config: '{{ data_basepath }}/config/radarr'
+
+prowlarr_port: 9696
+prowlarr_config: '{{ data_basepath }}/config/prowlarr'
+
+sonarr_port: 39002
+sonarr_config: '{{ data_basepath }}/config/prowlarr'
+
+flaresolverr_port: 39001

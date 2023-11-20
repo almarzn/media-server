@@ -1,0 +1,7 @@
+qbittorrent_config: /var/qbittorrent/config
+qbittorrent_log: /var/qbittorrent/log
+qbittorrent_cache: /var/qbittorrent/cache
+qbittorrent_cache2: /tmp/qbittorrent
+qbittorrent_data: '{{ data_basepath }}/config/qbittorrent'
+qbittorrent_image_name: ghcr.io/onedr0p/qbittorrent
+qbittorrent_image_version: 4.6.0

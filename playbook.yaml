@@ -20,17 +20,19 @@
         34346138323231633439336464333863326339663365666365666531646663636161393335616666
         3532353532313935363134333636303832383437643361613739
     wireguard:
-      server: node-fr-13.protonvpn.net
+      server: FR#87
       secret_name: protonwire-private-key
       ports:
         caddy: 8000
-    data_library_basepath: '{{ data_basepath }}/library'
+        qbittorrent_webui: 8080
     containers:
       directory: /containers
       config: '{{ ansible_env.HOME }}/.containers'
       unit:
         system: /etc/containers/systemd
         user: $HOME/.config/containers/systemd
+    data_library_basepath: '{{ data_basepath }}/library'
+    data_downloads_basepath: '{{ data_basepath }}/downloads'
     data:
       library:
         tvshows:
@@ -39,8 +41,16 @@
           path: '{{ data_library_basepath }}/movies'
         config:
           path: '/var/plex/config'
+      downloads:
+        tvshows:
+          path: '{{ data_downloads_basepath }}/tvshows'
+        movies:
+          path: '{{ data_downloads_basepath }}/movies'
+
 
   roles:
-    - podman
-    - monitoring
-#    - torrent
+    - common
+#    - podman
+#    - monitoring
+    - torrent
+    - starrs

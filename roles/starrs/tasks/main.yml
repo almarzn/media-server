@@ -1,0 +1,3 @@
+- include_tasks: flaresolverr.yml
+- include_tasks: prowlarr.yml
+- include_tasks: radarr.yml

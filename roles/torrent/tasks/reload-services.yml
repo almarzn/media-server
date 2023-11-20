@@ -1,25 +1,46 @@
-
-- name: Reload user systemd daemon
+- name: Reload systemd daemon
   systemd:
     daemon_reload: true
     scope: user
 
-- name: Reload systemd daemon
-  become: true
+- name: Stop qbittorrent if vpn changed
   systemd:
-    daemon_reload: true
-    scope: system
+    scope: user
+    state: stopped
+    name: qbittorrent
+  when: protonwire_container.changed
+
+- name: Stop testvpn if vpn changed
+  systemd:
+    scope: user
+    state: stopped
+    name: testvpn
+  when: protonwire_container.changed
 
 - name: Restart protonwire if changed
-  become: true
   systemd:
+    scope: user
     state: restarted
     name: protonwire
   when: protonwire_container.changed
 
 - name: Start protonwire if not changed
-  become: true
   systemd:
+    scope: user
     state: started
     name: protonwire
   when: not protonwire_container.changed
+
+- name: Start qbittorrent if not changed
+  systemd:
+    scope: user
+    state: started
+    name: qbittorrent
+  when: not qbittorrent_container.changed
+
+- name: Restart qbittorrent if changed
+  systemd:
+    scope: user
+    state: restarted
+    name: qbittorrent
+  when: qbittorrent_container.changed

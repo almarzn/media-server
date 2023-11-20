@@ -1,0 +1,31 @@
+- name: restart_radarr
+  systemd:
+    daemon_reload: true
+    state: restarted
+    name: radarr
+    scope: user
+    enabled: true
+
+- name: restart_prowlarr
+  systemd:
+    daemon_reload: true
+    state: restarted
+    name: prowlarr
+    scope: user
+    enabled: true
+
+- name: restart_sonarr
+  systemd:
+    daemon_reload: true
+    state: restarted
+    name: sonarr
+    scope: user
+    enabled: true
+
+- name: restart_flaresolverr
+  systemd:
+    daemon_reload: true
+    state: restarted
+    name: flaresolverr
+    scope: user
+    enabled: true
