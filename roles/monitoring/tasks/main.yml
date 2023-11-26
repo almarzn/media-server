@@ -2,3 +2,4 @@
 - include_tasks: setup-influxdb-config.yml
 - include_tasks: generate-token.yml
 - include_tasks: setup-telegraf.yml
+- include_tasks: firewall.yml

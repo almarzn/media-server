@@ -1,5 +1,5 @@
 ---
-influx_port_host: 18086
+influx_port_host: '{{ caddy_services.influxdb }}'
 influx_port_container: 8086
 influx_data_path: /var/lib/influxdb2
 influx_config_path: '{{ containers.config }}/influxdb2/config'

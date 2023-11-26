@@ -23,3 +23,5 @@
     src: '../templates/samba.container.j2'
     dest: '{{ containers.unit.user }}/samba.container'
   notify: restart_samba
+
+- include_tasks: firewall.yml

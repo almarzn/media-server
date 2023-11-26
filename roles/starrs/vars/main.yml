@@ -1,10 +1,10 @@
-radarr_port: 7878
+radarr_port: '{{ caddy_services.radarr }}'
 radarr_config: '{{ data_basepath }}/config/radarr'
 
-prowlarr_port: 9696
+prowlarr_port: '{{ caddy_services.prowlarr }}'
 prowlarr_config: '{{ data_basepath }}/config/prowlarr'
 
-sonarr_port: 8989
+sonarr_port: '{{ caddy_services.sonarr }}'
 sonarr_db_main: sonarr_main
 sonarr_db_logs: sonarr_logs
 sonarr_image: ghcr.io/onedr0p/sonarr:3.0.10
