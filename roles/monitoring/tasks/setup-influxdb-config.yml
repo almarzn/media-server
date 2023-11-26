@@ -1,0 +1,28 @@
+- name: Wait for influxdb ready
+  ansible.builtin.wait_for:
+    port: '{{ influx_port_host }}'
+
+- name: Setup influx
+  when: create_influx_data.changed
+  command: |
+    podman exec influxdb influx setup \
+      --org {{ influx_org }} \
+      --bucket {{ influx_bucket }} \
+      --username {{ influx_username }} \
+      --password {{ influx_password }} \
+      --retention {{ influx_retention }} \
+    	--force
+
+- name: Copy influxdb-dashboard-overview.yml
+  register: copy_overview_template
+  copy:
+    src: ../files/influxdb-dashboard-overview.yml
+    dest: '{{ influx_config_path }}/influxdb-dashboard-overview.yml'
+
+- name: Import influxdb-dashboard-overview.yml
+  when: copy_overview_template.changed
+  command: |
+    podman exec influxdb influx apply \
+      --org {{ influx_org }} \
+      --file /etc/influxdb2/influxdb-dashboard-overview.yml \
+      --force yes

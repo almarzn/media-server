@@ -1,0 +1,15 @@
+[Install]
+Requires=protonwire.service
+
+[Container]
+ContainerName=qbittorrent
+Image={{ qbittorrent_image_name }}:{{ qbittorrent_image_version }}
+Environment=QBITTORRENT__PORT={{ wireguard.ports.qbittorrent_webui }}
+Volume={{ data_downloads_basepath }}:{{ data_downloads_basepath }}
+Volume={{ qbittorrent_config }}:/config/qBittorrent
+Volume={{ qbittorrent_log }}:/config/qBittorrent/logs
+Volume={{ qbittorrent_cache }}:/config/qBittorrent/cache
+Volume={{ qbittorrent_cache2 }}:/config/.cache
+Volume={{ qbittorrent_data }}:/config/qBittorrent/data
+Network=container:protonwire
+PodmanArgs=--userns=keep-id --user=1000

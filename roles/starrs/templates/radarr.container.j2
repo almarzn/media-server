@@ -1,0 +1,10 @@
+[Install]
+WantedBy=default.target
+
+[Container]
+ContainerName=radarr
+Image=lscr.io/linuxserver/radarr:latest
+Environment=TZ=Etc/UTC
+PublishPort={{ radarr_port }}:{{ radarr_port }}
+Volume={{ data_basepath }}:{{ data_basepath }}
+Volume={{ radarr_config }}:/config

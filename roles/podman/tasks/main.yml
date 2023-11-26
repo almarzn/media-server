@@ -1,0 +1,44 @@
+- name: Add kubic signing key
+  become: true
+  ansible.builtin.apt_key:
+    url: 'https://download.opensuse.org/repositories/devel:kubic:libcontainers:unstable/xUbuntu_{{ ansible_distribution_version }}/Release.key'
+    state: present
+
+- name: Add podman source
+  become: true
+  apt_repository:
+    repo: 'deb https://download.opensuse.org/repositories/devel:kubic:libcontainers:unstable/xUbuntu_{{ ansible_distribution_version }}/ /'
+    filename: kubic-unstable
+
+- name: Update apt
+  become: true
+  apt:
+    update_cache: true
+  ignore_errors: true
+
+- name: Install Podman
+  become: true
+  apt:
+    name: podman
+    state: latest
+
+- name: Login to dockerhub
+  containers.podman.podman_login:
+    username: '{{ private.docker_hub_user }}'
+    password: '{{ private.docker_hub_token }}'
+
+
+- name: Create root quadlet directory
+  become: true
+  file:
+    path: '{{ containers.unit.system }}'
+    state: directory
+
+- name: Create quadlet directory
+  file:
+    path: '{{ containers.unit.user }}'
+    state: directory
+
+- name: Enable lingering
+  become: true
+  command: 'loginctl enable-linger {{ ansible_user }}'

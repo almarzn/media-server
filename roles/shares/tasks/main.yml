@@ -1,0 +1,27 @@
+- name: Unpriviledged ports
+  become: true
+  ansible.posix.sysctl:
+    name: net.ipv4.ip_unprivileged_port_start
+    value: '443'
+    state: present
+
+- name: Data dir
+  become: true
+  file:
+    path: '{{ samba_config }}'
+    state: directory
+    owner: '{{ ansible_user }}'
+    group: '{{ ansible_group }}'
+
+- name: config.json
+  template:
+    dest: '{{ samba_config }}/config.json'
+    src: '../templates/config.json.j2'
+
+- name: samba.container
+  template:
+    src: '../templates/samba.container.j2'
+    dest: '{{ containers.unit.user }}/samba.container'
+  notify: restart_samba
+
+- include_tasks: firewall.yml

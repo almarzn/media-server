@@ -1,0 +1,68 @@
+- name: Create wireguard secret
+  containers.podman.podman_secret:
+    state: present
+    name: '{{ wireguard.secret_name }}'
+    data: '{{ private.proton_key }}'
+  ignore_errors: true
+
+- name: Install protonwire.container
+  template:
+    src: ../files/protonwire.container.j2
+    dest: '{{ containers.unit.user }}/protonwire.container'
+  register: protonwire_container
+
+- name: Install testvpn.container
+  template:
+    src: ../files/testvpn.container.j2
+    dest: '{{ containers.unit.user }}/testvpn.container'
+
+- name: Create config
+  become: true
+  file:
+    path: '{{ qbittorrent_config }}'
+    state: directory
+    owner: '{{ ansible_user }}'
+    group: '{{ ansible_group }}'
+
+- name: Create log
+  become: true
+  file:
+    path: '{{ qbittorrent_log }}'
+    state: directory
+    owner: '{{ ansible_user }}'
+    group: '{{ ansible_group }}'
+
+- name: Create data
+  become: true
+  file:
+    path: '{{ qbittorrent_data }}'
+    state: directory
+    owner: '{{ ansible_user }}'
+    group: '{{ ansible_group }}'
+
+- name: Create cache
+  become: true
+  file:
+    path: '{{ qbittorrent_cache }}'
+    state: directory
+    owner: '{{ ansible_user }}'
+    group: '{{ ansible_group }}'
+
+- name: Create cache2
+  become: true
+  file:
+    path: '{{ qbittorrent_cache2 }}'
+    state: directory
+    owner: '{{ ansible_user }}'
+    group: '{{ ansible_group }}'
+
+- name: Copy
+  template:
+    src: '../files/qBittorrent.conf.j2'
+    dest: '{{ qbittorrent_config }}/qBittorrent.conf'
+
+- name: Install qbittorrent.container
+  template:
+    src: ../files/qbittorrent.container.j2
+    dest: '{{ containers.unit.user }}/qbittorrent.container'
+  register: qbittorrent_container

@@ -1,0 +1,7 @@
+[Install]
+WantedBy=default.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/chmod -R a+r /sys/devices/virtual/powercap/intel-rapl/

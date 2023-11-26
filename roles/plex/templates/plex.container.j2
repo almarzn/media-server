@@ -1,0 +1,25 @@
+[Install]
+WantedBy=default.target
+
+[Container]
+ContainerName=plex
+Image={{ plex_image }}
+Volume={{ plex_config }}:/config/Library/Application Support
+Volume={{ data_library_basepath }}:/data/library
+Environment=PLEX_MEDIA_SERVER_USER=alma
+Environment=PUID=alma
+Environment=PGID=alma
+AddDevice=/dev/dri/renderD128
+AddDevice=/dev/dri/card0
+PublishPort=32400:32400
+PublishPort=1900:1900
+PublishPort=3005:3005
+PublishPort=5353:5353
+PublishPort=8324:8324
+PublishPort=32410:32410
+PublishPort=32412:32412
+PublishPort=32413:32413
+PublishPort=32414:32414
+PublishPort=32469:32469
+PodmanArgs=--userns=keep-id --user=1000 --group-add=keep-groups
+Network=host

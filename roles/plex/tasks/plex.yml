@@ -1,0 +1,11 @@
+- name: plex dir
+  file:
+    path: '{{ plex_config }}'
+    state: directory
+
+- name: plex container
+  template:
+    src: '../templates/plex.container.j2'
+    dest: '{{ containers.unit.user }}/plex.container'
+  notify: restart_plex
+

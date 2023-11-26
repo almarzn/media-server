@@ -1,0 +1,32 @@
+- name: Start and enable podman.socket service
+  systemd:
+    name: podman.socket
+    enabled: true
+    scope: user
+    state: started
+
+- name: Add linux hack
+  become: true
+  notify: start_hack
+  copy:
+    src: ../files/allow-powerstat.service
+    dest: /etc/systemd/system/
+
+- name: Enable linux hack
+  become: true
+  systemd:
+    name: allow-powerstat
+    enabled: true
+    scope: system
+
+- name: Render telegraf-config.conf
+  notify: restart_telegraf
+  template:
+    src: ../templates/telegraf-config.conf.j2
+    dest: '$HOME/{{ telegraf_config_path }}'
+
+- name: Render telegraf.container
+  notify: restart_telegraf
+  template:
+    src: ../templates/telegraf.container.j2
+    dest: '{{ containers.unit.user }}/telegraf.container'

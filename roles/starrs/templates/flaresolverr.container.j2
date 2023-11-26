@@ -1,0 +1,10 @@
+[Install]
+WantedBy=default.target
+
+[Container]
+ContainerName=flaresolverr
+Image=ghcr.io/flaresolverr/flaresolverr:latest
+Environment=TZ=Etc/UTC
+Environment=LANG=en_US
+Environment=LOG_LEVEL=debug
+PublishPort={{ flaresolverr_port }}:8191

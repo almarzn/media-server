@@ -1,0 +1,13 @@
+- include_tasks: file-structure.yml
+
+- community.general.ufw:
+    rule: allow
+    name: OpenSSH
+  become: true
+  name: Allow SSH connections
+
+- name: Deny everything and enable UFW
+  community.general.ufw:
+    state: enabled
+    policy: deny
+  become: true

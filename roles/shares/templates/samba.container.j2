@@ -1,0 +1,14 @@
+[Install]
+WantedBy=default.target
+
+[Container]
+ContainerName=samba
+Image=quay.io/samba.org/samba-server:latest
+Volume={{ data_downloads_basepath }}:/share:ro
+Volume={{ samba_config }}:/etc/samba-container
+Environment=SAMBACC_CONFIG=/etc/samba-container/config.json
+Environment=SAMBA_CONTAINER_ID=almachine
+PublishPort=445:445
+PublishPort=3702:3702
+PublishPort=5355:5355
+Network=host

@@ -1,0 +1,3 @@
+- include_tasks: setup-containers.yml
+- include_tasks: reload-services.yml
+- include_tasks: validate-vpn.yml

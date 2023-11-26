@@ -1,0 +1,14 @@
+[Install]
+WantedBy=default.target
+
+[Container]
+ContainerName=starbase
+Image=docker.io/jordanroher/starbase-80
+PublishPort=4173:4173
+Environment="TITLE=Starbase 80"
+Environment="LOGO="
+Environment=HEADERTOP=false
+Environment=CATEGORIES=small
+Environment=NEWWINDOW=false
+Environment=SHOWHEADERTOP=false
+Volume={{ starbase_config_path }}:/app/src/config.json

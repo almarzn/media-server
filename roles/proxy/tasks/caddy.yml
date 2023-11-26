@@ -1,0 +1,31 @@
+- name: Caddyfile
+  become: true
+  template:
+    src: ../templates/Caddyfile.j2
+    dest: '{{ caddy_config }}'
+  notify: restart_caddy
+
+- name: caddy.container
+  become: true
+  template:
+    src: ../templates/caddy.container.j2
+    dest: '{{ containers.unit.system }}/caddy.container'
+  notify: restart_caddy
+
+- name: data caddy
+  become: true
+  file:
+    path: '{{ caddy_data }}'
+    state: directory
+
+- community.general.ufw:
+    rule: allow
+    port: http
+  become: true
+  name: Allow HTTP
+
+- community.general.ufw:
+    rule: allow
+    port: https
+  become: true
+  name: Allow HTTPS

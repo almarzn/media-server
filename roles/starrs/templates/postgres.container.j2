@@ -1,0 +1,11 @@
+[Install]
+WantedBy=default.target
+
+[Container]
+ContainerName=postgree
+Image=docker.io/library/postgres:latest
+Environment=TZ=Etc/UTC
+PublishPort={{ postgres_port }}:{{ postgres_port }}
+Volume={{ postgres_config }}:/var/lib/postgresql/data
+Environment=POSTGRES_PASSWORD={{ postgres_password }}
+Environment=POSTGRES_USER={{ postgres_user }}

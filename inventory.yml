@@ -1,8 +1,7 @@
-test:
+prod:
   hosts:
-    test_ansible_container:
-      ansible_connection: docker
-      inside_docker: yes
-      enable_quicksync: no
-      data_basepath: '{{ playbook_dir }}/test/data'
-      containers_basepath: '{{ playbook_dir }}/test/containers'
+    almachine:
+      ansible_user: alma
+      ansible_group: alma
+      enable_quicksync: yes
+      data_basepath: '/data'

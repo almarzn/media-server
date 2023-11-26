@@ -1,0 +1,30 @@
+almachine {
+    tls internal {
+
+    }
+
+    # Enable authentication for all access
+    basicauth {
+      alma $2a$14$j48DrP3B2v9uDZeUBCDu7OmPjzvhEAl3Go0bFd2ey9ZRlkhZxtL4G {{ caddy_salt }}
+    }
+
+    handle_path /qbt/* {
+        reverse_proxy http://192.168.1.82:{{ caddy_services.qbt }}
+    }
+
+    handle /radarr/* {
+        reverse_proxy http://localhost:{{ caddy_services.radarr }}
+    }
+
+    handle /sonarr/* {
+        reverse_proxy http://localhost:{{ caddy_services.sonarr }}
+    }
+
+    handle /prowlarr/* {
+        reverse_proxy http://localhost:{{ caddy_services.prowlarr }}
+    }
+
+    handle /* {
+        reverse_proxy http://localhost:4173
+    }
+}

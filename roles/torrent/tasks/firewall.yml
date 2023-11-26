@@ -1,0 +1,6 @@
+
+- community.general.ufw:
+    rule: allow
+    port: '{{ qbittorrent_connection_port }}'
+  become: true
+  name: Allow direct traffic

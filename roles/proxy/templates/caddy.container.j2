@@ -1,0 +1,11 @@
+[Install]
+WantedBy=default.target
+
+[Container]
+ContainerName=caddy
+Image=docker.io/library/caddy
+PublishPort=80:80
+PublishPort=443:443
+Volume={{ caddy_config }}:/etc/caddy/Caddyfile
+Volume={{ caddy_data }}:/data
+Network=host

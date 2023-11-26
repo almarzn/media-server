@@ -1,0 +1,31 @@
+- name: Create influx data path
+  register: create_influx_data
+  become: true
+  file:
+    path: '{{ influx_data_path }}'
+    state: directory
+    owner: 100999
+    group: '{{ ansible_group }}'
+
+- name: Create influx config path
+  register: create_influx_config
+  become: true
+  file:
+    state: directory
+    path: '{{ influx_config_path }}'
+    owner: 100999
+    group: '{{ ansible_group }}'
+
+- name: Render influxdb.container
+  register: render_influxdb_container
+  template:
+    src: ../templates/influxdb.container.j2
+    dest: '{{ containers.unit.user }}/influxdb.container'
+
+- name: Start influxdb
+  register: start_influxdb
+  systemd:
+    scope: user
+    name: influxdb
+    state: "{{ 'restarted' if (render_influxdb_container.changed) else 'started'}}"
+    daemon_reload: true
