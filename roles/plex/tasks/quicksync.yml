@@ -1,0 +1,8 @@
+- name: Install packages
+  become: true
+  apt:
+    state: present
+    name:
+      - intel-media-va-driver
+      - ubuntu-restricted-addons
+      - vainfo

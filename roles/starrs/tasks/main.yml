@@ -1,3 +1,5 @@
+- include_tasks: postgres.yml
 - include_tasks: flaresolverr.yml
 - include_tasks: prowlarr.yml
 - include_tasks: radarr.yml
+- include_tasks: sonarr.yml

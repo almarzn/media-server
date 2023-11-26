@@ -1,0 +1,12 @@
+- name: create postgres_config
+  file:
+    path: '{{ postgres_config }}'
+    state: directory
+
+- template:
+    src: '../templates/postgres.container.j2'
+    dest: '{{ containers.unit.user }}/postgres.container'
+  notify: restart_postgres
+
+- meta: flush_handlers
+

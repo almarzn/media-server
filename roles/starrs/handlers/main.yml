@@ -29,3 +29,11 @@
     name: flaresolverr
     scope: user
     enabled: true
+
+- name: restart_postgres
+  systemd:
+    daemon_reload: true
+    state: restarted
+    name: postgres
+    scope: user
+    enabled: true

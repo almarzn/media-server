@@ -1,0 +1,2 @@
+plex_image: ghcr.io/onedr0p/plex:1.32.7.7621-871adbd44
+plex_config: '{{ data_basepath }}/config/plex'

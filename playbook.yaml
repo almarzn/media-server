@@ -49,8 +49,9 @@
 
 
   roles:
-    - common
+#    - common
 #    - podman
 #    - monitoring
-    - torrent
-    - starrs
+#    - torrent
+#    - starrs
+    - plex
