@@ -1,0 +1,16 @@
+- name: restart_caddy
+  become: true
+  systemd:
+    daemon_reload: true
+    state: restarted
+    name: caddy
+    scope: system
+    enabled: true
+
+- name: restart_starbase
+  systemd:
+    daemon_reload: true
+    state: restarted
+    name: starbase
+    scope: user
+    enabled: true
