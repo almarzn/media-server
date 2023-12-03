@@ -1,30 +1,45 @@
-almachine {
+almachine, http://almachine {
     tls internal {
 
     }
 
     # Enable authentication for all access
-    basicauth {
-      alma $2a$14$j48DrP3B2v9uDZeUBCDu7OmPjzvhEAl3Go0bFd2ey9ZRlkhZxtL4G {{ caddy_salt }}
-    }
 
     handle_path /qbt/* {
+        basicauth {
+            alma $2a$14$j48DrP3B2v9uDZeUBCDu7OmPjzvhEAl3Go0bFd2ey9ZRlkhZxtL4G {{ caddy_salt }}
+            nzb $2a$14$0ri/Be7rF2tikdCQtj2HQ.Tn9C/6pa55M1q2P73cdXFcjVToc7v7u {{ caddy_salt }}
+        }
         reverse_proxy http://192.168.1.82:{{ caddy_services.qbt }}
     }
 
     handle /radarr/* {
+        basicauth {
+            alma $2a$14$j48DrP3B2v9uDZeUBCDu7OmPjzvhEAl3Go0bFd2ey9ZRlkhZxtL4G {{ caddy_salt }}
+            nzb $2a$14$0ri/Be7rF2tikdCQtj2HQ.Tn9C/6pa55M1q2P73cdXFcjVToc7v7u {{ caddy_salt }}
+        }
         reverse_proxy http://localhost:{{ caddy_services.radarr }}
     }
 
     handle /sonarr/* {
+        basicauth {
+            alma $2a$14$j48DrP3B2v9uDZeUBCDu7OmPjzvhEAl3Go0bFd2ey9ZRlkhZxtL4G {{ caddy_salt }}
+            nzb $2a$14$0ri/Be7rF2tikdCQtj2HQ.Tn9C/6pa55M1q2P73cdXFcjVToc7v7u {{ caddy_salt }}
+        }
         reverse_proxy http://localhost:{{ caddy_services.sonarr }}
     }
 
     handle /prowlarr/* {
+        basicauth {
+            alma $2a$14$j48DrP3B2v9uDZeUBCDu7OmPjzvhEAl3Go0bFd2ey9ZRlkhZxtL4G {{ caddy_salt }}
+        }
         reverse_proxy http://localhost:{{ caddy_services.prowlarr }}
     }
 
     handle /* {
+        basicauth {
+            alma $2a$14$j48DrP3B2v9uDZeUBCDu7OmPjzvhEAl3Go0bFd2ey9ZRlkhZxtL4G {{ caddy_salt }}
+        }
         reverse_proxy http://localhost:4173
     }
 }

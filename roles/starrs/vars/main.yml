@@ -16,3 +16,4 @@ postgres_port: 5431
 postgres_config: '{{ data_basepath }}/config/postgres'
 postgres_password: postgres
 postgres_user: postgres
+postgres_uid: 15008

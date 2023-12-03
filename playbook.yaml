@@ -30,7 +30,6 @@
         31613532386136663964396634666435653633663032383539373330393665613336366238643938
         30613434623065653233
     caddy_services:
-      influxdb: 18086
       radarr: 7878
       prowlarr: 9696
       sonarr: 8989
@@ -69,7 +68,7 @@
 #    - podman
 #    - monitoring
 #    - torrent
-#    - starrs
+    - starrs
 #    - plex
 #    - shares
-    - proxy
+#    - proxy

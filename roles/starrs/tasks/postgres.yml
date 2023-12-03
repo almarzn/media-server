@@ -1,7 +1,14 @@
 - name: create postgres_config
+  become: true
   file:
     path: '{{ postgres_config }}'
     state: directory
+    recurse: true
+    owner: '{{ ansible_user }}'
+    group: '{{ ansible_group }}'
+
+- name: unshare config
+  command: 'podman unshare chown -R 0 {{ postgres_config }}'
 
 - template:
     src: '../templates/postgres.container.j2'

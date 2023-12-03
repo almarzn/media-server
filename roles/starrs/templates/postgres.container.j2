@@ -2,7 +2,7 @@
 WantedBy=default.target
 
 [Container]
-ContainerName=postgree
+ContainerName=postgres
 Image=docker.io/library/postgres:latest
 Environment=TZ=Etc/UTC
 PublishPort={{ postgres_port }}:{{ postgres_port }}

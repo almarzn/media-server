@@ -1,9 +1,0 @@
-[Install]
-WantedBy=default.target
-
-[Container]
-ContainerName=influxdb
-Image=docker.io/library/influxdb:latest
-PublishPort={{ influx_port_host }}:{{ influx_port_container }}
-Volume={{ influx_data_path }}:/var/lib/influxdb2
-Volume={{ influx_config_path }}:/etc/influxdb2
