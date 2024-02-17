@@ -1,45 +1,103 @@
+{
+        http_port 8090
+        https_port 443
+        order authenticate before respond
+        order authorize before basicauth
+        security {
+                local identity store localdb {
+                    realm local
+                    path /etc/caddy/users.json
+                }
+
+                authentication portal myportal {
+                        crypto default token lifetime 3600
+			            enable identity store localdb
+
+                        cookie domain almachine
+
+                        transform user {
+                                match origin local
+                                action add role authp/user
+                        }
+                }
+
+                authorization policy users_policy {
+                        set auth url https://almachine/auth
+
+                        acl rule {
+                                comment allow users
+                                match role authp/admin
+                                allow stop log info
+                        }
+                        acl rule {
+                                comment default deny
+                                match role any
+                                deny log warn
+                        }
+                }
+
+                authorization policy starrs_policy {
+                        with basic auth portal myportal realm local
+
+                        set auth url https://almachine/auth
+
+                        acl rule {
+                                comment allow api
+                                match role authp/api
+                                allow stop log info
+                        }
+                        acl rule {
+                                comment allow admin
+                                match role authp/admin
+                                allow stop log info
+                        }
+                        acl rule {
+                                comment default deny
+                                match role any
+                                deny log warn
+                        }
+                }
+        }
+}
+
 almachine, http://almachine {
     tls internal {
 
     }
+    route /radarr/* {
+        authorize with starrs_policy
+    }
 
-    # Enable authentication for all access
+    route /sonarr/* {
+        authorize with starrs_policy
+    }
+
+    route /prowlarr/* {
+        authorize with users_policy
+        reverse_proxy http://localhost:{{ caddy_services.prowlarr }}
+    }
 
     handle_path /qbt/* {
-        basicauth {
-            alma $2a$14$j48DrP3B2v9uDZeUBCDu7OmPjzvhEAl3Go0bFd2ey9ZRlkhZxtL4G {{ caddy_salt }}
-            nzb $2a$14$0ri/Be7rF2tikdCQtj2HQ.Tn9C/6pa55M1q2P73cdXFcjVToc7v7u {{ caddy_salt }}
-        }
+        authorize with users_policy
         reverse_proxy http://192.168.1.82:{{ caddy_services.qbt }}
     }
 
     handle /radarr/* {
-        basicauth {
-            alma $2a$14$j48DrP3B2v9uDZeUBCDu7OmPjzvhEAl3Go0bFd2ey9ZRlkhZxtL4G {{ caddy_salt }}
-            nzb $2a$14$0ri/Be7rF2tikdCQtj2HQ.Tn9C/6pa55M1q2P73cdXFcjVToc7v7u {{ caddy_salt }}
-        }
         reverse_proxy http://localhost:{{ caddy_services.radarr }}
     }
 
     handle /sonarr/* {
-        basicauth {
-            alma $2a$14$j48DrP3B2v9uDZeUBCDu7OmPjzvhEAl3Go0bFd2ey9ZRlkhZxtL4G {{ caddy_salt }}
-            nzb $2a$14$0ri/Be7rF2tikdCQtj2HQ.Tn9C/6pa55M1q2P73cdXFcjVToc7v7u {{ caddy_salt }}
-        }
         reverse_proxy http://localhost:{{ caddy_services.sonarr }}
     }
 
-    handle /prowlarr/* {
-        basicauth {
-            alma $2a$14$j48DrP3B2v9uDZeUBCDu7OmPjzvhEAl3Go0bFd2ey9ZRlkhZxtL4G {{ caddy_salt }}
-        }
-        reverse_proxy http://localhost:{{ caddy_services.prowlarr }}
+    route /auth* {
+        authenticate with myportal
+        reverse_proxy http://localhost:4173
     }
 
-    handle /* {
-        basicauth {
-            alma $2a$14$j48DrP3B2v9uDZeUBCDu7OmPjzvhEAl3Go0bFd2ey9ZRlkhZxtL4G {{ caddy_salt }}
-        }
+    route /* {
+        authorize with users_policy
+
         reverse_proxy http://localhost:4173
     }
 }

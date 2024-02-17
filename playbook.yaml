@@ -66,11 +66,11 @@
 
 
   roles:
-#    - common
-#    - podman
-#    - monitoring
-#    - torrent
-    - starrs
+##    - common
+##    - podman
+##    - monitoring
+##    - torrent
+#    - starrs
 #    - plex
 #    - shares
-#    - proxy
+    - proxy

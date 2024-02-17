@@ -5,6 +5,13 @@
     dest: '{{ caddy_config }}'
   notify: restart_caddy
 
+- name: users.json.j2
+  become: true
+  template:
+    src: ../templates/users.json.j2
+    dest: '{{ caddy_users }}'
+  notify: restart_caddy
+
 - name: caddy.container
   become: true
   template:

@@ -1,4 +1,5 @@
 caddy_config: /root/Caddyfile
+caddy_users: /root/users.json
 caddy_data: /data/config/caddy
 caddy_salt: !vault |
   $ANSIBLE_VAULT;1.1;AES256
