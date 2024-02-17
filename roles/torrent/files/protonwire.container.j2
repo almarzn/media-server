@@ -4,7 +4,7 @@ RequiredBy=protonwire.service
 
 [Container]
 ContainerName=protonwire
-Image=ghcr.io/tprasadtp/protonwire:7
+Image={{ protonwire_image_name }}:{{ protonwire_image_version }}
 Tmpfs=/tmp
 Secret={{ wireguard.secret_name }},mode=600
 Environment=PROTONVPN_SERVER={{ wireguard.server }}

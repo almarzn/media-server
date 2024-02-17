@@ -5,5 +5,8 @@ qbittorrent_cache2: /tmp/qbittorrent
 qbittorrent_watched_folder: /data/
 qbittorrent_data: '{{ data_basepath }}/config/qbittorrent'
 qbittorrent_image_name: ghcr.io/onedr0p/qbittorrent
-qbittorrent_image_version: 4.6.0
+qbittorrent_image_version: 4.6.3
 qbittorrent_connection_port: 33838
+
+protonwire_image_name: ghcr.io/tprasadtp/protonwire
+protonwire_image_version: 7.2.9
