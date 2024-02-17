@@ -1,7 +1,11 @@
 - name: create sonarr_config
+  become: true
   file:
     path: '{{ sonarr_config }}'
     state: directory
+    recurse: true
+    owner: '{{ ansible_user }}'
+    group: '{{ ansible_group }}'
 
 - template:
     src: '../templates/sonarr.container.j2'

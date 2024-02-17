@@ -5,7 +5,7 @@ WantedBy=default.target
 ContainerName=sonarr
 Image={{ sonarr_image }}
 Environment=TZ=Etc/UTC
-Environment=SONARR__POSTGRES_HOST=localhost
+Environment=SONARR__POSTGRES_HOST=192.168.1.82
 Environment=SONARR__POSTGRES_MAIN_DB={{ sonarr_db_main }}
 Environment=SONARR__POSTGRES_LOG_DB={{ sonarr_db_logs }}
 Environment=SONARR__POSTGRES_PASSWORD={{ postgres_password }}

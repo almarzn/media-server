@@ -1,7 +1,11 @@
 - name: create radarr_config
+  become: true
   file:
     path: '{{ radarr_config }}'
     state: directory
+    recurse: true
+    owner: '{{ ansible_user }}'
+    group: '{{ ansible_group }}'
 
 - template:
     src: '../templates/radarr.container.j2'
