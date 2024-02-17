@@ -46,8 +46,10 @@
       unit:
         system: /etc/containers/systemd
         user: $HOME/.config/containers/systemd
+    input_watched: '{{ ansible_env.HOME }}/watched'
     data_library_basepath: '{{ data_basepath }}/library'
     data_downloads_basepath: '{{ data_basepath }}/downloads'
+    data_watched_basepath: '{{ data_basepath }}/watched'
     data:
       library:
         tvshows:

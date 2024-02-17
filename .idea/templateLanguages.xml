@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="TemplateDataLanguageMappings">
+    <file url="file://$PROJECT_DIR$/roles/monitoring/templates/telegraf-config.conf.j2" dialect="TOML" />
+    <file url="file://$PROJECT_DIR$/roles/proxy/templates/Caddyfile.j2" dialect="TEXT" />
+  </component>
+</project>

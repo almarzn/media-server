@@ -4,7 +4,8 @@ WantedBy=default.target
 [Container]
 ContainerName=samba
 Image=quay.io/samba.org/samba-server:latest
-Volume={{ data_downloads_basepath }}:/share:ro
+Volume={{ data_basepath }}:/share/data:ro
+Volume={{ input_watched }}:/share/watched
 Volume={{ samba_config }}:/etc/samba-container
 Environment=SAMBACC_CONFIG=/etc/samba-container/config.json
 Environment=SAMBA_CONTAINER_ID=almachine

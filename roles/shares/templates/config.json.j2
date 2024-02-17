@@ -3,7 +3,7 @@
   "configs": {
     "almachine": {
       "shares": [
-        "share"
+        "data", "watched"
       ],
       "globals": [
         "default"
@@ -12,9 +12,16 @@
     }
   },
   "shares": {
-    "share": {
+    "data": {
       "options": {
-        "path": "/share",
+        "path": "/share/data",
+        "valid users": "alma"
+      }
+    },
+    "watched": {
+      "options": {
+        "path": "/share/watched",
+        "read only": "no",
         "valid users": "alma"
       }
     }

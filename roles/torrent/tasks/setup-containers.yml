@@ -56,10 +56,25 @@
     owner: '{{ ansible_user }}'
     group: '{{ ansible_group }}'
 
-- name: Copy
+- name: Render qbittorrent.conf
   template:
     src: '../files/qBittorrent.conf.j2'
     dest: '{{ qbittorrent_config }}/qBittorrent.conf'
+
+- name: Render watched_folders.json
+  template:
+    src: '../files/watched_folders.json.j2'
+    dest: '{{ qbittorrent_config }}/watched_folders.json'
+
+- name: Input Watched folder
+  file:
+    path: '{{ input_watched }}'
+    state: directory
+
+- name: Watched folder
+  file:
+    path: '{{ data_watched_basepath }}'
+    state: directory
 
 - name: Install qbittorrent.container
   template:
