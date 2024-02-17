@@ -27,9 +27,9 @@
 
 - community.general.ufw:
     rule: allow
-    port: http
+    port: 8090
   become: true
-  name: Allow HTTP
+  name: Allow HTTP 8090
 
 - community.general.ufw:
     rule: allow

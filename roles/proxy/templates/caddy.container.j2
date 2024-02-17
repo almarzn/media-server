@@ -4,7 +4,7 @@ WantedBy=default.target
 [Container]
 ContainerName=caddy
 Image=ghcr.io/authp/authp:v1.0.5
-PublishPort=80:80
+PublishPort=8090:8090
 PublishPort=443:443
 Volume={{ caddy_config }}:/etc/caddy/Caddyfile
 Volume={{ caddy_data }}:/data
