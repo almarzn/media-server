@@ -1,7 +1,0 @@
-- name: Allow rule
-  become: true
-  community.general.ufw:
-    rule: deny
-    port: '{{ influx_port_host }}'
-    proto: tcp
-    src: 192.168.0.0/16

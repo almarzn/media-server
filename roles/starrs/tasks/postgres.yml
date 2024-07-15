@@ -1,5 +1,7 @@
 - name: create postgres_config
   become: true
+  tags:
+    - become
   file:
     path: '{{ postgres_config }}'
     state: directory

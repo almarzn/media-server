@@ -1,5 +1,7 @@
 - name: create sonarr_config
   become: true
+  tags:
+    - become
   file:
     path: '{{ sonarr_config }}'
     state: directory

@@ -16,8 +16,7 @@ Notify=true
 {% for service,port in wireguard.ports.items()  %}
 PublishPort={{ port }}:{{ port }}
 {% endfor %}
-HealthStartPeriod=20s
-HealthInterval=90s
-HealthCmd=protonwire check --container --silent
+HealthCmd=none{#protonwire check --service-status-file --silent
+HealthInterval=120s
 HealthOnFailure=stop
-{#Network=pasta#}
+HealthStartPeriod=20s#}

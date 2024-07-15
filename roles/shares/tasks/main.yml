@@ -1,5 +1,7 @@
 - name: Unpriviledged ports
   become: true
+  tags:
+    - become
   ansible.posix.sysctl:
     name: net.ipv4.ip_unprivileged_port_start
     value: '443'
@@ -7,6 +9,8 @@
 
 - name: Data dir
   become: true
+  tags:
+    - become
   file:
     path: '{{ samba_config }}'
     state: directory

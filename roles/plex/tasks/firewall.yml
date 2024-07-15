@@ -1,5 +1,7 @@
 - name: Allow rule - TCP
   become: true
+  tags:
+    - become
   community.general.ufw:
     rule: allow
     port: '{{ item }}'
@@ -11,6 +13,8 @@
 
 - name: Allow rule - UDP
   become: true
+  tags:
+    - become
   community.general.ufw:
     rule: allow
     port: '{{ item }}'

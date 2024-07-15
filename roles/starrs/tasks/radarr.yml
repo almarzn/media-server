@@ -1,5 +1,7 @@
 - name: create radarr_config
   become: true
+  tags:
+    - become
   file:
     path: '{{ radarr_config }}'
     state: directory

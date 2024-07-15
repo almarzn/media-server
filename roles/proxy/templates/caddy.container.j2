@@ -9,4 +9,5 @@ PublishPort=443:443
 Volume={{ caddy_config }}:/etc/caddy/Caddyfile
 Volume={{ caddy_data }}:/data
 Volume={{ caddy_users }}:/etc/caddy/users.json
+Volume=/var/run/tailscale/tailscaled.sock:/var/run/tailscale/tailscaled.sock
 Network=host

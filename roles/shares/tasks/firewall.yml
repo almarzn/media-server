@@ -1,5 +1,7 @@
 - name: Allow rule - TCP
   become: true
+  tags:
+    - become
   community.general.ufw:
     rule: allow
     port: '445'

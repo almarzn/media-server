@@ -13,16 +13,11 @@
                         crypto default token lifetime 3600
 			            enable identity store localdb
 
-                        cookie domain almachine
-
-                        transform user {
-                                match origin local
-                                action add role authp/user
-                        }
+                        cookie domain almachine.tail0984c.ts.net
                 }
 
                 authorization policy users_policy {
-                        set auth url https://almachine/auth
+                        set auth url https://almachine.tail0984c.ts.net/auth
 
                         acl rule {
                                 comment allow users
@@ -38,8 +33,7 @@
 
                 authorization policy starrs_policy {
                         with basic auth portal myportal realm local
-
-                        set auth url https://almachine/auth
+                        set auth url https://almachine.tail0984c.ts.net/auth
 
                         acl rule {
                                 comment allow api
@@ -60,44 +54,34 @@
         }
 }
 
-almachine, http://almachine {
-    tls internal {
-
-    }
+https://almachine.tail0984c.ts.net {
     route /radarr/* {
         authorize with starrs_policy
+        reverse_proxy http://localhost:7878
     }
 
     route /sonarr/* {
         authorize with starrs_policy
+        reverse_proxy http://localhost:8989
     }
 
     route /prowlarr/* {
         authorize with users_policy
-        reverse_proxy http://localhost:{{ caddy_services.prowlarr }}
+        reverse_proxy http://localhost:9696
     }
 
     handle_path /qbt/* {
         authorize with users_policy
-        reverse_proxy http://192.168.1.82:{{ caddy_services.qbt }}
-    }
-
-    handle /radarr/* {
-        reverse_proxy http://localhost:{{ caddy_services.radarr }}
-    }
-
-    handle /sonarr/* {
-        reverse_proxy http://localhost:{{ caddy_services.sonarr }}
+        reverse_proxy http://100.99.204.88:8080
     }
 
     route /auth* {
         authenticate with myportal
-        reverse_proxy http://localhost:4173
     }
 
     route /* {
         authorize with users_policy
 
-        reverse_proxy http://localhost:4173
+        reverse_proxy http://localhost:3000
     }
 }

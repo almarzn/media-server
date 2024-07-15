@@ -18,6 +18,8 @@
 
 - name: Create config
   become: true
+  tags:
+    - become
   file:
     path: '{{ qbittorrent_config }}'
     state: directory
@@ -26,6 +28,8 @@
 
 - name: Create log
   become: true
+  tags:
+    - become
   file:
     path: '{{ qbittorrent_log }}'
     state: directory
@@ -34,6 +38,8 @@
 
 - name: Create data
   become: true
+  tags:
+    - become
   file:
     path: '{{ qbittorrent_data }}'
     state: directory
@@ -42,6 +48,8 @@
 
 - name: Create cache
   become: true
+  tags:
+    - become
   file:
     path: '{{ qbittorrent_cache }}'
     state: directory
@@ -50,6 +58,10 @@
 
 - name: Create cache2
   become: true
+  tags:
+    - become
+  tags:
+    - become
   file:
     path: '{{ qbittorrent_cache2 }}'
     state: directory

@@ -1,5 +1,7 @@
 - name: Create Data directory
   become: true
+  tags:
+    - become
   file:
     path: '{{ data_basepath }}'
     state: directory
@@ -9,6 +11,8 @@
 
 - name: downloads - create TV Shows directory
   become: true
+  tags:
+    - become
   file:
     path: '{{ data.downloads.tvshows.path }}'
     state: directory

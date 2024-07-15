@@ -4,6 +4,8 @@
     rule: allow
     name: OpenSSH
   become: true
+  tags:
+    - become
   name: Allow SSH connections
 
 - name: Deny everything and enable UFW
@@ -11,3 +13,5 @@
     state: enabled
     policy: deny
   become: true
+  tags:
+    - become
