@@ -22,11 +22,11 @@
     scope: user
     enabled: true
 
-- name: restart_flaresolverr
+- name: restart_byparr
   systemd:
     daemon_reload: true
     state: restarted
-    name: flaresolverr
+    name: byparr
     scope: user
     enabled: true
 

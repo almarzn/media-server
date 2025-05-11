@@ -13,7 +13,7 @@ sonarr_db_logs: sonarr_logs
 sonarr_image: ghcr.io/onedr0p/sonarr:4.0.1
 sonarr_config: '{{ data_basepath }}/config/sonarr'
 
-flaresolverr_port: 39001
+byparr_port: 39001
 
 postgres_port: 5432
 postgres_config: '{{ data_basepath }}/config/postgres'

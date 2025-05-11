@@ -1,0 +1,6 @@
+- name: byparr
+  template:
+    src: '../templates/byparr.container.j2'
+    dest: '{{ containers.unit.user }}/byparr.container'
+  notify: restart_byparr
+

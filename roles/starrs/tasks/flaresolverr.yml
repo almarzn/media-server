@@ -1,6 +1,0 @@
-- name: flareSolverr
-  template:
-    src: '../templates/flaresolverr.container.j2'
-    dest: '{{ containers.unit.user }}/flaresolverr.container'
-  notify: restart_flaresolverr
-
