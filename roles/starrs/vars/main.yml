@@ -1,7 +1,7 @@
 radarr_port: '{{ caddy_services.radarr }}'
 radarr_db_main: radarr_main
 radarr_db_logs: radarr_logs
-radarr_image: ghcr.io/onedr0p/radarr:5.2.6.8376
+radarr_image: ghcr.io/onedr0p/radarr:5.20.1.9773
 radarr_config: '{{ data_basepath }}/config/radarr'
 
 prowlarr_port: '{{ caddy_services.prowlarr }}'
@@ -10,7 +10,7 @@ prowlarr_config: '{{ data_basepath }}/config/prowlarr'
 sonarr_port: '{{ caddy_services.sonarr }}'
 sonarr_db_main: sonarr_main
 sonarr_db_logs: sonarr_logs
-sonarr_image: ghcr.io/onedr0p/sonarr:4.0.1
+sonarr_image: ghcr.io/onedr0p/sonarr:4.0.14.2938
 sonarr_config: '{{ data_basepath }}/config/sonarr'
 
 byparr_port: 39001

@@ -16,6 +16,13 @@ Session\DefaultSavePath={{ data_downloads_basepath }}
 Session\ExcludedFileNames=
 Session\Interface=protonwire0
 Session\InterfaceName=protonwire0
+Session\MaxActiveDownloads=8
+Session\MaxActiveTorrents=500
+Session\MaxActiveUploads=200
+Session\MaxConnections=800
+Session\MaxConnectionsPerTorrent=200
+Session\MaxUploads=200
+Session\MaxUploadsPerTorrent=40
 Session\Port={{ qbittorrent_connection_port }}
 Session\QueueingSystemEnabled=true
 Session\TempPath={{ data_downloads_basepath }}/incomplete/
@@ -44,8 +51,12 @@ Downloads\SavePath={{ data_downloads_basepath }}
 Downloads\TempPath={{ data_downloads_basepath }}/incomplete/
 General\Locale=en
 MailNotification\req_auth=true
+WebUI\UseUPnP=false
 WebUI\Address=*
-WebUI\AuthSubnetWhitelist=@Invalid()
+WebUI\AuthSubnetWhitelist=100.99.204.0/24
+WebUI\AuthSubnetWhitelistEnabled=true
+WebUI\LocalHostAuth=false
+WebUI\Password_PBKDF2="@ByteArray(i8tU9+k+UQ6sJ8UoFntUxQ==:rxpFTEgXryN2NJd+DpYEH6d20uv3JhbWlwd6GnmdjMspFmbIu/e5FyObELNPFuWadO7woORZzPGlKlsvy+TrPg==)"
 WebUI\ServerDomains=*
 WebUI\UseUPnP=false
 

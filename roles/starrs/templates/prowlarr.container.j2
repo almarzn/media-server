@@ -3,10 +3,10 @@ WantedBy=default.target
 
 [Container]
 ContainerName=prowlarr
-Image=ghcr.io/linuxserver/prowlarr:1.18.0
+Image=ghcr.io/linuxserver/prowlarr:1.35.1
 Environment=TZ=Etc/UTC
 Environment=LOG_LEVEL=debug
 PublishPort={{ prowlarr_port }}:{{ prowlarr_port }}
 Volume={{ prowlarr_config }}:/config
-DNS=208.67.222.222
-DNS=208.67.222.220
+DNS=9.9.9.9
+DNS=149.112.112.112

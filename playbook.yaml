@@ -37,7 +37,7 @@
       sonarr: 8989
       qbt: 8080
     wireguard:
-      server: node-fr-234.protonvpn.net
+      server: 45.128.134.194
       secret_name: protonwire-private-key
       ports:
         caddy: 8000
@@ -71,8 +71,8 @@
 #    - common
 #    - podman
 #    - monitoring
-    - torrent
-    # - starrs
-    - plex
+     - torrent
+# - starrs
+      # - plex
 #    - shares
     # - proxy
