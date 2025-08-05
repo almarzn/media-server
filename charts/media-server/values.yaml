@@ -152,7 +152,7 @@ flaresolverr:
 byparr:
   enabled: true
   image: ghcr.io/thephaseless/byparr:1.1.1 # {"$imagepolicy": "media-server:byparr"}
-  port: 39001
+  port: 8191
   resources:
     requests:
       memory: "64Mi"

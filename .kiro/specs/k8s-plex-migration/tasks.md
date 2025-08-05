@@ -53,7 +53,7 @@
   - Test Prowlarr startup and web interface accessibility
   - _Requirements: 2.3, 6.2_
 
-- [ ] 8. Deploy FlareSolverr and Byparr support services
+- [x] 8. Deploy FlareSolverr and Byparr support services
   - Create FlareSolverr deployment for Cloudflare bypass functionality
   - Deploy Byparr for additional content discovery capabilities
   - Configure services and test connectivity from Prowlarr

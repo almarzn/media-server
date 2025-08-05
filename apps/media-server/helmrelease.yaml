@@ -35,6 +35,6 @@ spec:
     flaresolverr:
       enabled: true  # Enable FlareSolverr as it supports Prowlarr
     byparr:
-      enabled: false
+      enabled: true  # Enable Byparr for additional content discovery
     samba:
       enabled: false
