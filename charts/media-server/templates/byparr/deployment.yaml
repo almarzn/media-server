@@ -1,0 +1,46 @@
+{{- if .Values.byparr.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "media-server.fullname" . }}-byparr
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "media-server.labels" . | nindent 4 }}
+    {{- include "media-server.componentLabels" "byparr" | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "media-server.selectorLabels" . | nindent 6 }}
+      {{- include "media-server.componentLabels" "byparr" | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "media-server.selectorLabels" . | nindent 8 }}
+        {{- include "media-server.componentLabels" "byparr" | nindent 8 }}
+    spec:
+      securityContext:
+        {{- include "media-server.securityContext" . | nindent 8 }}
+      containers:
+      - name: byparr
+        image: {{ .Values.byparr.image }}
+        ports:
+        - containerPort: {{ .Values.byparr.port }}
+          name: http
+        env:
+        {{- include "media-server.commonEnv" . | nindent 8 }}
+        resources:
+          {{- toYaml .Values.byparr.resources | nindent 10 }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 10
+          periodSeconds: 10
+{{- end }}

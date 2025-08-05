@@ -1,0 +1,53 @@
+{{- if .Values.sonarr.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "media-server.fullname" . }}-sonarr
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "media-server.labels" . | nindent 4 }}
+    {{- include "media-server.componentLabels" "sonarr" | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "media-server.selectorLabels" . | nindent 6 }}
+      {{- include "media-server.componentLabels" "sonarr" | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "media-server.selectorLabels" . | nindent 8 }}
+        {{- include "media-server.componentLabels" "sonarr" | nindent 8 }}
+    spec:
+      securityContext:
+        {{- include "media-server.securityContext" . | nindent 8 }}
+      containers:
+      - name: sonarr
+        image: {{ .Values.sonarr.image }}
+        ports:
+        - containerPort: {{ .Values.sonarr.port }}
+          name: http
+        env:
+        {{- include "media-server.commonEnv" . | nindent 8 }}
+        {{- include "media-server.databaseEnv" (dict "root" . "app" "sonarr" "config" .Values.sonarr) | nindent 8 }}
+        volumeMounts:
+        {{- include "media-server.configVolumeMount" "sonarr" | nindent 8 }}
+        {{- include "media-server.commonVolumeMounts" . | nindent 8 }}
+        resources:
+          {{- toYaml .Values.sonarr.resources | nindent 10 }}
+        livenessProbe:
+          httpGet:
+            path: /ping
+            port: http
+          initialDelaySeconds: 60
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /ping
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 10
+      volumes:
+      {{- include "media-server.configVolume" (dict "root" . "component" "sonarr") | nindent 6 }}
+      {{- include "media-server.commonVolumes" . | nindent 6 }}
+{{- end }}

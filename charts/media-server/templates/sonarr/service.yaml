@@ -1,0 +1,20 @@
+{{- if .Values.sonarr.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "media-server.fullname" . }}-sonarr
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "media-server.labels" . | nindent 4 }}
+    {{- include "media-server.componentLabels" "sonarr" | nindent 4 }}
+spec:
+  type: NodePort
+  ports:
+  - port: {{ .Values.sonarr.port }}
+    targetPort: http
+    nodePort: {{ .Values.sonarr.nodePort }}
+    name: http
+  selector:
+    {{- include "media-server.selectorLabels" . | nindent 4 }}
+    {{- include "media-server.componentLabels" "sonarr" | nindent 4 }}
+{{- end }}

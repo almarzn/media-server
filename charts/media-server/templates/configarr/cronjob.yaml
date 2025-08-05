@@ -1,0 +1,68 @@
+{{- if .Values.configarr.enabled }}
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "media-server.fullname" . }}-configarr
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "media-server.labels" . | nindent 4 }}
+    {{- include "media-server.componentLabels" "configarr" | nindent 4 }}
+spec:
+  schedule: {{ .Values.configarr.schedule | quote }}
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            {{- include "media-server.selectorLabels" . | nindent 12 }}
+            {{- include "media-server.componentLabels" "configarr" | nindent 12 }}
+        spec:
+          securityContext:
+            {{- include "media-server.securityContext" . | nindent 12 }}
+          restartPolicy: OnFailure
+          containers:
+          - name: configarr
+            image: {{ .Values.configarr.image }}
+            env:
+            {{- include "media-server.commonEnv" . | nindent 12 }}
+            - name: SONARR_URL
+              value: "http://{{ include "media-server.fullname" . }}-sonarr:{{ .Values.sonarr.port }}"
+            - name: RADARR_URL
+              value: "http://{{ include "media-server.fullname" . }}-radarr:{{ .Values.radarr.port }}"
+            - name: PROWLARR_URL
+              value: "http://{{ include "media-server.fullname" . }}-prowlarr:{{ .Values.prowlarr.port }}"
+            - name: SONARR_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: application-api-keys
+                  key: SONARR_API_KEY
+                  optional: true
+            - name: RADARR_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: application-api-keys
+                  key: RADARR_API_KEY
+                  optional: true
+            - name: PROWLARR_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: application-api-keys
+                  key: PROWLARR_API_KEY
+                  optional: true
+            volumeMounts:
+            - name: configarr-config
+              mountPath: /config
+            - name: configarr-cache
+              mountPath: /app/cache
+            resources:
+              {{- toYaml .Values.configarr.resources | nindent 14 }}
+          volumes:
+          - name: configarr-config
+            configMap:
+              name: {{ include "media-server.fullname" . }}-configarr-config
+          - name: configarr-cache
+            hostPath:
+              path: {{ .Values.hostPath }}/config/configarr
+              type: DirectoryOrCreate
+{{- end }}
+

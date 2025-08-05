@@ -1,0 +1,73 @@
+{{- if and .Values.qbittorrent.enabled .Values.protonvpn.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "media-server.fullname" . }}-qbittorrent
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "media-server.labels" . | nindent 4 }}
+    {{- include "media-server.componentLabels" "qbittorrent" | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "media-server.selectorLabels" . | nindent 6 }}
+      {{- include "media-server.componentLabels" "qbittorrent" | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "media-server.selectorLabels" . | nindent 8 }}
+        {{- include "media-server.componentLabels" "qbittorrent" | nindent 8 }}
+    spec:
+      securityContext:
+        {{- include "media-server.securityContext" . | nindent 8 }}
+      containers:
+      - name: protonvpn
+        image: {{ .Values.protonvpn.image }}
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+        env:
+        - name: PROTONVPN_SERVER
+          valueFrom:
+            secretKeyRef:
+              name: protonvpn-credentials
+              key: PROTONVPN_SERVER
+        - name: PROTONVPN_PRIVATE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: protonvpn-credentials
+              key: PROTONVPN_PRIVATE_KEY
+        resources:
+          {{- toYaml .Values.protonvpn.resources | nindent 10 }}
+      - name: qbittorrent
+        image: {{ .Values.qbittorrent.image }}
+        ports:
+        - containerPort: {{ .Values.qbittorrent.port }}
+          name: http
+        env:
+        {{- include "media-server.commonEnv" . | nindent 8 }}
+        - name: WEBUI_PORT
+          value: "{{ .Values.qbittorrent.port }}"
+        volumeMounts:
+        {{- include "media-server.configVolumeMount" "qbittorrent" | nindent 8 }}
+        {{- include "media-server.commonVolumeMounts" . | nindent 8 }}
+        resources:
+          {{- toYaml .Values.qbittorrent.resources | nindent 10 }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 60
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 10
+      volumes:
+      {{- include "media-server.configVolume" (dict "root" . "component" "qbittorrent") | nindent 6 }}
+      {{- include "media-server.commonVolumes" . | nindent 6 }}
+{{- end }}
