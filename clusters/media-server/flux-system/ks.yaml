@@ -12,3 +12,7 @@ spec:
     - name: flux-system
     - name: external-secrets
     - name: inteldeviceplugins-system
+  sourceRef:
+    kind: GitRepository
+    name: media-server-repo
+    namespace: flux-system
