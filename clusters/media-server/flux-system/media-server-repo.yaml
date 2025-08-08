@@ -5,6 +5,6 @@ metadata:
   namespace: flux-system
 spec:
   interval: 2m0s
-  url: ssh://git@github.com/almarzn/media-server.git
+  url: https://github.com/almarzn/media-server.git
   ref:
     branch: main
