@@ -4,16 +4,15 @@ metadata:
   name: gpu-plugin
   namespace: inteldeviceplugins-system
 spec:
-  interval: 4h
+  interval: 4h0m0s
   chart:
     spec:
       chart: intel-device-plugins-gpu
-      source:
-        repoURL: https://intel.github.io/helm-charts/
-        type: helm
+      sourceRef:
+        kind: HelmRepository
         name: intel
+        namespace: flux-system
   install:
     createNamespace: true
-  wait: true
   values:
     nodeFeatureRule: false
