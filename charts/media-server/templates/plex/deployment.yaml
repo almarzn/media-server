@@ -73,10 +73,6 @@ spec:
           hostPath:
             path: /var/lib/plex/transcode
             type: DirectoryOrCreate
-        - name: media
-          hostPath:
-            path: {{ .Values.global.libraryPath }}
-            type: Directory
         - name: dev-dri
           hostPath:
             path: /dev/dri
