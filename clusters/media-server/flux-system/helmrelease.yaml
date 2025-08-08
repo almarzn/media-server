@@ -10,7 +10,7 @@ spec:
       chart: ./charts/media-server
       sourceRef:
         kind: GitRepository
-        name: media-server-config
+        name: media-server-repo
         namespace: flux-system
       interval: 5m
   values:
