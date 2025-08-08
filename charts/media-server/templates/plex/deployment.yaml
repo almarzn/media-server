@@ -75,7 +75,7 @@ spec:
             type: DirectoryOrCreate
         - name: media
           hostPath:
-            path: {{ .Values. }}
+            path: {{ .Values.global.libraryPath }}
             type: Directory
         - name: dev-dri
           hostPath:

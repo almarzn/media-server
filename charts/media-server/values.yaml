@@ -9,6 +9,9 @@ infisical:
   projectId: media-server
   environment: dev
 
+global:
+  libraryPath: invalid
+
 # Plex Media Server
 plex:
   image: plexinc/pms-docker:1.41.9.9961-46083195d # {"$imagepolicy": "media-server:plex"}
