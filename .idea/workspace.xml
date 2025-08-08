@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32f4ade0-06d7-47e5-a8ea-cd9671a932d2" name="Changes" comment="Working postgres + plex setup">
-      <change afterPath="$PROJECT_DIR$/clusters/media-server/flux-system/mediaserverrepo.yaml" afterDir="false" />
+    <list default="true" id="32f4ade0-06d7-47e5-a8ea-cd9671a932d2" name="Changes" comment="Add interval">
+      <change beforePath="$PROJECT_DIR$/clusters/media-server/flux-system/kustomization.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/clusters/media-server/flux-system/kustomization.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +33,13 @@
     &quot;accountId&quot;: &quot;621a330a-f141-44ce-843b-b5a7ed578de8&quot;
   }
 }</component>
+  <component name="KubernetesSettings">
+    <specSources>
+      <SpecSource>
+        <option name="pathOrUrl" value="$PROJECT_DIR$/clusters/media-server/flux-system/gotk-components.yaml" />
+      </SpecSource>
+    </specSources>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -97,7 +104,7 @@
       <workItem from="1751792755381" duration="17402000" />
       <workItem from="1752313919830" duration="16000" />
       <workItem from="1752329273333" duration="9000" />
-      <workItem from="1754671189289" duration="7069000" />
+      <workItem from="1754671189289" duration="7371000" />
     </task>
     <task id="LOCAL-00001" summary="Working postgres + plex setup">
       <option name="closed" value="true" />
@@ -123,7 +130,47 @@
       <option name="project" value="LOCAL" />
       <updated>1754681483026</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Push branch">
+      <option name="closed" value="true" />
+      <created>1754681609951</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1754681609951</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Add to kustomization.yaml">
+      <option name="closed" value="true" />
+      <created>1754681652951</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1754681652951</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Add to kustomization.yaml">
+      <option name="closed" value="true" />
+      <created>1754681688859</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1754681688859</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Create namespace">
+      <option name="closed" value="true" />
+      <created>1754681836828</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1754681836828</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Add interval">
+      <option name="closed" value="true" />
+      <created>1754681865123</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1754681865123</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,7 +189,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Working postgres + plex setup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working postgres + plex setup" />
+    <MESSAGE value="Push branch" />
+    <MESSAGE value="Add to kustomization.yaml" />
+    <MESSAGE value="Create namespace" />
+    <MESSAGE value="Add interval" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add interval" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

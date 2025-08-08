@@ -4,5 +4,5 @@ resources:
 - gotk-components.yaml
 - gotk-sync.yaml
 - helmrelease.yaml
-- ks.yaml
 - mediaserverrepo.yaml
+- ks.yaml
