@@ -9,6 +9,8 @@ metadata:
     {{- include "media-server.componentLabels" "configarr" | nindent 4 }}
 spec:
   schedule: {{ .Values.configarr.schedule | quote }}
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
   jobTemplate:
     spec:
       template:
@@ -49,20 +51,31 @@ spec:
                   name: application-api-keys
                   key: PROWLARR_API_KEY
                   optional: true
+            - name: LOG_LEVEL
+              value: "INFO"
+            - name: DRY_RUN
+              value: "false"
             volumeMounts:
             - name: configarr-config
-              mountPath: /config
-            - name: configarr-cache
-              mountPath: /app/cache
+              mountPath: /app/config/config.yml
+              subPath: config.yml
+            - name: configarr-secrets
+              mountPath: /app/config/secrets.yml
+              subPath: secrets.yml
+            - name: configarr-repos
+              mountPath: /app/repos
             resources:
               {{- toYaml .Values.configarr.resources | nindent 14 }}
           volumes:
           - name: configarr-config
             configMap:
               name: {{ include "media-server.fullname" . }}-configarr-config
-          - name: configarr-cache
+          - name: configarr-secrets
+            secret:
+              secretName: {{ include "media-server.fullname" . }}-configarr-secrets
+          - name: configarr-repos
             hostPath:
-              path: {{ .Values.hostPath }}/config/configarr
+              path: {{ .Values.hostPath }}/config/configarr/repos
               type: DirectoryOrCreate
 {{- end }}
 

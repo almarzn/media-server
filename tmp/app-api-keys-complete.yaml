@@ -1,11 +1,14 @@
-{{- if .Values.configarr.enabled }}
 apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
   name: application-api-keys-secret
-  namespace: {{ .Values.namespace }}
+  namespace: media-server
   labels:
-    {{- include "media-server.labels" . | nindent 4 }}
+    helm.sh/chart: media-server-0.1.0
+    app.kubernetes.io/name: media-server
+    app.kubernetes.io/instance: media-server
+    app.kubernetes.io/version: "1.0"
+    app.kubernetes.io/managed-by: Helm
 spec:
   refreshInterval: 1h
   secretStoreRef:
@@ -24,4 +27,3 @@ spec:
   - secretKey: PROWLARR_API_KEY
     remoteRef:
       key: /api-keys/PROWLARR_API_KEY
-{{- end }}

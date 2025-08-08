@@ -60,7 +60,7 @@
   - Verify FlareSolverr can bypass Cloudflare protection
   - _Requirements: 3.3_
 
-- [ ] 9. Deploy Sonarr TV show management
+- [x] 9. Deploy Sonarr TV show management
   - Create Sonarr deployment with PostgreSQL database connection
   - Configure host path volumes for configuration and media access
   - Set up database environment variables using External Secrets
