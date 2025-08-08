@@ -12,3 +12,5 @@ spec:
     kind: GitRepository
     name: media-server-repo
     namespace: flux-system
+  dependsOn:
+    - name: flux-system
