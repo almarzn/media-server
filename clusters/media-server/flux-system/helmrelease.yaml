@@ -4,7 +4,8 @@ metadata:
   name: media-server
   namespace: media-server
 spec:
-  interval: 5m
+  install:
+    createNamespace: true
   chart:
     spec:
       chart: ./charts/media-server
