@@ -9,7 +9,7 @@ spec:
     createNamespace: true
   chart:
     spec:
-      chart: ./charts/media-server
+      chart: media-server
       sourceRef:
         kind: GitRepository
         name: media-server-repo
