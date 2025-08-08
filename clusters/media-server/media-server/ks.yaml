@@ -8,6 +8,10 @@ spec:
   path: ./clusters/media-server/media-server
   prune: true
   wait: true
+  dependsOn:
+    - name: flux-system
+    - name: external-secrets
+    - name: inteldeviceplugins-system
   sourceRef:
     kind: GitRepository
     name: media-server-repo
