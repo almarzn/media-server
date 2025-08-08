@@ -5,94 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32f4ade0-06d7-47e5-a8ea-cd9671a932d2" name="Changes" comment="Working postgres + plex setup">
-      <change afterPath="$PROJECT_DIR$/clusters/media-server/external-secrets/helmrelease.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clusters/media-server/external-secrets/kustomization.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clusters/media-server/flux-system/helmrelease.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clusters/media-server/flux-system/kustomization.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clusters/media-server/intel-plugin/gpu-helmrelease.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clusters/media-server/intel-plugin/kustomization.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clusters/media-server/intel-plugin/operator-helmrelease.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lint.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/orchide-mapping.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/templateLanguages.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ansible-pms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ansible-pms.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/media-server/helmrelease.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/media-server/kustomization.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/media-server/namespace.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clusters/production/apps/kustomization.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clusters/production/infrastructure/kustomization.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clusters/production/kustomization.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/playbook.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/common/tasks/file-structure.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/common/tasks/main.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/common/vars/main.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/plex/handlers/main.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/plex/tasks/firewall.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/plex/tasks/main.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/plex/tasks/plex.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/plex/tasks/quicksync.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/plex/templates/plex.container.j2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/plex/vars/main.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/podman/tasks/main.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/proxy/handlers/main.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/proxy/tasks/caddy.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/proxy/tasks/main.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/proxy/tasks/starbase.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/proxy/templates/Caddyfile.j2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/proxy/templates/caddy.container.j2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/proxy/templates/starbase.container.j2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/proxy/templates/starbase.json.j2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/proxy/templates/users.json.j2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/proxy/vars/main.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/shares/handlers/main.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/shares/tasks/firewall.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/shares/tasks/main.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/shares/templates/config.json.j2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/shares/templates/samba.container.j2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/shares/vars/main.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/starrs/handlers/main.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/starrs/tasks/byparr.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/starrs/tasks/main.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/starrs/tasks/postgres.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/starrs/tasks/prowlarr.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/starrs/tasks/radarr.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/starrs/tasks/sonarr.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/starrs/templates/byparr.container.j2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/starrs/templates/flaresolverr.container.j2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/starrs/templates/postgres.container.j2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/starrs/templates/prowlarr.container.j2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/starrs/templates/radarr.container.j2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/starrs/templates/sonarr.container.j2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/starrs/vars/main.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/torrent/files/protonwire.container.j2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/torrent/files/qBittorrent.conf.j2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/torrent/files/qbittorrent.container.j2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/torrent/files/testvpn.container.j2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/torrent/files/watched_folders.json.j2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/torrent/tasks/firewall.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/torrent/tasks/main.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/torrent/tasks/reload-services.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/torrent/tasks/setup-containers.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/torrent/tasks/validate-vpn.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/torrent/vars/main.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/setup/01-intel-gpu-device-plugin.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/setup/02-verify-cluster-health.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/setup/03-create-namespace-rbac.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/setup/04-install-fluxcd.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/setup/05-install-external-secrets.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/setup/setup-cluster.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/setup/test-infisical-integration.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/setup/verify-setup.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/data/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/app-api-keys-complete.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vault-password" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clusters/media-server/external-secrets/kustomization.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/clusters/media-server/external-secrets/ks.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clusters/media-server/flux-system/kustomization.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/clusters/media-server/flux-system/ks.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clusters/media-server/intel-plugin/kustomization.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/clusters/media-server/intel-plugin/ks.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +99,7 @@
       <workItem from="1751792755381" duration="17402000" />
       <workItem from="1752313919830" duration="16000" />
       <workItem from="1752329273333" duration="9000" />
-      <workItem from="1754671189289" duration="5904000" />
+      <workItem from="1754671189289" duration="6946000" />
     </task>
     <task id="LOCAL-00001" summary="Working postgres + plex setup">
       <option name="closed" value="true" />
@@ -193,7 +109,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751794538983</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Working postgres + plex setup">
+      <option name="closed" value="true" />
+      <created>1754680714408</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1754680714408</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
