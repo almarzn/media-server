@@ -52,9 +52,7 @@ spec:
         - containerPort: 32469
           name: dlna-tcp
         env:
-        {{- include "media-server.commonEnv" . | nindent 8 }}
-        - name: PLEX_CLAIM
-          value: ""
+        {{- include "media-server.commonEnv" . | nindent 8 }}\
         {{- if eq (.Values.plex.serviceType | default "NodePort") "LoadBalancer" }}
         - name: ADVERTISE_IP
           value: "http://{{ .Values.plex.externalIP | default "EXTERNAL_IP" }}:{{ .Values.plex.port }}"
