@@ -4,6 +4,7 @@ metadata:
   name: media-server
   namespace: media-server
 spec:
+  interval: 5m
   install:
     createNamespace: true
   chart:
@@ -13,7 +14,6 @@ spec:
         kind: GitRepository
         name: media-server-repo
         namespace: flux-system
-      interval: 5m
   values:
     # Enable only the services we want to deploy for this task
     plex:
