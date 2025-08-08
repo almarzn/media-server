@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: external-secrets
+  namespace: external-secrets   # ESO usually installs in its own namespace
+spec:
+  interval: 2h
+  chart:
+    spec:
+      chart: external-secrets
+      version: 0.19.1       # check latest version
+      source:
+        repoURL: https://charts.external-secrets.io
+        type: helm
+        name: external-secrets
+  install:
+    createNamespace: true
+  values:
+  # Your custom values here, e.g., provider config

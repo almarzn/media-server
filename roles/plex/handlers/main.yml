@@ -1,7 +1,0 @@
-- name: restart_plex
-  systemd:
-    daemon_reload: true
-    state: restarted
-    name: plex
-    scope: user
-    enabled: true

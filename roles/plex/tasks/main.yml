@@ -1,3 +1,0 @@
-- include_tasks: quicksync.yml
-- include_tasks: plex.yml
-- include_tasks: firewall.yml

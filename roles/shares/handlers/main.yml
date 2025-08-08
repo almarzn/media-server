@@ -1,7 +1,0 @@
-- name: restart_samba
-  systemd:
-    daemon_reload: true
-    state: restarted
-    name: samba
-    scope: user
-    enabled: true

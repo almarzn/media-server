@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: dp-operator
+  namespace: inteldeviceplugins-system
+spec:
+  interval: 4h
+  chart:
+    spec:
+      chart: intel-device-plugins-operator
+      source:
+        repoURL: https://intel.github.io/helm-charts/
+        type: helm
+        name: intel
+  install:
+    createNamespace: true
+  wait: true

@@ -1,8 +1,0 @@
-[Install]
-Requires=protonwire.service
-
-[Container]
-ContainerName=test_vpn
-Image=docker.io/library/caddy:latest
-Exec=caddy reverse-proxy --change-host-header --from :{{ wireguard.ports.caddy }} --to https://ip.me:443
-Network=container:protonwire

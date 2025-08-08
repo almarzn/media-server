@@ -1,7 +1,0 @@
-prod:
-  hosts:
-    '100.99.204.88':
-      ansible_user: alma
-      ansible_group: alma
-      enable_quicksync: yes
-      data_basepath: '/data'

@@ -1,0 +1,40 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: media-server
+  namespace: media-server
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: ./charts/media-server
+      sourceRef:
+        kind: GitRepository
+        name: media-server-config
+        namespace: flux-system
+      interval: 5m
+  values:
+    # Enable only the services we want to deploy for this task
+    plex:
+      enabled: true
+    postgresql:
+      enabled: false
+    prowlarr:
+      enabled: false
+    # Disable other services for now
+    sonarr:
+      enabled: false
+    radarr:
+      enabled: false
+    qbittorrent:
+      enabled: false
+    protonvpn:
+      enabled: false
+    configarr:
+      enabled: false
+    flaresolverr:
+      enabled: false  # Enable FlareSolverr as it supports Prowlarr
+    byparr:
+      enabled: false  # Enable Byparr for additional content discovery
+    samba:
+      enabled: false
