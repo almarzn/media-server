@@ -9,33 +9,14 @@ spec:
     createNamespace: true
   chart:
     spec:
-      chart: media-server
+      chart: ./charts/media-server
       sourceRef:
         kind: GitRepository
         name: media-server-repo
         namespace: flux-system
   values:
     # Enable only the services we want to deploy for this task
+    global:
+      libraryPath: /mnt/storage/library
     plex:
-      enabled: true
-    postgresql:
-      enabled: false
-    prowlarr:
-      enabled: false
-    # Disable other services for now
-    sonarr:
-      enabled: false
-    radarr:
-      enabled: false
-    qbittorrent:
-      enabled: false
-    protonvpn:
-      enabled: false
-    configarr:
-      enabled: false
-    flaresolverr:
-      enabled: false  # Enable FlareSolverr as it supports Prowlarr
-    byparr:
-      enabled: false  # Enable Byparr for additional content discovery
-    samba:
-      enabled: false
+      hostname: plexig

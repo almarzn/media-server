@@ -1,55 +1,50 @@
-{{- if .Values.plex.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "media-server.fullname" . }}-plex
-  namespace: {{ .Values.namespace }}
+  name: plex
   labels:
-    {{- include "media-server.labels" . | nindent 4 }}
-    {{- include "media-server.componentLabels" "plex" | nindent 4 }}
+    app: plex
 spec:
-  type: {{ .Values.plex.serviceType | default "NodePort" }}
+  type: NodePort
   ports:
-  - port: {{ .Values.plex.port }}
-    targetPort: http
-    {{- if eq (.Values.plex.serviceType | default "NodePort") "NodePort" }}
-    nodePort: {{ .Values.plex.nodePort }}
-    {{- end }}
-    name: http
-  - port: 1900
-    targetPort: dlna-udp
-    protocol: UDP
-    name: dlna-udp
-  - port: 3005
-    targetPort: plex-companion
-    name: plex-companion
-  - port: 5353
-    targetPort: bonjour-udp
-    protocol: UDP
-    name: bonjour-udp
-  - port: 8324
-    targetPort: plex-roku
-    name: plex-roku
-  - port: 32410
-    targetPort: gdm-32410
-    protocol: UDP
-    name: gdm-32410
-  - port: 32412
-    targetPort: gdm-32412
-    protocol: UDP
-    name: gdm-32412
-  - port: 32413
-    targetPort: gdm-32413
-    protocol: UDP
-    name: gdm-32413
-  - port: 32414
-    targetPort: gdm-32414
-    protocol: UDP
-    name: gdm-32414
-  - port: 32469
-    targetPort: dlna-tcp
-    name: dlna-tcp
+    - port: 32400
+      targetPort: 32400
+      nodePort: 32400
+      name: plex-web
+      protocol: TCP
+    - port: 8324
+      targetPort: 8324
+      nodePort: 8324
+      name: roku-control
+      protocol: TCP
+    - port: 32469
+      targetPort: 32469
+      nodePort: 32469
+      name: dlna-tcp
+      protocol: TCP
+    - port: 1900
+      targetPort: 1900
+      nodePort: 1900
+      name: dlna-udp
+      protocol: UDP
+    - port: 32410
+      targetPort: 32410
+      nodePort: 32410
+      name: gdm-32410
+      protocol: UDP
+    - port: 32412
+      targetPort: 32412
+      nodePort: 32412
+      name: gdm-32412
+      protocol: UDP
+    - port: 32413
+      targetPort: 32413
+      nodePort: 32413
+      protocol: UDP
+    - port: 32414
+      targetPort: 32414
+      nodePort: 32414
+      name: gdm-32414
+      protocol: UDP
   selector:
-    {{- include "media-server.selectorLabels" . | nindent 4 }}
-    {{- include "media-server.componentLabels" "plex" | nindent 4 }}
-{{- end }}
+    app: plex

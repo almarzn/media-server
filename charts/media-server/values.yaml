@@ -3,7 +3,6 @@
 
 # Global configuration
 namespace: media-server
-hostPath: /data
 
 # Infisical configuration for External Secrets
 infisical:
@@ -12,7 +11,6 @@ infisical:
 
 # Plex Media Server
 plex:
-  enabled: true
   image: plexinc/pms-docker:1.41.9.9961-46083195d # {"$imagepolicy": "media-server:plex"}
   port: 32400
   nodePort: 32400
@@ -23,156 +21,3 @@ plex:
     limits:
       memory: "4Gi"
       cpu: "2000m"
-
-# Sonarr - TV Show Management
-sonarr:
-  enabled: true
-  image: ghcr.io/onedr0p/sonarr:4.0.14.2938 # {"$imagepolicy": "media-server:sonarr"}
-  port: 8989
-  nodePort: 30989
-  database:
-    main: sonarr_main
-    logs: sonarr_logs
-  resources:
-    requests:
-      memory: "256Mi"
-      cpu: "100m"
-    limits:
-      memory: "1Gi"
-      cpu: "500m"
-
-# Radarr - Movie Management
-radarr:
-  enabled: true
-  image: ghcr.io/onedr0p/radarr:5.20.1.9773 # {"$imagepolicy": "media-server:radarr"}
-  port: 7878
-  nodePort: 30878
-  database:
-    main: radarr_main
-    logs: radarr_logs
-  resources:
-    requests:
-      memory: "256Mi"
-      cpu: "100m"
-    limits:
-      memory: "1Gi"
-      cpu: "500m"
-
-# Prowlarr - Indexer Management
-prowlarr:
-  enabled: true
-  image: ghcr.io/linuxserver/prowlarr:1.35.1 # {"$imagepolicy": "media-server:prowlarr"}
-  port: 9696
-  nodePort: 30696
-  dnsServers:
-    - "9.9.9.9"
-    - "149.112.112.112"
-  useExternalSecrets: true  # Using Infisical secrets
-  config:
-    authenticationMethod: "Forms"
-    authenticationRequired: "Enabled"
-    logLevel: "info"
-    urlBase: ""
-    instanceName: "Prowlarr"
-  resources:
-    requests:
-      memory: "128Mi"
-      cpu: "50m"
-    limits:
-      memory: "512Mi"
-      cpu: "200m"
-
-# qBittorrent - Torrent Client
-qbittorrent:
-  enabled: true
-  image: ghcr.io/onedr0p/qbittorrent:5.0.4 # {"$imagepolicy": "media-server:qbittorrent"}
-  port: 8080
-  nodePort: 30080
-  resources:
-    requests:
-      memory: "256Mi"
-      cpu: "100m"
-    limits:
-      memory: "1Gi"
-      cpu: "500m"
-
-# PostgreSQL Database
-postgresql:
-  enabled: true
-  image: postgres:16-alpine # {"$imagepolicy": "media-server:postgresql"}
-  port: 5432
-  resources:
-    requests:
-      memory: "256Mi"
-      cpu: "100m"
-    limits:
-      memory: "1Gi"
-      cpu: "500m"
-
-# ProtonVPN
-protonvpn:
-  enabled: true
-  image: ghcr.io/tprasadtp/protonwire:7.5.3 # {"$imagepolicy": "media-server:protonvpn"}
-  server: "45.128.134.194"
-  resources:
-    requests:
-      memory: "64Mi"
-      cpu: "50m"
-    limits:
-      memory: "256Mi"
-      cpu: "200m"
-
-# Configarr - Automated Configuration
-configarr:
-  enabled: true
-  image: ghcr.io/raydak-labs/configarr:latest # {"$imagepolicy": "media-server:configarr"}
-  schedule: "0 * * * *"  # Run every hour
-  resources:
-    requests:
-      memory: "128Mi"
-      cpu: "50m"
-    limits:
-      memory: "512Mi"
-      cpu: "200m"
-
-# FlareSolverr - Cloudflare Bypass
-flaresolverr:
-  enabled: true
-  image: ghcr.io/flaresolverr/flaresolverr:v3.3.19 # {"$imagepolicy": "media-server:flaresolverr"}
-  port: 8191
-  resources:
-    requests:
-      memory: "128Mi"
-      cpu: "50m"
-    limits:
-      memory: "512Mi"
-      cpu: "200m"
-
-# Byparr - Content Discovery
-byparr:
-  enabled: true
-  image: ghcr.io/thephaseless/byparr:1.1.1 # {"$imagepolicy": "media-server:byparr"}
-  port: 8191
-  resources:
-    requests:
-      memory: "64Mi"
-      cpu: "25m"
-    limits:
-      memory: "256Mi"
-      cpu: "100m"
-
-# Samba File Server (Optional)
-samba:
-  enabled: false
-  image: quay.io/samba.org/samba-server:latest # {"$imagepolicy": "media-server:samba"}
-  ports:
-    smb: 445
-    wsdd: 3702
-    llmnr: 5355
-  resources:
-    requests:
-      memory: "64Mi"
-      cpu: "25m"
-    limits:
-      memory: "256Mi"
-      cpu: "100m"
