@@ -19,5 +19,3 @@ spec:
     # Enable only the services we want to deploy for this task
     global:
       libraryPath: /mnt/storage/library
-    plex:
-      hostname: plexig
