@@ -38,6 +38,8 @@ spec:
           env:
             - name: TZ
               value: Europe/Paris
+            - name: ADVERTISE_IP
+              value: {{ .Values.plex.advertiseIp }}
           volumeMounts:
             - name: config
               mountPath: /config
