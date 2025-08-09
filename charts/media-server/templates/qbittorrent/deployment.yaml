@@ -58,7 +58,7 @@ spec:
               value: "on"
             - name: VPN_PORT_FORWARDING_UP_COMMAND
               value: >
-                /bin/sh -c 'wget -O- --retry-connrefused --post-data "json={\"listen_port\":\{\{PORTS\}\}}" http://127.0.0.1:{{ .Values.qbittorrent.webUiPort }}/api/v2/app/setPreferences 2>&1'
+                /bin/sh -c 'sleep 30s && wget -O- --retry-connrefused --post-data "json={\"listen_port\":\{\{PORTS\}\}}" http://127.0.0.1:{{ .Values.qbittorrent.webUiPort }}/api/v2/app/setPreferences 2>&1'
         - name: qbittorrent
           image: {{ .Values.qbittorrent.image }}
           ports:
