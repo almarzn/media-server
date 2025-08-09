@@ -17,4 +17,4 @@ spec:
     global:
       libraryPath: /mnt/storage/library
     plex:
-      advertiseIp: 192.168.1.123
+      advertiseIp: http://192.168.1.123:32400
