@@ -3,7 +3,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: plex
-  namespace: {{ .Values.namespace }}
   labels:
     app: plex
 spec:
