@@ -14,6 +14,7 @@ spec:
         kind: GitRepository
         name: media-server-repo
         namespace: flux-system
+      reconcileStrategy: Revision
   values:
     # Enable only the services we want to deploy for this task
     global:
