@@ -10,6 +10,7 @@ spec:
   wait: true
   dependsOn:
     - name: flux-system
+    - name: external-secrets
     - name: secret-store
   sourceRef:
     kind: GitRepository
