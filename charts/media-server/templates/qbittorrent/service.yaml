@@ -11,12 +11,12 @@ spec:
     - port: {{ .Values.qbittorrent.webUiPort }}
       targetPort: {{ .Values.qbittorrent.webUiPort }}
       nodePort: {{ .Values.qbittorrent.webUiPort }}
-      name: qbittorrent-web
+      name: qbt-web
       protocol: TCP
     - port: {{ .Values.qbittorrent.torrentPort }}
       targetPort: {{ .Values.qbittorrent.torrentPort }}
       nodePort: {{ .Values.qbittorrent.torrentPort }}
-      name: qbittorrent-torrent
+      name: qbt-torrent
       protocol: TCP
   selector:
     app: qbittorrent

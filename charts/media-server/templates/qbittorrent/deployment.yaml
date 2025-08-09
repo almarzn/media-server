@@ -23,10 +23,10 @@ spec:
           image: {{ .Values.qbittorrent.image }}
           ports:
             - containerPort: {{ .Values.qbittorrent.webUiPort }}
-              name: qbittorrent-web
+              name: qbt-web
               protocol: TCP
             - containerPort: {{ .Values.qbittorrent.torrentPort }}
-              name: qbittorrent-torrent
+              name: qbt-torrent
               protocol: UDP
           env:
             - name: TZ
