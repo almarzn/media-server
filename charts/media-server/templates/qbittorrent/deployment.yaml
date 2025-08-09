@@ -65,8 +65,6 @@ spec:
             - containerPort: {{ .Values.qbittorrent.webUiPort }}
               name: qbt-web
               protocol: TCP
-            - containerPort: {{ .Values.qbittorrent.torrentPort }}
-              name: qbt-torrent
               protocol: UDP
           env:
             - name: TZ
