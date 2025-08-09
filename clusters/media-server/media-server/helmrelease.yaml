@@ -21,5 +21,5 @@ spec:
     plex:
       advertiseIp: http://192.168.1.123:32400
     qbittorrent:
-      torrentPort: 13120
-      webUiPort: 13000
+      torrentPort: 31312
+      webUiPort: 31300
