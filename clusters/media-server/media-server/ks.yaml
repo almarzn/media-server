@@ -10,7 +10,6 @@ spec:
   wait: true
   dependsOn:
     - name: flux-system
-    - name: external-secrets
   sourceRef:
     kind: GitRepository
     name: media-server-repo
