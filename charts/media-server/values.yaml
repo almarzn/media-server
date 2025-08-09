@@ -19,15 +19,11 @@ global:
 plex:
   image: ghcr.io/linuxserver/plex:1.41.8.9834-071366d65-ls272 # {"$imagepolicy": "media-server:plex"}
   advertiseIp: invalid
-  resources:
-    requests:
-      memory: "1Gi"
-      cpu: "500m"
-    limits:
-      memory: "4Gi"
-      cpu: "2000m"
 
 qbittorrent:
-  image: ghcr.io/linuxserver/qbittorrent:5.1.2-r1-ls408
+  image: ghcr.io/linuxserver/qbittorrent:5.1.2-r1-ls408 # {"$imagepolicy": "media-server:qbittorrent"}
   torrentPort: 13120
   webUiPort: 13000
+
+gluetun:
+  image: qmcgaw/gluetun:v3.40.0
