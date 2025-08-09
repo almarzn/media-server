@@ -19,6 +19,32 @@ spec:
       securityContext:
         fsGroup: 1000
       containers:
+        - name: gluetun
+          image:  {{ .Values.gluetun.image }}
+          securityContext:
+            privileged: true
+            capabilities:
+              add: [ "NET_ADMIN" ]
+          env:
+            - name: TZ
+              value: "Europe/Paris"
+            - name: FIREWALL_INPUT_PORTS
+              value: "{{ .Values.qbittorrent.webUiPort }}"
+            - name: SERVER_COUNTRIES
+              value: "France"
+            - name: VPN_SERVICE_PROVIDER
+              value: "protonvpn"
+            - name: DNS_KEEP_NAMESERVER
+              value: "off"
+            - name: DOT
+              value: "off"
+            - name: VPN_TYPE
+              value: "wireguard"
+            - name: WIREGUARD_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: protonvpn-credentials
+                  key: PROTONVPN_PRIVATE_KEY
         - name: qbittorrent
           image: {{ .Values.qbittorrent.image }}
           ports:
