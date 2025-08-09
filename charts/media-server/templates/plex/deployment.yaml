@@ -16,8 +16,6 @@ spec:
       labels:
         app: plex
     spec:
-      securityContext:
-        fsGroup: 1000
       containers:
         - name: plex
           image: {{ .Values.plex.image }}
@@ -42,10 +40,6 @@ spec:
               value: Europe/Paris
             - name: ADVERTISE_IP
               value: {{ .Values.plex.advertiseIp }}
-            - name: PLEX_UID
-              value: "1000"
-            - name: PLEX_GID
-              value: "1000"
             - name: PUID
               value: "1000"
             - name: PGID
@@ -66,8 +60,6 @@ spec:
             limits:
               memory: "6Gi"
               cpu: "4000m"
-          securityContext:
-            privileged: true
       volumes:
         - name: config
           hostPath:
