@@ -25,6 +25,13 @@ spec:
             privileged: true
             capabilities:
               add: [ "NET_ADMIN" ]
+          readinessProbe:
+            timeoutSeconds: 10
+            failureThreshold: 5
+            periodSeconds: 720
+            initialDelaySeconds: 15
+            exec:
+              command: [ "/gluetun-entrypoint", "healthcheck" ]
           env:
             - name: TZ
               value: "Europe/Paris"
@@ -45,6 +52,13 @@ spec:
                 secretKeyRef:
                   name: protonvpn-credentials
                   key: PROTONVPN_PRIVATE_KEY
+            - name: PORT_FORWARD_ONLY
+              value: "on"
+            - name: VPN_PORT_FORWARDING
+              value: "on"
+            - name: VPN_PORT_FORWARDING_UP_COMMAND
+              value: >
+                /bin/sh -c 'wget -O- --retry-connrefused --post-data "json={\"listen_port\":\{\{PORTS\}\}}" http://127.0.0.1:8080/api/v2/app/setPreferences 2>&1'
         - name: qbittorrent
           image: {{ .Values.qbittorrent.image }}
           ports:
