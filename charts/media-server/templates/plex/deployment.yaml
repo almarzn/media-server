@@ -65,7 +65,8 @@ spec:
               memory: "6Gi"
               cpu: "4000m"
           securityContext:
-            privileged: true
+            runAsUser: 1001
+            runAsGroup: 1001
       volumes:
         - name: config
           hostPath:
