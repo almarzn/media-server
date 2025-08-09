@@ -12,7 +12,7 @@ infisical:
 global:
   libraryPath: invalid
   downloadsPath: invalid
-  downloadsMount: invalid
+  downloadsMount: /downloads
 
 # Plex Media Server
 plex:
