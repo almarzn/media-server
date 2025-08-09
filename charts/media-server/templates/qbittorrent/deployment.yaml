@@ -25,11 +25,11 @@ spec:
             privileged: true
             capabilities:
               add: [ "NET_ADMIN" ]
-          readinessProbe:
+          livenessProbe:
             timeoutSeconds: 10
             failureThreshold: 5
             periodSeconds: 720
-            initialDelaySeconds: 15
+            initialDelaySeconds: 5
             exec:
               command: [ "/gluetun-entrypoint", "healthcheck" ]
           env:
@@ -77,8 +77,6 @@ spec:
               value: "1000"
             - name: WEBUI_PORT
               value: "{{ .Values.qbittorrent.webUiPort }}"
-            - name: TORRENTING_PORT
-              value: "{{ .Values.qbittorrent.torrentPort }}"
           volumeMounts:
             - name: app-downloads
               mountPath: {{ .Values.global.downloadsMount }}
