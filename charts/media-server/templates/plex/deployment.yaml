@@ -18,8 +18,6 @@ spec:
     spec:
       securityContext:
         fsGroup: 1000
-        runAsUser: 1000
-        runAsGroup: 1000
       containers:
         - name: plex
           image: {{ .Values.plex.image }}
@@ -69,8 +67,7 @@ spec:
               memory: "6Gi"
               cpu: "4000m"
           securityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
+            privileged: true
       volumes:
         - name: config
           hostPath:
