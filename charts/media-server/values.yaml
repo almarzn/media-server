@@ -14,7 +14,7 @@ global:
 
 # Plex Media Server
 plex:
-  image: ghcr.io/linuxserver/plex:version-1.42.1.10054-f333bdaa8 # {"$imagepolicy": "media-server:plex"}
+  image: ghcr.io/linuxserver/plex:1.41.8.9834-071366d65-ls272 # {"$imagepolicy": "media-server:plex"}
   advertiseIp: invalid
   resources:
     requests:
