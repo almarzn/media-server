@@ -36,9 +36,9 @@ spec:
             - name: PGID
               value: "1000"
             - name: WEBUI_PORT
-              value: {{ .Values.qbittorrent.webUiPort }}
+              value: "{{ .Values.qbittorrent.webUiPort }}"
             - name: TORRENTING_PORT
-              value: {{ .Values.qbittorrent.torrentPort }}
+              value: "{{ .Values.qbittorrent.torrentPort }}"
           volumeMounts:
             - name: app-downloads
               mountPath: {{ .Values.global.appDownloadsMountPath }}
