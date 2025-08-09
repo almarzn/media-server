@@ -22,15 +22,6 @@ spec:
             - containerPort: 32400
               name: plex-web
               protocol: TCP
-            - containerPort: 8324
-              name: roku-control
-              protocol: TCP
-            - containerPort: 32469
-              name: dlna-tcp
-              protocol: TCP
-            - containerPort: 1900
-              name: dlna-udp
-              protocol: UDP
             - containerPort: 32410
               name: gdm-32410
               protocol: UDP
@@ -73,6 +64,10 @@ spec:
           hostPath:
             path: /var/lib/plex/transcode
             type: DirectoryOrCreate
+        - name: media
+          hostPath:
+            path: {{ .Values.global.libraryPath }}
+            type: Directory
         - name: dev-dri
           hostPath:
             path: /dev/dri
