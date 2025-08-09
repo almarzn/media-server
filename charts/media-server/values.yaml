@@ -11,9 +11,8 @@ infisical:
 
 global:
   libraryPath: invalid
-  appDownloadsPath: invalid
-  appDownloadsMountPath: /media-downloads
-  userDownloadsPath: invalid
+  downloadsPath: invalid
+  downloadsMount: invalid
 
 # Plex Media Server
 plex:

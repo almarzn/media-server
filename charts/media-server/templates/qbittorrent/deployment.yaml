@@ -67,9 +67,7 @@ spec:
               value: "{{ .Values.qbittorrent.torrentPort }}"
           volumeMounts:
             - name: app-downloads
-              mountPath: {{ .Values.global.appDownloadsMountPath }}
-            - name: user-downloads
-              mountPath: /user-downloads
+              mountPath: {{ .Values.global.downloadsMount }}
             - name: config
               mountPath: /config
           resources:
@@ -82,11 +80,7 @@ spec:
       volumes:
         - name: app-downloads
           hostPath:
-            path: {{ .Values.global.appDownloadsPath }}
-            type: Directory
-        - name: user-downloads
-          hostPath:
-            path: {{ .Values.global.userDownloadsPath }}
+            path: {{ .Values.global.downloadsPath }}
             type: Directory
         - name: config
           hostPath:

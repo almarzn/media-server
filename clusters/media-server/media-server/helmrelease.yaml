@@ -16,8 +16,7 @@ spec:
     # Enable only the services we want to deploy for this task
     global:
       libraryPath: /mnt/storage/library
-      appDownloadsPath: /mnt/storage/library-downloads/
-      userDownloadsPath: /mnt/storage/user-downloads/
+      downloadsPath: /mnt/storage/downloads
     plex:
       advertiseIp: http://192.168.1.123:32400
     qbittorrent:
