@@ -12,8 +12,7 @@ spec:
       chart: ./charts/media-server
       sourceRef:
         kind: GitRepository
-        name: media-server-repo
-        namespace: flux-system
+        name:  flux-system
       reconcileStrategy: Revision
   values:
     # Enable only the services we want to deploy for this task
