@@ -71,16 +71,6 @@ spec:
           securityContext:
             runAsUser: 1000
             runAsGroup: 1000
-          livenessProbe:
-            initialDelaySeconds: 20
-            periodSeconds: 600
-            timeoutSeconds: 10
-            failureThreshold: 3
-          readinessProbe:
-            initialDelaySeconds: 20
-            periodSeconds: 10
-            timeoutSeconds: 10
-            failureThreshold: 3
       volumes:
         - name: config
           hostPath:
