@@ -1,0 +1,23 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: media-server
+  namespace: flux-system
+spec:
+  interval: 5m
+  install:
+    createNamespace: true
+  chart:
+    spec:
+      chart: ./charts/media-server
+      sourceRef:
+        kind: GitRepository
+        name: media-server-repo
+        namespace: flux-system
+      reconcileStrategy: Revision
+  values:
+    # Enable only the services we want to deploy for this task
+    global:
+      libraryPath: /mnt/storage/library
+    plex:
+      hostname: plexig
