@@ -11,6 +11,9 @@ infisical:
 
 global:
   libraryPath: invalid
+  appDownloadsPath: invalid
+  appDownloadsMountPath: /media-downloads
+  userDownloadsPath: invalid
 
 # Plex Media Server
 plex:
@@ -23,3 +26,7 @@ plex:
     limits:
       memory: "4Gi"
       cpu: "2000m"
+
+qbittorrent:
+  torrentPort: 13120
+  webUiPort: 13000

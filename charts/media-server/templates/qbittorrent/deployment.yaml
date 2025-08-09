@@ -1,0 +1,68 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qbittorrent
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: qbittorrent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: qbittorrent
+  template:
+    metadata:
+      labels:
+        app: qbittorrent
+    spec:
+      securityContext:
+        fsGroup: 1000
+      containers:
+        - name: qbittorrent
+          image: {{ .Values.qbittorrent.image }}
+          ports:
+            - containerPort: {{ .Values.qbittorrent.webUiPort }}
+              name: qbittorrent-web
+              protocol: TCP
+            - containerPort: {{ .Values.qittorent.torrentPort }}
+              name: qbittorrent-torrent
+              protocol: UDP
+          env:
+            - name: TZ
+              value: Europe/Paris
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: WEBUI_PORT
+              value: {{ .Values.qbittorrent.webUiPort }}
+            - name: TORRENTING_PORT
+              value: {{ .Values.qbittorrent.torrentPort }}
+          volumeMounts:
+            - name: app-downloads
+              mountPath: {{ .Values.global.appDownloadsMountPath }}
+            - name: user-downloads
+              mountPath: /user-downloads
+            - name: config
+              mountPath: /config
+          resources:
+            requests:
+              memory: "2Gi"
+              cpu: "500m"
+            limits:
+              memory: "6Gi"
+              cpu: "4000m"
+      volumes:
+        - name: app-downloads
+          hostPath:
+            path: {{ .Values.global.appDownloadsPath }}
+            type: Directory
+        - name: user-downloads
+          hostPath:
+            path: {{ .Values.global.userDownloadsPath }}
+            type: Directory
+        - name: config
+          hostPath:
+            path: /var/lib/qbittorrent/config
+            type: DirectoryOrCreate
