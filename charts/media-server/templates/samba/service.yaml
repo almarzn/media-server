@@ -11,7 +11,7 @@ spec:
     - port: 445
       targetPort: 445
       nodePort: 445
-      name: smb
       protocol: TCP
+      name: smb
   selector:
     app: samba
