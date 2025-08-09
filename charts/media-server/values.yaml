@@ -25,3 +25,6 @@ qbittorrent:
 
 gluetun:
   image: qmcgaw/gluetun:v3.40.0
+
+samba:
+  image: ghcr.io/dockur/samba:4.21.6
