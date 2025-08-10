@@ -44,7 +44,7 @@ spec:
             secretName: tailscale
             items:
               - key: AUTH_KEY
-                path: /auth_key
+                path: auth_key
 
       restartPolicy: Always
       
