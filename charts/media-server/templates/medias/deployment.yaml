@@ -16,6 +16,7 @@ spec:
       labels:
         app: media-manager
     spec:
+      enableServiceLinks: false
       containers:
         - name: media-manager
           image: {{ .Values.mediaManager.image }}
