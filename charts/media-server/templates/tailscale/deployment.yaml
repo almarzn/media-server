@@ -16,7 +16,7 @@ spec:
       labels:
         app: tsdproxy
       annotations:
-        checksum/config: {{ include (print $.Template.BasePath "/config.yaml") . | sha256sum }}
+        checksum/config: {{ include (print $.Template.BasePath "/tailscale/config.yaml") . | sha256sum }}
     spec:
       containers:
         - name: tsdproxy
