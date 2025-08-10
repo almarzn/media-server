@@ -10,7 +10,6 @@ spec:
   ports:
     - port: {{ .Values.qbittorrent.webUiPort }}
       targetPort: {{ .Values.qbittorrent.webUiPort }}
-      nodePort: {{ .Values.qbittorrent.webUiPort }}
       name: qbt-web
       protocol: TCP
   selector:
