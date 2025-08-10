@@ -21,6 +21,7 @@ data:
       [database]
       host = "postgres.{{ .Values.namespace }}.svc.cluster.local"
       port = 5432
+      dbname = "media_manager"
 
       [auth]
       email_password_resets = false   # if true, you also need to set up SMTP (notifications.smtp_config)
