@@ -6,7 +6,7 @@ metadata:
   labels:
     app: qbittorrent
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
     - port: {{ .Values.qbittorrent.webUiPort }}
       targetPort: {{ .Values.qbittorrent.webUiPort }}

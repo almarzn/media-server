@@ -23,6 +23,40 @@ spec:
           ports:
             - containerPort: 8000
               protocol: TCP
-
+          env:
+            - name: DATABASE__USER
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_USER
+                  name: postgres-secret
+            - name: DATABASE__PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_USER
+                  name: postgres-secret
+            - name: AUTH__TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: TOKEN_SECRET
+                  name: media-manager-secret
+          volumeMounts:
+            - mountPath: /config
+              name: config
+            - mountPath: /data/tvshows
+              name: library
+              subPath: tvshows
+            - mountPath: /data/movies
+              name: library
+              subPath: movies
+      volumes:
+        - name: library
+          hostPath:
+            path: {{ .Values.global.libraryPath }}
+        - name: config
+          configMap:
+            - name: media-manager-config
+              items:
+                - key: config.toml
+                  path: config.toml
       restartPolicy: Always
       

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: media-manager
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: media-manager
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8000
+      targetPort: 8000
+      nodePort: 8000
+      protocol: TCP
+  selector:
+    app: media-manager
