@@ -55,10 +55,16 @@ spec:
               subPath: movies
             - mountPath: /data/torrents
               name: torrents
+            - mountPath: /data/images
+              name: images
       volumes:
         - name: library
           hostPath:
             path: {{ .Values.global.libraryPath }}
+        - name: images
+          hostPath:
+            path: /var/lib/media-manager/images
+            type: DirectoryOrCreate
         - name: config
           configMap:
             name: media-manager-config
