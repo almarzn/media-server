@@ -35,7 +35,7 @@ spec:
             - name: DATABASE__PASSWORD
               valueFrom:
                 secretKeyRef:
-                  key: POSTGRES_USER
+                  key: POSTGRES_PASSWORD
                   name: postgres-secret
             - name: AUTH__TOKEN_SECRET
               valueFrom:
