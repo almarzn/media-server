@@ -12,6 +12,8 @@ spec:
       app: media-manager
   template:
     metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/config.yaml") . | sha256sum }}
       name: media-manager
       labels:
         app: media-manager
