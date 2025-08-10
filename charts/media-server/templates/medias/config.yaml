@@ -19,7 +19,7 @@ data:
       development = false
 
       [database]
-      host = "db"
+      host = "postgres.{{ .Values.namespace }}.svc.cluster.local"
       port = 5432
 
       [auth]
