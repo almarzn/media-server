@@ -34,6 +34,7 @@ spec:
             type: DirectoryOrCreate
         - name: tsd-config
           configMap:
+            name: tsd-config
             items:
               - key: tsdproxy.yaml
                 path: tsdproxy.yaml
