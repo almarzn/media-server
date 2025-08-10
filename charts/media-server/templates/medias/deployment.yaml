@@ -25,6 +25,8 @@ spec:
             - containerPort: 8000
               protocol: TCP
           env:
+            - name: CONFIG_DIR
+              value: /config
             - name: DATABASE__USER
               valueFrom:
                 secretKeyRef:
