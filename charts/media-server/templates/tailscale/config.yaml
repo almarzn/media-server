@@ -35,4 +35,4 @@ data:
       ports:
         443/https:
           targets:
-            - http://media-manager.{{ .Values.namespace }}.svc.cluster.local:5000
+            - http://media-manager.{{ .Values.namespace }}.svc.cluster.local:8000
