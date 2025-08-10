@@ -25,7 +25,7 @@ spec:
             - mountPath: /config
               name: config
             - mountPath: /auth_key
-              name: auth_key
+              name: auth-key
               subPath: auth_key
       volumes:
         - name: data
@@ -39,7 +39,7 @@ spec:
                 path: tsdproxy.yaml
               - key: main.yaml
                 path: main.yaml
-        - name: auth_key
+        - name: auth-key
           secret:
             secretName: tailscale
             items:
