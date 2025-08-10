@@ -55,7 +55,7 @@ spec:
               subPath: movies
             - mountPath: /data/torrents
               name: torrents
-            - mountPath: /data/images
+            - mountPath: /app/data/images
               name: images
       volumes:
         - name: library
