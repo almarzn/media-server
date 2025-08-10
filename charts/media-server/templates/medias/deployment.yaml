@@ -48,6 +48,8 @@ spec:
             - mountPath: /data/movies
               name: library
               subPath: movies
+            - mountPath: /data/torrents
+              name: torrents
       volumes:
         - name: library
           hostPath:
@@ -58,5 +60,7 @@ spec:
             items:
               - key: config.toml
                 path: config.toml
-      restartPolicy: Always
+        - name: torrents
+          hostPath:
+            path: {{ .Values.global.downloadsPath }}
       
