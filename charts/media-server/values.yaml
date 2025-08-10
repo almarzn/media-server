@@ -28,3 +28,9 @@ gluetun:
 
 samba:
   image: ghcr.io/dockur/samba:4.21.6
+
+mediaManager:
+  image: ghcr.io/maxdorninger/mediamanager/mediamanager:sha-f755589
+
+postgres:
+  image: docker.io/library/postgres:17.5-alpine3.22
