@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tailscale-qbt
+  labels:
+    app: tailscale-qbt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tailscale-qbt
+  template:
+    metadata:
+      name: tailscale-qbt
+      labels:
+        app: tailscale-qbt
+    spec:
+      containers:
+        - name: tailscale-qbt
+          image: {{ .Values.tailscale.image }}
+          env:
+            - name: TS_AUTHKEY
+              valueFrom:
+                secretKeyRef:
+                  key: AUTH_KEY
+                  name: tailscale

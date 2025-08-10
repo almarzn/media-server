@@ -34,3 +34,6 @@ mediaManager:
 
 postgres:
   image: docker.io/library/postgres:17.5-alpine3.22
+
+tsd:
+  image: docker.io/almeidapaulopt/tsdproxy:2.0.0-beta4

@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tsdproxy
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: tsdproxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tsdproxy
+  template:
+    metadata:
+      name: tsdproxy
+      labels:
+        app: tsdproxy
+    spec:
+      containers:
+        - name: tsdproxy
+          image: {{ .Values.tsd.image }}
+          volumeMounts:
+            - mountPath: /data
+              name: data
+            - mountPath: /config
+              name: config
+            - mountPath: /auth_key
+              name: auth_key
+              subPath: auth_key
+      volumes:
+        - name: data
+          hostPath:
+            path: /var/lib/tsdproxy
+            type: DirectoryOrCreate
+        - name: config
+          configMap:
+            items:
+              - key: tsdproxy.yaml
+                path: tsdproxy.yaml
+              - key: main.yaml
+                path: main.yaml
+        - name: auth_key
+          secret:
+            secretName: tailscale
+            items:
+              - key: AUTH_KEY
+                path: /auth_key
+
+      restartPolicy: Always
+      

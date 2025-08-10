@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tsd-config
+data:
+  tsdproxy.yaml: |
+    defaultProxyProvider: default
+    lists:
+      main:
+        filename: /config/main.yaml # Path to the proxy list file
+        defaultProxyProvider: default # (Optional) Default proxy provider for this list
+        defaultProxyAccessLog: true # (Optional) Enable access logs for this list
+    tailscale:
+      providers:
+        default: # name of the provider
+          authKey: "" # optional, define authkey here
+          authKeyFile: "/auth_key" # optional, use this to load authkey from file. If this is defined, Authkey is ignored
+          controlUrl: https://controlplane.tailscale.com # use this to override the default control URL
+      dataDir: /data/
+    http:
+      hostname: 0.0.0.0
+      port: 8080
+    log:
+      level: info # set logging level info, error or trace
+      json: false # set to true to enable json logging
+    proxyAccessLog: true # set to true to enable container access log
+  main.yaml: |
+    qbittorrent:
+      ports:
+        443/https:
+          targets:
+            - http://qbittorrent.{{ .Values.namespace }}.svc.cluster.local:{{ .Values.qbittorrent.webUiPort }}
