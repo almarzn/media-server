@@ -5,24 +5,11 @@ metadata:
   namespace: {{ .Values.namespace }}
 data:
   config.toml: |
-      # MediaManager Example Configuration File
-      # This file contains all available configuration options for MediaManager
-      # Documentation: https://maxdorninger.github.io/MediaManager/introduction.html
-      #
-      # This is an example configuration file that gets copied to your config folder
-      # on first boot. You should modify the values below to match your setup.
-
-      # MediaManager Example Configuration File
-      # This file contains all available configuration options for MediaManager
-      # Documentation: https://maxdorninger.github.io/MediaManager/introduction.html
-      #
-      # This is an example configuration file that gets copied to your config folder
-      # on first boot. You should modify the values below to match your setup.
 
       [misc]
       # it's very likely that you need to change this for MediaManager to work
-      frontend_url = "http://127.0.0.1:8000/web/"   # note the trailing slash
-      cors_urls = ["http://192.168.1.123:8000"]   # note the lack of a trailing slash
+      frontend_url = "https://media-manager.tail0984c.ts.net/web/"   # note the trailing slash
+      cors_urls = ["https://media-manager.tail0984c.ts.net"]   # note the lack of a trailing slash
 
       tv_directory = "/data/tvshows"
       movie_directory = "/data/movies"
