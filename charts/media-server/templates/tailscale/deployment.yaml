@@ -23,7 +23,7 @@ spec:
             - mountPath: /data
               name: data
             - mountPath: /config
-              name: config
+              name: tsd-config
             - mountPath: /auth_key
               name: auth-key
               subPath: auth_key
@@ -32,7 +32,7 @@ spec:
           hostPath:
             path: /var/lib/tsdproxy
             type: DirectoryOrCreate
-        - name: config
+        - name: tsd-config
           configMap:
             items:
               - key: tsdproxy.yaml
