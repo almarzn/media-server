@@ -29,6 +29,16 @@ spec:
           env:
             - name: CONFIG_DIR
               value: /config
+            - name: TORRENTS__QBITTORRENT__PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: qbittorrent-secret
+                  key: PASSWORD
+            - name: TORRENTS__QBITTORRENT__USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: qbittorrent-secret
+                  key: USERNAME
             - name: DATABASE__USER
               valueFrom:
                 secretKeyRef:
