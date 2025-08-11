@@ -25,6 +25,9 @@ spec:
             - containerPort: 13001
               name: qbt-web
               protocol: TCP
+            - containerPort: 30129
+              name: qbt-torr
+              protocol: UDP
           env:
             - name: TZ
               value: Europe/Paris
