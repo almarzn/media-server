@@ -99,5 +99,5 @@ spec:
             type: DirectoryOrCreate
         - name: mam-persist
           hostPath:
-            path: /var/lib/mam-persist/config
+            path: /var/lib/mam-persist/
             type: DirectoryOrCreate
