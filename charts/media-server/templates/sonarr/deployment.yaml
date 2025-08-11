@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarr
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: sonarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sonarr
+  template:
+    metadata:
+      name: sonarr
+      labels:
+        app: sonarr
+    spec:
+      securityContext:
+        fsGroup: 1000
+        runAsGroup: 1000
+        runAsUser: 1000
+      containers:
+        - name: sonarr
+          image: {{ .Values.sonarr.image }}
+          startupProbe:
+            httpGet:
+              port: 8989
+              path: /ping
+            periodSeconds: 2
+            initialDelaySeconds: 4
+            timeoutSeconds: 30
+          readinessProbe:
+            httpGet:
+              port: 8989
+              path: /ping
+            periodSeconds: 1800
+            initialDelaySeconds: 30
+            timeoutSeconds: 30
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "800Mi"
+          ports:
+            - containerPort: 8989
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /config
+              name: sonarr-config
+      volumes:
+        - name: sonarr-config
+          hostPath:
+            path: /var/lib/sonarr
+            type: DirectoryOrCreate

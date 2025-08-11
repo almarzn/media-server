@@ -29,8 +29,8 @@ gluetun:
 samba:
   image: ghcr.io/dockur/samba:4.21.6
 
-mediaManager:
-  image: ghcr.io/maxdorninger/mediamanager/mediamanager:sha-f755589
+sonarr:
+  image: ghcr.io/home-operations/home-assistant:2.0.3.5130@sha256:fe167e4a211dac7c049b125d7c5efefaa039e41e57083d17f3e87ffda1966dd0
 
 postgres:
   image: docker.io/library/postgres:17.5-alpine3.22
