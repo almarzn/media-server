@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: forward
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: forward
+  ports:
+    - protocol: TCP
+      port: 37934
+      targetPort: 37934
+  type: NodePort
