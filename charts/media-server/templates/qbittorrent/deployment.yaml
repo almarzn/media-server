@@ -58,7 +58,7 @@ spec:
               value: "on"
             - name: VPN_PORT_FORWARDING_UP_COMMAND
               value: >
-                /bin/sh -c 'sleep 10s && wget --debug -O- --retry-connrefused --post-data "json={\"listen_port\":{{`{{PORTS}}`}}}" http://127.0.0.1:{{ .Values.qbittorrent.webUiPort }}/api/v2/app/setPreferences 2>&1'
+                wget --debug -O- --retry-connrefused --post-data "json={\"listen_port\":{{`{{PORTS}}`}}}" http://127.0.0.1:{{ .Values.qbittorrent.webUiPort }}/api/v2/app/setPreferences 2>&1' ; wget --debug --load-cookies=/persist/mam.cookies --save-cookies=/persist/mam.cookies --keep-session-cookies "https://t.myanonamouse.net/json/dynamicSeedbox.php"
         - name: qbittorrent
           image: {{ .Values.qbittorrent.image }}
           ports:
@@ -79,6 +79,8 @@ spec:
               mountPath: {{ .Values.global.downloadsMount }}
             - name: config
               mountPath: /config
+            - name: mam-persist
+              mountPath: /persist
           resources:
             requests:
               memory: "2Gi"
@@ -94,4 +96,8 @@ spec:
         - name: config
           hostPath:
             path: /var/lib/qbittorrent/config
+            type: DirectoryOrCreate
+        - name: mam-persist
+          hostPath:
+            path: /var/lib/mam-persist/config
             type: DirectoryOrCreate
