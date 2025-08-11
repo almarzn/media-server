@@ -58,7 +58,7 @@ spec:
               value: "on"
             - name: VPN_PORT_FORWARDING_UP_COMMAND
               value: >
-                wget --debug -O- --retry-connrefused --post-data "json={\"listen_port\":{{`{{PORTS}}`}}}" http://127.0.0.1:{{ .Values.qbittorrent.webUiPort }}/api/v2/app/setPreferences 2>&1' ; wget --debug --load-cookies=/persist/mam.cookies --save-cookies=/persist/mam.cookies --keep-session-cookies "https://t.myanonamouse.net/json/dynamicSeedbox.php"
+                wget --debug -O- --retry-connrefused --post-data "json={\"listen_port\":{{`{{PORTS}}`}}}" http://127.0.0.1:{{ .Values.qbittorrent.webUiPort }}/api/v2/app/setPreferences 2>&1 ; wget --debug --load-cookies=/persist/mam.cookies --save-cookies=/persist/mam.cookies --keep-session-cookies https://t.myanonamouse.net/json/dynamicSeedbox.php
         - name: qbittorrent
           image: {{ .Values.qbittorrent.image }}
           ports:
