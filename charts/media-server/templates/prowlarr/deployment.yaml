@@ -41,7 +41,8 @@ spec:
               port: 9696
               path: "/healthz"
             initialDelaySeconds: 5
-            failureThreshold: 5
+            failureThreshold: 6
+            periodSeconds: 5
             timeoutSeconds: 60
           readinessProbe:
             httpGet:
