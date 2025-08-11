@@ -56,3 +56,7 @@ spec:
           hostPath:
             path: /var/lib/sonarr
             type: DirectoryOrCreate
+        - name: media
+          hostPath:
+            path: {{ .Values.global.libraryPath }}
+            type: Directory
