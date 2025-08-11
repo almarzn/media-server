@@ -30,7 +30,7 @@ samba:
   image: ghcr.io/dockur/samba:4.21.6
 
 sonarr:
-  image: ghcr.io/home-operations/sonarr:2.0.3.5130@sha256:fe167e4a211dac7c049b125d7c5efefaa039e41e57083d17f3e87ffda1966dd0
+  image: ghcr.io/home-operations/sonarr:4.0.15.2940@sha256:ca6c735014bdfb04ce043bf1323a068ab1d1228eea5bab8305ca0722df7baf78
 
 postgres:
   image: docker.io/library/postgres:17.5-alpine3.22
