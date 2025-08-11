@@ -60,3 +60,6 @@ spec:
           hostPath:
             path: {{ .Values.global.libraryPath }}
             type: Directory
+        - name: downloads
+          hostPath:
+            path: {{ .Values.global.downloadsPath }}
