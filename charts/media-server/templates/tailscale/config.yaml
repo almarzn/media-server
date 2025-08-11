@@ -48,6 +48,6 @@ data:
             - http://sonarr.{{ .Values.namespace }}.svc.cluster.local:8989
     files:
       ports:
-        445:445:
+        445/tcp:
           targets:
             - http://samba.{{ .Values.namespace }}.svc.cluster.local:445
