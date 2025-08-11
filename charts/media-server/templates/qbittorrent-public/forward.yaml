@@ -10,4 +10,5 @@ spec:
     - protocol: TCP
       port: 37934
       targetPort: 37934
+      nodePort: 37934
   type: NodePort

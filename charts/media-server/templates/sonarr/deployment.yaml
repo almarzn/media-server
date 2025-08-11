@@ -45,6 +45,10 @@ spec:
             - containerPort: 8989
               protocol: TCP
           volumeMounts:
+            - name: media
+              mountPath: /library
+            - name: downloads
+              mountPath: {{ .Values.global.downloadsMount }}
             - mountPath: /config
               name: sonarr-config
       volumes:
