@@ -1,0 +1,57 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qbittorrent-public
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: qbittorrent-public
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: qbittorrent-public
+  template:
+    metadata:
+      labels:
+        app: qbittorrent-public
+    spec:
+      securityContext:
+        fsGroup: 1000
+      containers:
+        - name: qbittorrent-public
+          image: {{ .Values.qbittorrent.image }}
+          ports:
+            - containerPort: 13001
+              name: qbt-web
+              protocol: TCP
+          env:
+            - name: TZ
+              value: Europe/Paris
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: WEBUI_PORT
+              value: "13001"
+          volumeMounts:
+            - name: app-downloads
+              mountPath: {{ .Values.global.downloadsMount }}
+            - name: config
+              mountPath: /config
+          resources:
+            requests:
+              memory: "2Gi"
+              cpu: "500m"
+            limits:
+              memory: "6Gi"
+              cpu: "4000m"
+      volumes:
+        - name: app-downloads
+          hostPath:
+            path: {{ .Values.global.downloadsPath }}
+            type: Directory
+        - name: config
+          hostPath:
+            path: /var/lib/qbittorrent-public/config
+            type: DirectoryOrCreate
