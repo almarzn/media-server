@@ -27,7 +27,7 @@ spec:
               protocol: TCP
             - containerPort: 30129
               name: qbt-torr
-              protocol: UDP
+              protocol: TCP
           env:
             - name: TZ
               value: Europe/Paris

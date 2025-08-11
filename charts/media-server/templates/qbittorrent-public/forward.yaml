@@ -7,7 +7,7 @@ spec:
   selector:
     app: qbittorrent-public
   ports:
-    - protocol: UDP
+    - protocol: TCP
       port: 30129
       targetPort: 30129
       nodePort: 30129
