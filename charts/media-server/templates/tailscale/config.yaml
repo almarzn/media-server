@@ -35,7 +35,7 @@ data:
       ports:
         443/https:
           targets:
-            - http://qbittorrent-public.{{ .Values.namespace }}.svc.cluster.local:{{ .Values.qbittorrent.webUiPort }}
+            - http://qbittorrent-public.{{ .Values.namespace }}.svc.cluster.local:13001
     prowlarr:
       ports:
         443/https:
