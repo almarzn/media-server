@@ -50,7 +50,7 @@ data:
       # Email notification settings
       [notifications.email_notifications]
       enabled = false
-      emails = ["admin@example.com", "admin2@example.com"]    # List of email addresses to send notifications to
+      emails = ["admin@example.com"]    # List of email addresses to send notifications to
 
       # Gotify notification settings
       [notifications.gotify]
@@ -100,7 +100,7 @@ data:
       # Prowlarr settings
       [indexers.prowlarr]
       enabled = false
-      url = "http://localhost:9696"
+      url = "http://prowlarr.{{ .Values.namespace }}.svc.cluster.local:9696"
       api_key = ""
 
       # Jackett settings
@@ -110,13 +110,51 @@ data:
       api_key = ""
       indexers = ["1337x", "torrentleech"]    # List of indexer names to use
 
-      # Title-based scoring rules
+      # Quality-based scoring rules
+      [[indexers.title_scoring_rules]]
+      name = "prefer_dovi"
+      keywords = ["dovi", "dolby.vision", "dv"]
+      score_modifier = 500
+      negate = false
+
+      [[indexers.title_scoring_rules]]
+      name = "prefer_4k"
+      keywords = ["2160p", "4k"]
+      score_modifier = 400
+      negate = false
+
+      [[indexers.title_scoring_rules]]
+      name = "prefer_hdr10"
+      keywords = ["hdr10"]
+      score_modifier = 300
+      negate = false
+
       [[indexers.title_scoring_rules]]
       name = "prefer_h265"
       keywords = ["h265", "hevc", "x265", "h.265", "x.265"]
-      score_modifier = 100
+      score_modifier = 200
       negate = false
 
+      # Language-based scoring rules
+      [[indexers.title_scoring_rules]]
+      name = "prefer_multi"
+      keywords = ["multi"]
+      score_modifier = 150
+      negate = false
+
+      [[indexers.title_scoring_rules]]
+      name = "prefer_vostfr"
+      keywords = ["vostfr"]
+      score_modifier = 50
+      negate = false
+
+      [[indexers.title_scoring_rules]]
+      name = "avoid_vff"
+      keywords = ["vff", "vfq"]
+      score_modifier = -500
+      negate = false
+
+      # Avoid low quality sources
       [[indexers.title_scoring_rules]]
       name = "avoid_cam"
       keywords = ["cam", "ts"]
@@ -125,12 +163,6 @@ data:
 
       # Indexer flag-based scoring rules
       [[indexers.indexer_flag_scoring_rules]]
-      name = "reject_non_freeleech"
-      flags = ["freeleech", "freeleech75"]
-      score_modifier = -10000
-      negate = true
-
-      [[indexers.indexer_flag_scoring_rules]]
       name = "reject_nuked"
       flags = ["nuked"]
       score_modifier = -10000
@@ -138,14 +170,19 @@ data:
 
       # Scoring rulesets
       [[indexers.scoring_rule_sets]]
-      name = "default"
+      name = "4k_dovi_multi_pref"
       libraries = ["ALL_TV", "ALL_MOVIES"]
-      rule_names = ["prefer_h265", "avoid_cam", "reject_nuked"]
-
-      [[indexers.scoring_rule_sets]]
-      name = "strict_quality"
-      libraries = ["ALL_MOVIES"]
-      rule_names = ["prefer_h265", "avoid_cam", "reject_non_freeleech"]
+      rule_names = [
+       "prefer_dovi",
+       "prefer_4k",
+       "prefer_hdr10",
+       "prefer_h265",
+       "prefer_multi",
+       "prefer_vostfr",
+       "avoid_vff",
+       "avoid_cam",
+       "reject_nuked"
+      ]
 
       # its very unlikely that you need to change this
       [metadata]

@@ -42,8 +42,13 @@ spec:
             - name: AUTH__TOKEN_SECRET
               valueFrom:
                 secretKeyRef:
-                  key: TOKEN_SECRET
                   name: media-manager-secret
+                  key: TOKEN_SECRET
+            - name: INDEXERS__PROWLARR__API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: prowlarr-secret
+                  key: API_KEY
           volumeMounts:
             - mountPath: /config
               name: config

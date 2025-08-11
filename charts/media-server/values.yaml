@@ -37,3 +37,6 @@ postgres:
 
 tsd:
   image: docker.io/almeidapaulopt/tsdproxy:2.0.0-beta4
+
+prowlarr:
+  image: ghcr.io/home-operations/prowlarr:2.0.3.5130
