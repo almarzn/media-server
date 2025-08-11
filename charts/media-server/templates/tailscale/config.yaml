@@ -22,9 +22,9 @@ data:
       hostname: 0.0.0.0
       port: 8080
     log:
-      level: trace # set logging level info, error or trace
+      level: info # set logging level info, error or trace
       json: false # set to true to enable json logging
-    proxyAccessLog: true # set to true to enable container access log
+    proxyAccessLog: false # set to true to enable container access log
   main.yaml: |
     qbittorrent:
       ports:
@@ -46,3 +46,8 @@ data:
         443/https:
           targets:
             - http://sonarr.{{ .Values.namespace }}.svc.cluster.local:8989
+    files:
+      ports:
+        445:445:
+          targets:
+            - http://samba.{{ .Values.namespace }}.svc.cluster.local:445
