@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   selector:
-    app: forward
+    app: qbittorrent-public
   ports:
     - protocol: TCP
       port: 37934
