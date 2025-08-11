@@ -27,16 +27,16 @@ spec:
             httpGet:
               port: 8989
               path: /ping
-            periodSeconds: 2
-            initialDelaySeconds: 4
-            timeoutSeconds: 30
+            periodSeconds: 10
+            initialDelaySeconds: 10
+            timeoutSeconds: 5
           readinessProbe:
             httpGet:
               port: 8989
               path: /ping
             periodSeconds: 1800
-            initialDelaySeconds: 30
-            timeoutSeconds: 30
+            initialDelaySeconds: 10
+            timeoutSeconds: 5
           resources:
             limits:
               cpu: "500m"
