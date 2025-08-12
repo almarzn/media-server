@@ -19,4 +19,4 @@ spec:
   digestReflectionPolicy: Always
   policy:
     semver:
-      range: '^4.21.6
+      range: '^4.21.6'
