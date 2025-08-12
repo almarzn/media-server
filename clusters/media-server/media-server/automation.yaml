@@ -1,0 +1,26 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: media-server
+  namespace: media-server
+spec:
+  interval: 1h
+  sourceRef:
+    kind: GitRepository
+    name: media-server
+    namespace: flux-system
+  git:
+    checkout:
+      ref:
+        branch: main
+    commit:
+      author:
+        name: flux-bot
+        email: flux-bot@example.com
+      messageTemplate: |
+        update {{range .Updated.Images}}{{.Name}}:{{.OldTag}} → {{.NewTag}}{{"\n"}}{{end}}
+    push:
+      branch: main
+  update:
+    path: ./charts/media-server
+    strategy: Setters

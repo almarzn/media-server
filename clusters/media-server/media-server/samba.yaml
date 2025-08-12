@@ -1,0 +1,22 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: samba
+  namespace: media-server
+spec:
+  image: ghcr.io/dockur/samba
+  interval: 1h
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: samba
+  namespace: media-server
+spec:
+  imageRepositoryRef:
+    name: samba
+  digestReflectionPolicy: Always
+  policy:
+    semver:
+      range: '^4.21.6

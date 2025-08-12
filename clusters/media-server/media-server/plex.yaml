@@ -1,0 +1,30 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: plex
+  namespace: media-server
+spec:
+  image: ghcr.io/linuxserver/plex
+  interval: 1h
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: plex
+  namespace: media-server
+spec:
+  imageRepositoryRef:
+    name: plex
+  # ensure digests are reflected in status so automation can write them into Git
+  digestReflectionPolicy: Always
+  filterTags:
+    # match tags that contain a semver-like 3-part prefix and an lsNNN suffix,
+    # e.g. "1.41.8.9834-071366d65-ls272" -> capture ver=1.41.8 and ls=ls272
+    pattern: '^(?P<ver>\d+\.\d+\.\d+).*-(?P<ls>ls\d+)$'
+    # build an extracted value like "1.41.8-ls272" for semver evaluation
+    extract: '$ver-$ls'
+  policy:
+    semver:
+      # you asked for caret-prefixed ranges; this keeps us on major 1, compatible style
+      range: '^1.41.9834-0'

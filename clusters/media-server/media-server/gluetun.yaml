@@ -1,0 +1,26 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: gluetun
+  namespace: media-server
+spec:
+  image: qmcgaw/gluetun
+  interval: 1h
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: gluetun
+  namespace: media-server
+spec:
+  imageRepositoryRef:
+    name: gluetun
+  digestReflectionPolicy: Always
+  filterTags:
+    # strip optional leading 'v' and capture X.Y.Z, ignore trailing metadata
+    pattern: '^(?:v)?(?P<ver>\d+\.\d+\.\d+)
+    extract: '$ver'
+  policy:
+    semver:
+      range: '^3.40.0'
