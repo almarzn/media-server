@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radarr
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: radarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: radarr
+  template:
+    metadata:
+      name: radarr
+      labels:
+        app: radarr
+    spec:
+      securityContext:
+        fsGroup: 1000
+        runAsGroup: 1000
+        runAsUser: 1000
+      containers:
+        - name: radarr
+          image: {{ .Values.radarr.image }}
+          startupProbe:
+            httpGet:
+              port: 7878
+              path: /ping
+            periodSeconds: 10
+            initialDelaySeconds: 10
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              port: 7878
+              path: /ping
+            periodSeconds: 1800
+            initialDelaySeconds: 10
+            timeoutSeconds: 5
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "800Mi"
+          ports:
+            - containerPort: 7878
+              protocol: TCP
+          volumeMounts:
+            - name: media
+              mountPath: /library
+            - name: downloads
+              mountPath: {{ .Values.global.downloadsMount }}
+            - mountPath: /config
+              name: radarr-config
+      volumes:
+        - name: radarr-config
+          hostPath:
+            path: /var/lib/radarr
+            type: DirectoryOrCreate
+        - name: media
+          hostPath:
+            path: {{ .Values.global.libraryPath }}
+            type: Directory
+        - name: downloads
+          hostPath:
+            path: {{ .Values.global.downloadsPath }}
