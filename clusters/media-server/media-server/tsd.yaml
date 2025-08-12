@@ -16,7 +16,7 @@ metadata:
 spec:
   imageRepositoryRef:
     name: tsd
-  digestReflectionPolicy: Always
+  digestReflectionPolicy: IfNotPresent
   # no filterTags for non-linuxserver image
   policy:
     semver:

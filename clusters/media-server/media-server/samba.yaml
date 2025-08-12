@@ -16,7 +16,7 @@ metadata:
 spec:
   imageRepositoryRef:
     name: samba
-  digestReflectionPolicy: Always
+  digestReflectionPolicy: IfNotPresent
   policy:
     semver:
       range: '^4.21.6'

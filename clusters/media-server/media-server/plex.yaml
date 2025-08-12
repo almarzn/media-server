@@ -17,7 +17,7 @@ spec:
   imageRepositoryRef:
     name: plex
   # ensure digests are reflected in status so automation can write them into Git
-  digestReflectionPolicy: Always
+  digestReflectionPolicy: IfNotPresent
   filterTags:
     # match tags that contain a semver-like 3-part prefix and an lsNNN suffix,
     # e.g. "1.41.8.9834-071366d65-ls272" -> capture ver=1.41.8 and ls=ls272

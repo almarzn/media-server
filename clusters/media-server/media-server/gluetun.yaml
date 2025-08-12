@@ -16,7 +16,7 @@ metadata:
 spec:
   imageRepositoryRef:
     name: gluetun
-  digestReflectionPolicy: Always
+  digestReflectionPolicy: IfNotPresent
   filterTags:
     # strip optional leading 'v' and capture X.Y.Z, ignore trailing metadata
     pattern: '^(?:v)?(?P<ver>\d+\.\d+\.\d+)'

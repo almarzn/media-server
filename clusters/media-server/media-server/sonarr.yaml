@@ -16,7 +16,7 @@ metadata:
 spec:
   imageRepositoryRef:
     name: sonarr
-  digestReflectionPolicy: Always
+  digestReflectionPolicy: IfNotPresent
   # NO filterTags — treat full tag as the version string
   policy:
     semver:

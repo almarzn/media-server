@@ -16,7 +16,7 @@ metadata:
 spec:
   imageRepositoryRef:
     name: qbittorrent
-  digestReflectionPolicy: Always
+  digestReflectionPolicy: IfNotPresent
   filterTags:
     # capture numeric version and ls suffix, e.g. "5.1.2-r1-ls408" -> ver=5.1.2 ls=ls408
     pattern: '^(?P<ver>\d+\.\d+\.\d+).*-(?P<ls>ls\d+)$'

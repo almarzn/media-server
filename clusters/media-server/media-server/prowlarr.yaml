@@ -16,7 +16,7 @@ metadata:
 spec:
   imageRepositoryRef:
     name: prowlarr
-  digestReflectionPolicy: Always
+  digestReflectionPolicy: IfNotPresent
   # no filterTags (non-linuxserver image)
   policy:
     semver:
