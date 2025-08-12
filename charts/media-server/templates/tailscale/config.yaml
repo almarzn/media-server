@@ -50,7 +50,7 @@ data:
       ports:
         443/https:
           targets:
-            - http://radarr.{{ .Values.namespace }}.svc.cluster.local:7676
+            - http://radarr.{{ .Values.namespace }}.svc.cluster.local:7878
     files:
       ports:
         445/tcp:
