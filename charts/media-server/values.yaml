@@ -36,7 +36,7 @@ postgres:
   image: docker.io/library/postgres:17.5-alpine3.22
 
 tsd:
-  image: docker.io/almeidapaulopt/tsdproxy:2.0.0-beta4
+  image: docker.io/nodauf/tsdproxy:sha256-2c4fd77733de660b43c6c03e202a4244177f6a0ba3f298af04cfe2dc722e15c4.sig
 
 prowlarr:
   image: ghcr.io/home-operations/prowlarr:2.0.3.5130
