@@ -19,7 +19,7 @@ spec:
   digestReflectionPolicy: Always
   filterTags:
     # strip optional leading 'v' and capture X.Y.Z, ignore trailing metadata
-    pattern: '^(?:v)?(?P<ver>\d+\.\d+\.\d+)
+    pattern: '^(?:v)?(?P<ver>\d+\.\d+\.\d+)'
     extract: '$ver'
   policy:
     semver:
