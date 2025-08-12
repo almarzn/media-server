@@ -16,8 +16,9 @@ metadata:
 spec:
   imageRepositoryRef:
     name: prowlarr
-  digestReflectionPolicy: IfNotPresent
+  digestReflectionPolicy: Always
+  interval: 1h
   # no filterTags (non-linuxserver image)
   policy:
     semver:
-      range: '^2.0.3.5130'
+      range: '^2.0.3'
