@@ -18,7 +18,7 @@ spec:
         name: flux-bot
         email: flux-bot@example.com
       messageTemplate: |
-        update {{range .Updated.Images}}{{.Name}}:{{.OldTag}} → {{.NewTag}}{{"\n"}}{{end}}
+        update {{range .Updated.Images}}{{.Name}}:{{.CurrentTag}} → {{.NewTag}}{{"\n"}}{{end}}
     push:
       branch: main
   update:
