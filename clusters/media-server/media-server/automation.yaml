@@ -18,7 +18,23 @@ spec:
         name: flux-bot
         email: flux-bot@example.com
       messageTemplate: |
-        update {{range .Updated.Images}}{{.Name}}:{{.CurrentTag}} → {{.NewTag}}{{"\n"}}{{end}}
+        Automated image update
+        
+        Automation name: {{ .AutomationObject }}
+  
+        Files:
+        {{ range $filename, $_ := .Changed.FileChanges -}}
+        - {{ $filename }}
+        {{ end -}}
+  
+        Objects:
+        {{ range $resource, $changes := .Changed.Objects -}}
+        - {{ $resource.Kind }} {{ $resource.Name }}
+            Changes:
+        {{- range $_, $change := $changes }}
+        - {{ $change.OldValue }} -> {{ $change.NewValue }}
+        {{ end -}}
+        {{ end -}}
     push:
       branch: main
   update:
