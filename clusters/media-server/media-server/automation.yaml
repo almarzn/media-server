@@ -7,7 +7,7 @@ spec:
   interval: 1h
   sourceRef:
     kind: GitRepository
-    name: media-server
+    name: flux-system
     namespace: flux-system
   git:
     checkout:
