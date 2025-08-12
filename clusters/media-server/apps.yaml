@@ -5,7 +5,7 @@ metadata:
   name: media-server
   namespace: flux-system
 spec:
-  interval: 5m
+  interval: 1h
   path: ./clusters/media-server/media-server
   prune: true
   wait: true
