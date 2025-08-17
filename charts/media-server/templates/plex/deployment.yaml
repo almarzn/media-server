@@ -50,10 +50,6 @@ spec:
               mountPath: /transcode
             - name: media
               mountPath: /library
-            - name: render
-              mountPath: "/dev/dri"
-          securityContext:
-            privileged: true
       volumes:
         - name: config
           hostPath:
@@ -66,8 +62,4 @@ spec:
         - name: media
           hostPath:
             path: {{ .Values.global.libraryPath }}
-            type: Directory
-        - name: render
-          hostPath:
-            path: "/dev/dri"
             type: Directory
