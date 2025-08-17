@@ -14,3 +14,21 @@ spec:
       name: smb
   selector:
     app: samba
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: samba
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: samba
+spec:
+  type: NodePort
+  ports:
+    - port: 445
+      targetPort: 445
+      nodePort: 445
+      protocol: TCP
+      name: smb
+  selector:
+    app: samba
