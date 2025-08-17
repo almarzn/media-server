@@ -19,9 +19,6 @@ spec:
       securityContext:
         runAsUser: 1000
         runAsGroup: 1000
-        supplementalGroups:
-          - 105
-          - 39
       containers:
         - name: plex
           image: {{ .Values.plex.image }}
@@ -55,6 +52,8 @@ spec:
               mountPath: /library
             - name: render
               mountPath: "/dev/dri"
+          securityContext:
+            privileged: true
       volumes:
         - name: config
           hostPath:
