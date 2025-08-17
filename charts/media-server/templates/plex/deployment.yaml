@@ -20,6 +20,8 @@ spec:
         fsGroup: 1000
         runAsUser: 1000
         runAsGroup: 1000
+        supplementalGroups:
+          - 105
       containers:
         - name: plex
           image: {{ .Values.plex.image }}
