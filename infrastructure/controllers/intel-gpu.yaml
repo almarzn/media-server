@@ -19,25 +19,6 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: intel
-  namespace: intel
-spec:
-  releaseName: dp-operator
-  chart:
-    spec:
-      chart: intel-device-plugins-operator
-      sourceRef:
-        kind: HelmRepository
-        name: intel
-        namespace: intel
-  interval: 2h
-  install:
-    createNamespace: true
-  values: {}
----
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
-metadata:
   name: gpu
   namespace: intel
 spec:
