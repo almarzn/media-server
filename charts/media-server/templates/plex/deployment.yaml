@@ -16,6 +16,10 @@ spec:
       labels:
         app: plex
     spec:
+      securityContext:
+        fsGroup: 1000
+        runAsUser: 1000
+        runAsGroup: 1000
       containers:
         - name: plex
           image: {{ .Values.plex.image }}
@@ -40,10 +44,6 @@ spec:
               value: Europe/Paris
             - name: ADVERTISE_IP
               value: {{ .Values.plex.advertiseIp }}
-            - name: PUID
-              value: "1000"
-            - name: PGID
-              value: "1000"
           volumeMounts:
             - name: config
               mountPath: /config
