@@ -56,13 +56,6 @@ spec:
               mountPath: /library
             - name: "render-device"
               mountPath: "/dev/dri/renderD128"
-          resources:
-            requests:
-              memory: "1Gi"
-              cpu: "500m"
-            limits:
-              memory: "3Gi"
-              cpu: "2000m"
       volumes:
         - name: config
           hostPath:
