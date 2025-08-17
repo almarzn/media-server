@@ -22,6 +22,7 @@ spec:
         runAsGroup: 1000
         supplementalGroups:
           - 105
+          - 39
       containers:
         - name: plex
           image: {{ .Values.plex.image }}
