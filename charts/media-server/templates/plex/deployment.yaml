@@ -54,8 +54,8 @@ spec:
               mountPath: /transcode
             - name: media
               mountPath: /library
-            - name: dev-dri
-              mountPath: /dev/dri
+            - name: "render-device"
+              mountPath: "/dev/dri/renderD128"
           resources:
             requests:
               memory: "1Gi"
@@ -76,6 +76,6 @@ spec:
           hostPath:
             path: {{ .Values.global.libraryPath }}
             type: Directory
-        - name: dev-dri
+        - name: "render-device"
           hostPath:
-            path: /dev/dri
+            path: "/dev/dri/renderD128"

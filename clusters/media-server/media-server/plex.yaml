@@ -18,6 +18,7 @@ spec:
     name: plex
   # ensure digests are reflected in status so automation can write them into Git
   digestReflectionPolicy: Always
+  interval: 2h
   policy:
     semver:
       # you asked for caret-prefixed ranges; this keeps us on major 1, compatible style
