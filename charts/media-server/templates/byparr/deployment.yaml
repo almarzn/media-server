@@ -28,16 +28,16 @@ spec:
             httpGet:
               port: 8191
               path: /health
-            periodSeconds: 10
-            initialDelaySeconds: 10
-            timeoutSeconds: 5
+            periodSeconds: 20
+            initialDelaySeconds: 20
+            timeoutSeconds: 10
           readinessProbe:
             httpGet:
               port: 8191
               path: /health
-            periodSeconds: 1800
-            initialDelaySeconds: 10
-            timeoutSeconds: 5
+            periodSeconds: 3600
+            initialDelaySeconds: 100
+            timeoutSeconds: 15
           resources:
             requests:
               cpu: "100m"
