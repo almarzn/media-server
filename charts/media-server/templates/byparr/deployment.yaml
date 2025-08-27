@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: byparr
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: byparr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: byparr
+  template:
+    metadata:
+      name: byparr
+      labels:
+        app: byparr
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 9.9.9.9
+          - 149.112.112.112
+      containers:
+        - name: byparr
+          image: {{ .Values.byparr.image }}
+          startupProbe:
+            httpGet:
+              port: 8191
+              path: /health
+            periodSeconds: 10
+            initialDelaySeconds: 10
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              port: 8191
+              path: /health
+            periodSeconds: 1800
+            initialDelaySeconds: 10
+            timeoutSeconds: 5
+          resources:
+            limits:
+              cpu: "1500m"
+              memory: "4000Mi"
+          ports:
+            - containerPort: 8191
+              protocol: TCP
