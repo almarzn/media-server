@@ -16,11 +16,6 @@ spec:
       labels:
         app: byparr
     spec:
-      dnsPolicy: "None"
-      dnsConfig:
-        nameservers:
-          - 9.9.9.9
-          - 149.112.112.112
       containers:
         - name: byparr
           image: {{ .Values.byparr.image }}
