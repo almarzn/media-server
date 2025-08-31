@@ -20,7 +20,7 @@ spec:
         fsGroup: 1000
         runAsUser: 1000
         runAsGroup: 1000
-      dnsPolicy: "ClusterFirst"
+      dnsPolicy: "ClusterFirstWithHostNet"
       dnsConfig:
         nameservers:
           - 9.9.9.9
