@@ -20,11 +20,6 @@ spec:
         fsGroup: 1000
         runAsUser: 1000
         runAsGroup: 1000
-      dnsPolicy: "ClusterFirstWithHostNet"
-      dnsConfig:
-        nameservers:
-          - 9.9.9.9
-          - 149.112.112.112
       containers:
         - name: prowlarr
           image: {{ .Values.prowlarr.image }}
