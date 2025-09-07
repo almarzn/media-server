@@ -27,7 +27,7 @@ sonarr:
 tsd:
   image: docker.io/nodauf/tsdproxy:2.0.0@sha256:2c4fd77733de660b43c6c03e202a4244177f6a0ba3f298af04cfe2dc722e15c4 # {"$imagepolicy": "media-server:tsd"}
 prowlarr:
-  image: ghcr.io/home-operations/prowlarr:2.0.5@sha256:47cede4c9e57c53af75b8b6e1382576ede241b9d847733ba449d723ca8cb51c8 # {"$imagepolicy": "media-server:prowlarr"}
+  image: ghcr.io/home-operations/prowlarr:2.1.0@sha256:5915438f7226ab8390503cc9f7288412b4584fc80e444faa224ccf2055d5f812 # {"$imagepolicy": "media-server:prowlarr"}
 radarr:
   image: ghcr.io/home-operations/radarr:5.27.3@sha256:1bf822eaf3d944dc994656c3a712a89df0d88f5f46731af4fccc90c5e0333167 # {"$imagepolicy": "media-server:radarr"}
 byparr:
