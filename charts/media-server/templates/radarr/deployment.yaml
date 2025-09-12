@@ -46,9 +46,7 @@ spec:
               protocol: TCP
           volumeMounts:
             - name: media
-              mountPath: /library
-            - name: downloads
-              mountPath: {{ .Values.global.downloadsMount }}
+              mountPath: /media
             - mountPath: /config
               name: radarr-config
       volumes:
@@ -58,8 +56,5 @@ spec:
             type: DirectoryOrCreate
         - name: media
           hostPath:
-            path: {{ .Values.global.libraryPath }}
+            path: {{ .Values.global.rootPath }}
             type: Directory
-        - name: downloads
-          hostPath:
-            path: {{ .Values.global.downloadsPath }}
