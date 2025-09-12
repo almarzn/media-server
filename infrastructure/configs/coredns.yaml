@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: coredns-custom
+  namespace: kube-system
+data:
+  yggtorrent.server: |-
+    # Include specific server zone
+    yggtorrent.top. {
+      errors
+      forward . 9.9.9.9
+    }
