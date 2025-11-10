@@ -21,7 +21,7 @@ qbittorrent:
 gluetun:
   image: qmcgaw/gluetun:v3.40.0@sha256:2b42bfa046757145a5155acece417b65b4443c8033fb88661a8e9dcf7fda5a00 # {"$imagepolicy": "media-server:gluetun"}
 samba:
-  image: ghcr.io/dockur/samba:4.21.6@sha256:3b7ffd8f614deb8e93158a32709a7aea468ee30b7687b162bb2143ed04ac8340 # {"$imagepolicy": "media-server:samba"}
+  image: ghcr.io/dockur/samba:4.21.9@sha256:b746e20a891f8b739c55a94846c264cc7a8d07297b31768c4137faddc99a3a6d # {"$imagepolicy": "media-server:samba"}
 sonarr:
   image: ghcr.io/home-operations/sonarr:4.0.16@sha256:0a1b8f5cb5b072f7ad8c6ff64a25dc512115d1a114ecf19a58a3b4f870207ddd # {"$imagepolicy": "media-server:sonarr"}
 tsd:
