@@ -58,7 +58,10 @@ spec:
               value: "on"
             - name: VPN_PORT_FORWARDING_UP_COMMAND
               value: >
-                wget --debug --retry-connrefused --post-data "json={\"listen_port\":{{`{{PORTS}}`}}}" http://127.0.0.1:{{ .Values.qbittorrent.webUiPort }}/api/v2/app/setPreferences 2>&1
+                /bin/sh -c 'wget -O- --retry-connrefused --post-data "json={\"listen_port\":{{`{{PORTS}}`}},\"current_network_interface\":\"{{`{{VPN_INTERFACE}}`}}\",\"random_port\":false,\"upnp\":false}" http://127.0.0.1:{{ .Values.qbittorrent.webUiPort }}/api/v2/app/setPreferences 2>&1'
+            - name: VPN_PORT_FORWARDING_DOWN_COMMAND
+              value: >
+                /bin/sh -c 'wget -O- --retry-connrefused --post-data "json={\"listen_port\":0,\"current_network_interface\":\"lo\"}" http://127.0.0.1:{{ .Values.qbittorrent.webUiPort }}/api/v2/app/setPreferences 2>&1'
         - name: qbittorrent
           image: {{ .Values.qbittorrent.image }}
           ports:
