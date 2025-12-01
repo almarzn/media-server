@@ -7,11 +7,11 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: https://mojo2600.github.io/pihole-kubernetes/
       sourceRef:
         kind: HelmRepository
         name: pihole
       reconcileStrategy: Revision
+      chart: mojo2600/pihole
   values:
     # Default values for pihole.
     # This is a YAML-formatted file.
