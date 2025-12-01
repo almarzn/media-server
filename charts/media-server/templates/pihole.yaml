@@ -45,6 +45,10 @@ spec:
               value: "Europe/London"
             - name: FTLCONF_dns_listeningMode
               value: "ALL"
+            - name: PIHOLE_UID
+              value: "1000"
+            - name: PIHOLE_GID
+              value: "1000"
             # Uncomment the below if you have custom dnsmasq config files
             # - name: FTLCONF_misc_etc_dnsmasq_d
             #   value: "true"
@@ -74,7 +78,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: pihole
+  name: pihole-dns
   namespace: {{ .Values.namespace }}
 spec:
   selector:
@@ -88,4 +92,19 @@ spec:
       port: 53
       protocol: UDP
       targetPort: 53
+  type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pihole-admin
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: pihole
+  ports:
+    - name: admin
+      port: 80
+      protocol: TCP
+      targetPort: 80
   type: ClusterIP
