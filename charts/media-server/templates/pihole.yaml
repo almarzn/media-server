@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pihole
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: pihole
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pihole
+  template:
+    metadata:
+      name: pihole
+      labels:
+        app: pihole
+    spec:
+      securityContext:
+        fsGroup: 1000
+        runAsGroup: 1000
+        runAsUser: 1000
+      containers:
+        - name: pihole
+          image: pihole/pihole:latest
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          ports:
+            - containerPort: 53
+              protocol: TCP
+            - containerPort: 53
+              protocol: UDP
+            - containerPort: 80
+              protocol: TCP
+            # Uncomment the line below if you are using Pi-hole as your DHCP server
+            # - containerPort: 67
+            #   protocol: UDP
+            # Uncomment the line below if you are using Pi-hole as your NTP server
+            # - containerPort: 123
+            #   protocol: UDP
+          env:
+            - name: TZ
+              value: "Europe/London"
+            - name: FTLCONF_dns_listeningMode
+              value: "ALL"
+            # Uncomment the below if you have custom dnsmasq config files
+            # - name: FTLCONF_misc_etc_dnsmasq_d
+            #   value: "true"
+          volumeMounts:
+            - name: pihole-config
+              mountPath: /etc/pihole
+            # Uncomment the below if you have custom dnsmasq config files
+            # - name: dnsmasq-config
+            #   mountPath: /etc/dnsmasq.d
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+                - SYS_TIME
+                - SYS_NICE
+      volumes:
+        - name: pihole-config
+          hostPath:
+            path: /var/lib/pihole
+            type: DirectoryOrCreate
+        # Uncomment the below if you have custom dnsmasq config files
+        # - name: dnsmasq-config
+        #   hostPath:
+        #     path: /var/lib/pihole/dnsmasq.d
+        #     type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pihole
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: pihole
+  ports:
+    - name: dns-tcp
+      port: 53
+      protocol: TCP
+      targetPort: 53
+    - name: dns-udp
+      port: 53
+      protocol: UDP
+      targetPort: 53
+  type: ClusterIP
