@@ -23,7 +23,7 @@ gluetun:
 samba:
   image: ghcr.io/dockur/samba:4.22.6@sha256:bf3959301fd5d1dcaf6cc0d8d2ae0801e7edcfe78f91130163ca08bff363f9fa # {"$imagepolicy": "media-server:samba"}
 sonarr:
-  image: ghcr.io/home-operations/sonarr:4.0.16@sha256:0a1b8f5cb5b072f7ad8c6ff64a25dc512115d1a114ecf19a58a3b4f870207ddd # {"$imagepolicy": "media-server:sonarr"}
+  image: ghcr.io/home-operations/sonarr:4.0.16@sha256:3597fd572f4599c67abbeb8afd3cb85bce8a9e389f0779b7ea1273781544d15c # {"$imagepolicy": "media-server:sonarr"}
 tsd:
   image: docker.io/nodauf/tsdproxy:2.0.0@sha256:2c4fd77733de660b43c6c03e202a4244177f6a0ba3f298af04cfe2dc722e15c4 # {"$imagepolicy": "media-server:tsd"}
 prowlarr:
