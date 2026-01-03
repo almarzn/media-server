@@ -11,7 +11,7 @@ spec:
         kind: HelmRepository
         name: pihole
       reconcileStrategy: Revision
-      chart: mojo2600/pihole
+      chart: pihole
   values:
     # Default values for pihole.
     # This is a YAML-formatted file.
