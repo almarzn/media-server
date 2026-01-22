@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: samba-shared
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: samba-shared
+spec:
+  type: ClusterIP
+  ports:
+    - port: 445
+      targetPort: 445
+      protocol: TCP
+      name: smb
+  selector:
+    app: samba-shared

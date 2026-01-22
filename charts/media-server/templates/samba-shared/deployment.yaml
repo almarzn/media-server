@@ -1,0 +1,51 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: samba-shared
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: samba-shared
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: samba-shared
+  template:
+    metadata:
+      labels:
+        app: samba-shared
+    spec:
+      containers:
+        - name: samba-shared
+          image: {{ .Values.samba.image }}
+          securityContext:
+            privileged: true
+          ports:
+            - containerPort: 445
+              name: smb
+              protocol: TCP
+          env:
+            - name: USER
+              value: admin
+            - name: PASS
+              valueFrom:
+                secretKeyRef:
+                  name: samba-shared-credentials
+                  key: GUEST_PASSWORD
+          volumeMounts:
+            - name: downloads
+              mountPath: /storage
+              readOnly: true
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "200m"
+            limits:
+              memory: "300Mi"
+              cpu: "500m"
+      volumes:
+        - name: downloads
+          hostPath:
+            path: {{ .Values.global.downloadsPath }}/share
+            type: Directory
