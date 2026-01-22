@@ -56,6 +56,11 @@ data:
         445/tcp:
           targets:
             - http://samba.{{ .Values.namespace }}.svc.cluster.local:445
+    files-share:
+      ports:
+        445/tcp:
+          targets:
+            - http://samba-shared.{{ .Values.namespace }}.svc.cluster.local:445
     pihole:
       ports:
         443/https:
