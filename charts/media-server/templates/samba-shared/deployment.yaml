@@ -27,7 +27,7 @@ spec:
               protocol: TCP
           env:
             - name: USER
-              value: admin
+              value: guest
             - name: PASS
               valueFrom:
                 secretKeyRef:
