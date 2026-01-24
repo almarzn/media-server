@@ -24,10 +24,10 @@ spec:
       containers:
         - name: tailscale
           image: {{ .Values.tailscale.image }}
-          lifecycle:
-            postStart:
-              exec:
-                command: [ "/bin/sh", "-c", "/config/serve.sh" ]
+{{/*          lifecycle:*/}}
+{{/*            postStart:*/}}
+{{/*              exec:*/}}
+{{/*                command: [ "/bin/sh", "-c", "/config/serve.sh" ]*/}}
           env:
             - name: TS_AUTHKEY
               valueFrom:
