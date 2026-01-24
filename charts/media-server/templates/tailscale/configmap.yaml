@@ -10,37 +10,37 @@ data:
       "services": {
         "svc:qbittorrent": {
           "endpoints": {
-            "tcp:443": "http://qbittorrent.{{ .Values.namespace }}.svc.cluster.local:{{ .Values.qbittorrent.webUiPort }}"
+            "tcp:9000": "http://qbittorrent.{{ .Values.namespace }}.svc.cluster.local:{{ .Values.qbittorrent.webUiPort }}"
           }
         },
         "svc:qbittorrent-public": {
           "endpoints": {
-            "tcp:443": "http://qbittorrent-public.{{ .Values.namespace }}.svc.cluster.local:13001"
+            "tcp:9001": "http://qbittorrent-public.{{ .Values.namespace }}.svc.cluster.local:13001"
           }
         },
         "svc:prowlarr": {
           "endpoints": {
-            "tcp:443": "http://prowlarr.{{ .Values.namespace }}.svc.cluster.local:9696"
+            "tcp:9002": "http://prowlarr.{{ .Values.namespace }}.svc.cluster.local:9696"
           }
         },
         "svc:sonarr": {
           "endpoints": {
-            "tcp:443": "http://sonarr.{{ .Values.namespace }}.svc.cluster.local:8989"
+            "tcp:9003": "http://sonarr.{{ .Values.namespace }}.svc.cluster.local:8989"
           }
         },
         "svc:radarr": {
           "endpoints": {
-            "tcp:443": "http://radarr.{{ .Values.namespace }}.svc.cluster.local:7878"
+            "tcp:9004": "http://radarr.{{ .Values.namespace }}.svc.cluster.local:7878"
           }
         },
         "svc:files": {
           "endpoints": {
-            "tcp:445": "http://samba.{{ .Values.namespace }}.svc.cluster.local:445"
+            "tcp:9005": "http://samba.{{ .Values.namespace }}.svc.cluster.local:445"
            }
          },
          "svc:files-share": {
            "endpoints": {
-             "tcp:445": "http://samba-shared.{{ .Values.namespace }}.svc.cluster.local:445"
+             "tcp:9006": "http://samba-shared.{{ .Values.namespace }}.svc.cluster.local:445"
            }
          }
        }
