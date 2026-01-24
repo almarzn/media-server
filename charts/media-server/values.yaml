@@ -25,7 +25,7 @@ samba:
 sonarr:
   image: ghcr.io/home-operations/sonarr:4.0.16@sha256:22651c750eedb091f6d76ade95dbecae0eeafe2b55432c3b8d8b042e8745f344 # {"$imagepolicy": "media-server:sonarr"}
 tailscale:
-  image: docker.io/tailscale/tailscale:1.92.5@sha256:3239581c794547b96d7f781041710ca1d60b40a9f51c2420c4aa417599fe9d3a # {"$imagepolicy": "media-server:tailscale"}
+  image: docker.io/tailscale/tailscale:v1.92.5@sha256:4a0aaacee6f28e724c1f80c986e5776c9c979d8f7e19274c2cae2d495cc8d625 # {"$imagepolicy": "media-server:tailscale"}
 prowlarr:
   image: ghcr.io/home-operations/prowlarr:2.3.2@sha256:e2459e199564ab852c6e677e951cef36c172a8e71a0e1c90665631b5a0c57438 # {"$imagepolicy": "media-server:prowlarr"}
 radarr:
