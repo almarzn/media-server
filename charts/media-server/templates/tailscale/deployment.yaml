@@ -25,6 +25,8 @@ spec:
                 secretKeyRef:
                   name: tailscale
                   key: AUTH_KEY
+            - name: TS_KUBE_SECRET
+              value: ""
             - name: TS_STATE_DIR
               value: /var/lib/tailscaled
           volumeMounts:
