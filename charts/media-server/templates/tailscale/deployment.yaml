@@ -37,9 +37,13 @@ spec:
             - name: TS_KUBE_SECRET
               value: ""
             - name: TS_STATE_DIR
-              value: /var/lib/tailscaled
+              value: /var/lib/tailscale
             - name: TS_ENABLE_HEALTH_CHECK
               value: "true"
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
           startupProbe:
             httpGet:
               port: 9002
@@ -55,7 +59,7 @@ spec:
             periodSeconds: 720
             failureThreshold: 3
           volumeMounts:
-            - mountPath: /var/lib/tailscaled
+            - mountPath: /var/lib/tailscale
               name: data
             - mountPath: /config
               name: tailscale-config
@@ -69,6 +73,7 @@ spec:
         - name: tailscale-config
           configMap:
             name: tailscale-config
+            defaultMode: 0777 # Ensure the script is executable
             items:
               - key: serve.sh
                 path: serve.sh
