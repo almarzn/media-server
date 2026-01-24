@@ -7,7 +7,12 @@ data:
   serve.sh: |
      #!/bin/sh
 
-     sleep 15
+     echo "Waiting for Tailscale healthz at localhost:9002..."
+     until wget -q --spider http://localhost:9002/healthz; do
+     sleep 1
+     done
+
+     echo "Tailscale is healthy. Running configuration script..."
 
      # qBittorrent
      tailscale serve \
