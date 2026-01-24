@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tailscale-config
+  namespace: {{ .Values.namespace }}
+data:
+  serve.json: |
+    {
+      "version": "0.0.1",
+      "services": {
+        "svc:qbittorrent": {
+          "endpoints": {
+            "tcp:443": "http://qbittorrent.{{ .Values.namespace }}.svc.cluster.local:{{ .Values.qbittorrent.webUiPort }}"
+          }
+        },
+        "svc:qbittorrent-public": {
+          "endpoints": {
+            "tcp:443": "http://qbittorrent-public.{{ .Values.namespace }}.svc.cluster.local:13001"
+          }
+        },
+        "svc:prowlarr": {
+          "endpoints": {
+            "tcp:443": "http://prowlarr.{{ .Values.namespace }}.svc.cluster.local:9696"
+          }
+        },
+        "svc:sonarr": {
+          "endpoints": {
+            "tcp:443": "http://sonarr.{{ .Values.namespace }}.svc.cluster.local:8989"
+          }
+        },
+        "svc:radarr": {
+          "endpoints": {
+            "tcp:443": "http://radarr.{{ .Values.namespace }}.svc.cluster.local:7878"
+          }
+        },
+        "svc:files": {
+          "endpoints": {
+            "tcp:445": "http://samba.{{ .Values.namespace }}.svc.cluster.local:445"
+           }
+         },
+         "svc:files-share": {
+           "endpoints": {
+             "tcp:445": "http://samba-shared.{{ .Values.namespace }}.svc.cluster.local:445"
+           }
+         }
+       }
+     }
+
