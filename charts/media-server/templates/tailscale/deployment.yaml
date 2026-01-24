@@ -1,53 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tsdproxy
+  name: tailscale
   namespace: {{ .Values.namespace }}
   labels:
-    app: tsdproxy
+    app: tailscale
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
-      app: tsdproxy
+      app: tailscale
   template:
     metadata:
-      name: tsdproxy
+      name: tailscale
       labels:
-        app: tsdproxy
-      annotations:
-        checksum/config: {{ include (print $.Template.BasePath "/tailscale/config.yaml") . | sha256sum }}
+        app: tailscale
     spec:
       containers:
-        - name: tsdproxy
-          image: {{ .Values.tsd.image }}
-          volumeMounts:
-            - mountPath: /data
-              name: data
-            - mountPath: /config
-              name: tsd-config
-            - mountPath: /auth_key
-              name: auth-key
-              subPath: auth_key
-      volumes:
-        - name: data
-          hostPath:
-            path: /var/lib/tsdproxy
-            type: DirectoryOrCreate
-        - name: tsd-config
-          configMap:
-            name: tsd-config
-            items:
-              - key: tsdproxy.yaml
-                path: tsdproxy.yaml
-              - key: main.yaml
-                path: main.yaml
-        - name: auth-key
-          secret:
-            secretName: tailscale
-            items:
-              - key: AUTH_KEY
-                path: auth_key
-
+        - name: tailscale
+          image: {{ .Values.tailscale.image }}
+          env:
+            - name: TS_AUTHKEY
+              valueFrom:
+                secretKeyRef:
+                  name: tailscale
+                  key: AUTH_KEY
       restartPolicy: Always
       
