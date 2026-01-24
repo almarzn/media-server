@@ -17,48 +17,42 @@ data:
      # qBittorrent
      tailscale serve \
      --service=svc:qbittorrent \
-     --https=8443 \
+     --https=443 \
      http://qbittorrent.{{ .Values.namespace }}.svc.cluster.local:{{ .Values.qbittorrent.webUiPort }}
 
      qBittorrent Public
      tailscale serve \
      --service=svc:qbittorrent-public \
-     --https=8444 \
+     --https=443 \
      http://qbittorrent-public.{{ .Values.namespace }}.svc.cluster.local:13001
 
      # Prowlarr
      tailscale serve \
      --service=svc:prowlarr \
-     --https=8445 \
+     --https=443 \
      http://prowlarr.{{ .Values.namespace }}.svc.cluster.local:9696
 
      # Sonarr
      tailscale serve \
      --service=svc:sonarr \
-     --https=8446 \
+     --https=443 \
      http://sonarr.{{ .Values.namespace }}.svc.cluster.local:8989
 
      # Radarr
      tailscale serve \
      --service=svc:radarr \
-     --https=8447 \
+     --https=443 \
      http://radarr.{{ .Values.namespace }}.svc.cluster.local:7878
 
      # Files (Samba)
      tailscale serve \
      --service=svc:files \
-     --tcp=8448 \
+     --tcp=445 \
      tcp://samba.{{ .Values.namespace }}.svc.cluster.local:445
 
      # Files-share (Samba shared)
      tailscale serve \
      --service=svc:files-share \
-     --tcp=8449 \
+    --tcp=445 \
      tcp://samba-shared.{{ .Values.namespace }}.svc.cluster.local:445
-
-     # Pi-hole
-     tailscale serve \
-     --service=svc:pihole \
-     --https=8450 \
-     http://pihole.{{ .Values.namespace }}.svc.cluster.local:80
 
