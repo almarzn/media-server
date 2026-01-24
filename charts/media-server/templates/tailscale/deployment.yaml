@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: tailscale
-          image: {{ .Values.tailscale.image }}\
+          image: {{ .Values.tailscale.image }}
           lifecycle:
             postStart:
               exec:
