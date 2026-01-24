@@ -7,6 +7,8 @@ metadata:
     app: tailscale
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: tailscale
@@ -18,6 +20,7 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/tailscale/configmap.yaml") . | sha256sum }}
     spec:
+
       containers:
         - name: tailscale
           image: {{ .Values.tailscale.image }}
