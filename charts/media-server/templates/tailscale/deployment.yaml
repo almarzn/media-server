@@ -20,7 +20,11 @@ spec:
     spec:
       containers:
         - name: tailscale
-          image: {{ .Values.tailscale.image }}
+          image: {{ .Values.tailscale.image }}\
+          lifecycle:
+            postStart:
+              exec:
+                command: [ "/bin/sh", "-c", "/config/serve.sh" ]
           env:
             - name: TS_AUTHKEY
               valueFrom:
@@ -31,8 +35,22 @@ spec:
               value: ""
             - name: TS_STATE_DIR
               value: /var/lib/tailscaled
-            - name: TS_SERVE_CONFIG
-              value: /config/serve.json
+            - name: TS_ENABLE_HEALTH_CHECK
+              value: "true"
+          startupProbe:
+            httpGet:
+              port: 9002
+              path: /healthz
+            initialDelaySeconds: 5
+            failureThreshold: 6
+            periodSeconds: 5
+            timeoutSeconds: 60
+          livenessProbe:
+            httpGet:
+              port: 9002
+              path: /healthz
+            periodSeconds: 720
+            failureThreshold: 3
           volumeMounts:
             - mountPath: /var/lib/tailscaled
               name: data
@@ -49,5 +67,5 @@ spec:
           configMap:
             name: tailscale-config
             items:
-              - key: serve.json
-                path: serve.json
+              - key: serve.sh
+                path: serve.sh

@@ -4,45 +4,56 @@ metadata:
   name: tailscale-config
   namespace: {{ .Values.namespace }}
 data:
-  serve.json: |
-    {
-      "version": "0.0.1",
-      "services": {
-        "svc:qbittorrent": {
-          "endpoints": {
-            "tcp:9000": "http://qbittorrent.{{ .Values.namespace }}.svc.cluster.local:{{ .Values.qbittorrent.webUiPort }}"
-          }
-        },
-        "svc:qbittorrent-public": {
-          "endpoints": {
-            "tcp:9001": "http://qbittorrent-public.{{ .Values.namespace }}.svc.cluster.local:13001"
-          }
-        },
-        "svc:prowlarr": {
-          "endpoints": {
-            "tcp:9002": "http://prowlarr.{{ .Values.namespace }}.svc.cluster.local:9696"
-          }
-        },
-        "svc:sonarr": {
-          "endpoints": {
-            "tcp:9003": "http://sonarr.{{ .Values.namespace }}.svc.cluster.local:8989"
-          }
-        },
-        "svc:radarr": {
-          "endpoints": {
-            "tcp:9004": "http://radarr.{{ .Values.namespace }}.svc.cluster.local:7878"
-          }
-        },
-        "svc:files": {
-          "endpoints": {
-            "tcp:9005": "http://samba.{{ .Values.namespace }}.svc.cluster.local:445"
-           }
-         },
-         "svc:files-share": {
-           "endpoints": {
-             "tcp:9006": "http://samba-shared.{{ .Values.namespace }}.svc.cluster.local:445"
-           }
-         }
-       }
-     }
+  serve.sh: |
+     #!/bin/sh
+
+     sleep 15
+
+     # qBittorrent
+     tailscale serve \
+     --service=svc:qbittorrent \
+     --https=8443 \
+     http://qbittorrent.{{ .Values.namespace }}.svc.cluster.local:{{ .Values.qbittorrent.webUiPort }}
+
+     qBittorrent Public
+     tailscale serve \
+     --service=svc:qbittorrent-public \
+     --https=8444 \
+     http://qbittorrent-public.{{ .Values.namespace }}.svc.cluster.local:13001
+
+     # Prowlarr
+     tailscale serve \
+     --service=svc:prowlarr \
+     --https=8445 \
+     http://prowlarr.{{ .Values.namespace }}.svc.cluster.local:9696
+
+     # Sonarr
+     tailscale serve \
+     --service=svc:sonarr \
+     --https=8446 \
+     http://sonarr.{{ .Values.namespace }}.svc.cluster.local:8989
+
+     # Radarr
+     tailscale serve \
+     --service=svc:radarr \
+     --https=8447 \
+     http://radarr.{{ .Values.namespace }}.svc.cluster.local:7878
+
+     # Files (Samba)
+     tailscale serve \
+     --service=svc:files \
+     --tcp=8448 \
+     tcp://samba.{{ .Values.namespace }}.svc.cluster.local:445
+
+     # Files-share (Samba shared)
+     tailscale serve \
+     --service=svc:files-share \
+     --tcp=8449 \
+     tcp://samba-shared.{{ .Values.namespace }}.svc.cluster.local:445
+
+     # Pi-hole
+     tailscale serve \
+     --service=svc:pihole \
+     --https=8450 \
+     http://pihole.{{ .Values.namespace }}.svc.cluster.local:80
 
