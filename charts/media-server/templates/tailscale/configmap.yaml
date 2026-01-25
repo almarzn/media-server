@@ -53,6 +53,6 @@ data:
      # Files-share (Samba shared)
      tailscale serve \
      --service=svc:files-share \
-    --tcp=445 \
+     --tcp=445 \
      tcp://samba-shared.{{ .Values.namespace }}.svc.cluster.local:445
 
