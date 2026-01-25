@@ -59,5 +59,5 @@ data:
      tailscale serve \
      --service=svc:qui \
      --https=443 \
-     tcp://qui.{{ .Values.namespace }}.svc.cluster.local:7476
+     http://qui.{{ .Values.namespace }}.svc.cluster.local:7476
 
