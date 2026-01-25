@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qui
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: qui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: qui
+  template:
+    metadata:
+      name: qui
+      labels:
+        app: qui
+    spec:
+      securityContext:
+        fsGroup: 1000
+        runAsGroup: 1000
+        runAsUser: 1000
+      containers:
+        - name: qui
+          image: {{ .Values.qui.image }}
+          startupProbe:
+            httpGet:
+              port: 7878
+              path: /ping
+            periodSeconds: 10
+            initialDelaySeconds: 10
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              port: 7878
+              path: /ping
+            periodSeconds: 1800
+            initialDelaySeconds: 10
+            timeoutSeconds: 5
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "800Mi"
+          ports:
+            - containerPort: 7878
+              protocol: TCP
+          volumeMounts:
+            - name: media
+              mountPath: /media
+            - mountPath: /config
+              name: qui-config
+      volumes:
+        - name: qui-config
+          hostPath:
+            path: /var/lib/qui
+            type: DirectoryOrCreate
+        - name: media
+          hostPath:
+            path: {{ .Values.global.rootPath }}
+            type: Directory

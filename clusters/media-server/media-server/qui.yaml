@@ -1,0 +1,26 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: autobrr-qui
+  namespace: media-server
+spec:
+  image: ghcr.io/autobrr/qui
+  interval: 1h
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: qui
+  namespace: media-server
+spec:
+  imageRepositoryRef:
+    name: autobrr-qui
+  digestReflectionPolicy: IfNotPresent
+  filterTags:
+    pattern: '^(?:v)?(?P<ver>\d+\.\d+\.\d+)'
+    extract: '$ver'
+  policy:
+    semver:
+      # caret-style range that keeps us on major 5 (compatible updates)
+      range: '^1.11.0'

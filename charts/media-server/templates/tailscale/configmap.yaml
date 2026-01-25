@@ -20,7 +20,7 @@ data:
      --https=443 \
      http://qbittorrent.{{ .Values.namespace }}.svc.cluster.local:{{ .Values.qbittorrent.webUiPort }}
 
-     qBittorrent Public
+     # qBittorrent Public
      tailscale serve \
      --service=svc:qbittorrent-public \
      --https=443 \
