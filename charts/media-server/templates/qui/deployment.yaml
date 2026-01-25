@@ -25,15 +25,15 @@ spec:
           image: {{ .Values.qui.image }}
           startupProbe:
             httpGet:
-              port: 7878
-              path: /ping
+              port: 7476
+              path: /health
             periodSeconds: 10
             initialDelaySeconds: 10
             timeoutSeconds: 5
           readinessProbe:
             httpGet:
-              port: 7878
-              path: /ping
+              port: 7476
+              path: /health
             periodSeconds: 1800
             initialDelaySeconds: 10
             timeoutSeconds: 5
@@ -42,7 +42,7 @@ spec:
               cpu: "500m"
               memory: "800Mi"
           ports:
-            - containerPort: 7878
+            - containerPort: 7476
               protocol: TCP
           volumeMounts:
             - name: media
