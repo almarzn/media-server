@@ -43,9 +43,6 @@ spec:
             - name: config
               mountPath: /config
           resources:
-            requests:
-              memory: "2Gi"
-              cpu: "500m"
             limits:
               memory: "6Gi"
               cpu: "4000m"

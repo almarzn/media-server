@@ -38,9 +38,6 @@ spec:
               mountPath: /storage
               readOnly: true
           resources:
-            requests:
-              memory: "100Mi"
-              cpu: "200m"
             limits:
               memory: "300Mi"
               cpu: "500m"
