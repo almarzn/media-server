@@ -40,6 +40,9 @@ spec:
             initialDelaySeconds: 10
             timeoutSeconds: 5
           resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
             limits:
               cpu: "500m"
               memory: "800Mi"
