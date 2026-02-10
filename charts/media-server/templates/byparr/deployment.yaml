@@ -30,7 +30,7 @@ spec:
             httpGet:
               port: 8191
               path: /health
-            periodSeconds: 3600
+            periodSeconds: 180
             initialDelaySeconds: 100
             timeoutSeconds: 15
           resources:

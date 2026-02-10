@@ -30,13 +30,13 @@ spec:
               port: 7476
               path: /health
             periodSeconds: 10
-            initialDelaySeconds: 10
+            initialDelaySeconds: 20
             timeoutSeconds: 5
           readinessProbe:
             httpGet:
               port: 7476
               path: /health
-            periodSeconds: 1800
+            periodSeconds: 180
             initialDelaySeconds: 10
             timeoutSeconds: 5
           resources:

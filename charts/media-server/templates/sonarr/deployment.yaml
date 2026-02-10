@@ -28,13 +28,13 @@ spec:
               port: 8989
               path: /ping
             periodSeconds: 10
-            initialDelaySeconds: 10
+            initialDelaySeconds: 20
             timeoutSeconds: 5
           readinessProbe:
             httpGet:
               port: 8989
               path: /ping
-            periodSeconds: 1800
+            periodSeconds: 180
             initialDelaySeconds: 10
             timeoutSeconds: 5
           resources:
