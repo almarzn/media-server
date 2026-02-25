@@ -23,7 +23,7 @@ qui:
 gluetun:
   image: qmcgaw/gluetun:v3.41.1@sha256:1a5bf4b4820a879cdf8d93d7ef0d2d963af56670c9ebff8981860b6804ebc8ab # {"$imagepolicy": "media-server:gluetun"}
 samba:
-  image: ghcr.io/dockur/samba:4.22.6@sha256:bf3959301fd5d1dcaf6cc0d8d2ae0801e7edcfe78f91130163ca08bff363f9fa # {"$imagepolicy": "media-server:samba"}
+  image: ghcr.io/dockur/samba:4.23.5@sha256:1f0de2ded42bded18d8c5f7b2e9f40521b5d7ddc7cf903ea54a0239cc4984a4e # {"$imagepolicy": "media-server:samba"}
 sonarr:
   image: ghcr.io/home-operations/sonarr:4.0.16@sha256:22651c750eedb091f6d76ade95dbecae0eeafe2b55432c3b8d8b042e8745f344 # {"$imagepolicy": "media-server:sonarr"}
 tailscale:
