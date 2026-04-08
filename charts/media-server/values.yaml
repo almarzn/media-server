@@ -19,7 +19,7 @@ qbittorrent:
   image: ghcr.io/linuxserver/qbittorrent:5.1.4-r2-ls448@sha256:a89108b1bf43de072a35a59a3ee41b97b564538faae5cbb3f6c803aa7f5fd9f7 # {"$imagepolicy": "media-server:qbittorrent"}
   webUiPort: 13000
 qui:
-  image: ghcr.io/autobrr/qui:v1.16.0@sha256:fcdced7cb8395ce039f2c5f920d890d4ad8bd849faec4c4df31701a8f13423cb # {"$imagepolicy": "media-server:qui"}
+  image: ghcr.io/autobrr/qui:v1.16.1@sha256:07b6ea9572e52e8b5f70f8fb15a7c688d8d754a7616242d3ad0b21dbd5c05836 # {"$imagepolicy": "media-server:qui"}
 gluetun:
   image: qmcgaw/gluetun:v3.41.1@sha256:1a5bf4b4820a879cdf8d93d7ef0d2d963af56670c9ebff8981860b6804ebc8ab # {"$imagepolicy": "media-server:gluetun"}
 samba:
