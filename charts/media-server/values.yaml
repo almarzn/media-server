@@ -29,7 +29,7 @@ sonarr:
 tailscale:
   image: docker.io/tailscale/tailscale:v1.96.5@sha256:dbeff02d2337344b351afac203427218c4d0a06c43fc10a865184063498472a6 # {"$imagepolicy": "media-server:tailscale"}
 prowlarr:
-  image: ghcr.io/home-operations/prowlarr:2.3.5@sha256:fc87e9af2f175ef19610fdcf1fcdcc84d5099127211cc6733f826409b2733237 # {"$imagepolicy": "media-server:prowlarr"}
+  image: ghcr.io/home-operations/prowlarr:2.3.6@sha256:da6b1f914ad22778c347d554a59b6e40110f654b40528c8de516616382db5148 # {"$imagepolicy": "media-server:prowlarr"}
 radarr:
   image: ghcr.io/home-operations/radarr:5.27.3@sha256:1bf822eaf3d944dc994656c3a712a89df0d88f5f46731af4fccc90c5e0333167 # {"$imagepolicy": "media-server:radarr"}
 byparr:
