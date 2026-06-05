@@ -5,30 +5,30 @@
 namespace: media-server
 # Infisical configuration for External Secrets
 infisical:
-    projectId: media-server
-    environment: dev
+  projectId: media-server
+  environment: dev
 global:
-    libraryPath: invalid
-    downloadsPath: invalid
-    downloadsMount: /downloads
+  libraryPath: invalid
+  downloadsPath: invalid
+  downloadsMount: /downloads
 # Plex Media Server
 plex:
-    image: ghcr.io/home-operations/plex:1.43.2@sha256:be00a2ad851ea3193cd870636f908eb6425ad89390f23cdb08daa35ab5cceacc # {"$imagepolicy": "media-server:plex"}
-    advertiseIp: invalid
+  image: ghcr.io/home-operations/plex:1.43.2@sha256:be00a2ad851ea3193cd870636f908eb6425ad89390f23cdb08daa35ab5cceacc # {"$imagepolicy": "media-server:plex"}
+  advertiseIp: invalid
 qbittorrent:
-    image: ghcr.io/linuxserver/qbittorrent:5.2.1_v2.0.12-ls459@sha256:715d2bfbcf1cd3d734cbbd4fbd599eb7ea0642eaa079a372dd0d343f59516700 # {"$imagepolicy": "media-server:qbittorrent"}
-    webUiPort: 13000
+  image: ghcr.io/linuxserver/qbittorrent:5.2.1_v2.0.12-ls459@sha256:715d2bfbcf1cd3d734cbbd4fbd599eb7ea0642eaa079a372dd0d343f59516700 # {"$imagepolicy": "media-server:qbittorrent"}
+  webUiPort: 13000
 qui:
-    image: ghcr.io/autobrr/qui:v1.19.0@sha256:7bbb644f7a41f84094484acd9f961813b9332ca5675c852388b71a7d36863df8 # {"$imagepolicy": "media-server:qui"}
+  image: ghcr.io/autobrr/qui:v1.19.0@sha256:7bbb644f7a41f84094484acd9f961813b9332ca5675c852388b71a7d36863df8 # {"$imagepolicy": "media-server:qui"}
 gluetun:
-    image: qmcgaw/gluetun:v3.41.1@sha256:1a5bf4b4820a879cdf8d93d7ef0d2d963af56670c9ebff8981860b6804ebc8ab # {"$imagepolicy": "media-server:gluetun"}
+  image: qmcgaw/gluetun:v3.41.1@sha256:1a5bf4b4820a879cdf8d93d7ef0d2d963af56670c9ebff8981860b6804ebc8ab # {"$imagepolicy": "media-server:gluetun"}
 samba:
-    image: ghcr.io/dockur/samba:4.23.8@sha256:660d15a568e0c04bc9c2b49df09183ab2bf22b129e6541fda6f823875e0a8500 # {"$imagepolicy": "media-server:samba"}
+  image: ghcr.io/dockur/samba:4.23.8@sha256:660d15a568e0c04bc9c2b49df09183ab2bf22b129e6541fda6f823875e0a8500 # {"$imagepolicy": "media-server:samba"}
 sonarr:
-    image: ghcr.io/home-operations/sonarr:4.0.17@sha256:4ff5667a371e08b098858fa2457a99a5fef5f6a32640eb8567efe979d13ac9fc # {"$imagepolicy": "media-server:sonarr"}
+  image: ghcr.io/home-operations/sonarr:4.0.17@sha256:6806001ccc2ec95d941c9c0de012dbcb59c6a33932cfc17f71e300bdd48cabfe # {"$imagepolicy": "media-server:sonarr"}
 tailscale:
-    image: docker.io/tailscale/tailscale:v1.98.4@sha256:25cde9ad76020b0e29229136d0c38b5962e9a0e1774ffac9b0df68e4a37d6cf0 # {"$imagepolicy": "media-server:tailscale"}
+  image: docker.io/tailscale/tailscale:v1.98.4@sha256:25cde9ad76020b0e29229136d0c38b5962e9a0e1774ffac9b0df68e4a37d6cf0 # {"$imagepolicy": "media-server:tailscale"}
 prowlarr:
-    image: ghcr.io/home-operations/prowlarr:2.4.0@sha256:91af7cbc8e357dede960033c9ecfb3a65e145d90d4e495e13adb2fbc6a546807 # {"$imagepolicy": "media-server:prowlarr"}
+  image: ghcr.io/home-operations/prowlarr:2.4.0@sha256:91af7cbc8e357dede960033c9ecfb3a65e145d90d4e495e13adb2fbc6a546807 # {"$imagepolicy": "media-server:prowlarr"}
 radarr:
-    image: ghcr.io/home-operations/radarr:5.27.3@sha256:1bf822eaf3d944dc994656c3a712a89df0d88f5f46731af4fccc90c5e0333167 # {"$imagepolicy": "media-server:radarr"}
+  image: ghcr.io/home-operations/radarr:5.27.3@sha256:1bf822eaf3d944dc994656c3a712a89df0d88f5f46731af4fccc90c5e0333167 # {"$imagepolicy": "media-server:radarr"}
