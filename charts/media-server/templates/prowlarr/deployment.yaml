@@ -21,11 +21,44 @@ spec:
         runAsUser: 1000
         runAsGroup: 1000
       containers:
+        - name: gluetun
+          image:  {{ .Values.gluetun.image }}
+          securityContext:
+            privileged: true
+            capabilities:
+              add: [ "NET_ADMIN" ]
+          livenessProbe:
+            timeoutSeconds: 10
+            failureThreshold: 5
+            periodSeconds: 720
+            initialDelaySeconds: 5
+            exec:
+              command: [ "/gluetun-entrypoint", "healthcheck" ]
+          env:
+            - name: TZ
+              value: "Europe/Paris"
+            - name: FIREWALL_INPUT_PORTS
+              value: "{{ .Values.prowlarr.webUiPort }}"
+            - name: SERVER_COUNTRIES
+              value: "France"
+            - name: VPN_SERVICE_PROVIDER
+              value: "protonvpn"
+            - name: DNS_KEEP_NAMESERVER
+              value: "off"
+            - name: DOT
+              value: "off"
+            - name: VPN_TYPE
+              value: "wireguard"
+            - name: WIREGUARD_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: protonvpn-credentials
+                  key: PROTONVPN_PRIVATE_KEY
         - name: prowlarr
           image: {{ .Values.prowlarr.image }}
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 9696
+            - containerPort: {{ .Values.prowlarr.webUiPort }}
               protocol: TCP
           volumeMounts:
             - mountPath: /config
@@ -38,7 +71,7 @@ spec:
                   key: API_KEY
           startupProbe:
             httpGet:
-              port: 9696
+              port: {{ .Values.prowlarr.webUiPort }}
               path: "/healthz"
             initialDelaySeconds: 5
             failureThreshold: 6
@@ -46,7 +79,7 @@ spec:
             timeoutSeconds: 60
           readinessProbe:
             httpGet:
-              port: 9696
+              port: {{ .Values.prowlarr.webUiPort }}
               path: "/healthz"
             periodSeconds: 720
             failureThreshold: 3
