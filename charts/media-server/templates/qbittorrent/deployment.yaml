@@ -38,7 +38,7 @@ spec:
             - name: FIREWALL_INPUT_PORTS
               value: "{{ .Values.qbittorrent.webUiPort }}"
             - name: SERVER_COUNTRIES
-              value: "France"
+              value: "Belgium"
             - name: VPN_SERVICE_PROVIDER
               value: "protonvpn"
             - name: DNS_KEEP_NAMESERVER
