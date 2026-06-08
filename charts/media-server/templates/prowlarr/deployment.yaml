@@ -24,6 +24,7 @@ spec:
         - name: gluetun
           image:  {{ .Values.gluetun.image }}
           securityContext:
+            runAsUser: 0
             privileged: true
             capabilities:
               add: [ "NET_ADMIN" ]
