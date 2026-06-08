@@ -41,7 +41,7 @@ spec:
             - name: FIREWALL_INPUT_PORTS
               value: "{{ .Values.prowlarr.webUiPort }}"
             - name: SERVER_COUNTRIES
-              value: "France"
+              value: "Netherlands"
             - name: VPN_SERVICE_PROVIDER
               value: "protonvpn"
             - name: DNS_KEEP_NAMESERVER
