@@ -16,19 +16,6 @@ spec:
       labels:
         app: prowlarr
     spec:
-      dnsPolicy: None
-      dnsConfig:
-        nameservers:
-          - 9.9.9.9
-          - 149.112.112.112
-          - 10.43.0.10
-        searches:
-          - {{ .Values.namespace }}.svc.cluster.local
-          - svc.cluster.local
-          - cluster.local
-        options:
-          - name: ndots
-            value: "1"
       securityContext:
         fsGroup: 1000
         runAsUser: 1000

@@ -10,3 +10,6 @@ data:
       errors
       forward . 9.9.9.9
     }
+  quad9.override: |-
+    # Use Quad9 as the default upstream DNS
+    forward . 9.9.9.9 149.112.112.112
