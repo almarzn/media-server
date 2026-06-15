@@ -21,7 +21,7 @@ spec:
         nameservers:
           - 9.9.9.9
           - 149.112.112.112
-          - 10.96.0.10
+          - 10.43.0.10
         searches:
           - {{ .Values.namespace }}.svc.cluster.local
           - svc.cluster.local
