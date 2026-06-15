@@ -21,40 +21,40 @@ spec:
         runAsUser: 1000
         runAsGroup: 1000
       containers:
-        - name: gluetun
-          image:  {{ .Values.gluetun.image }}
-          securityContext:
-            runAsUser: 0
-            privileged: true
-            capabilities:
-              add: [ "NET_ADMIN" ]
-          livenessProbe:
-            timeoutSeconds: 10
-            failureThreshold: 5
-            periodSeconds: 720
-            initialDelaySeconds: 5
-            exec:
-              command: [ "/gluetun-entrypoint", "healthcheck" ]
-          env:
-            - name: TZ
-              value: "Europe/Paris"
-            - name: FIREWALL_INPUT_PORTS
-              value: "{{ .Values.prowlarr.webUiPort }}"
-            - name: SERVER_COUNTRIES
-              value: "Netherlands"
-            - name: VPN_SERVICE_PROVIDER
-              value: "protonvpn"
-            - name: DNS_KEEP_NAMESERVER
-              value: "off"
-            - name: DOT
-              value: "off"
-            - name: VPN_TYPE
-              value: "wireguard"
-            - name: WIREGUARD_PRIVATE_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: protonvpn-credentials
-                  key: PROTONVPN_PRIVATE_KEY
+        # - name: gluetun
+        #   image:  {{ .Values.gluetun.image }}
+        #   securityContext:
+        #     runAsUser: 0
+        #     privileged: true
+        #     capabilities:
+        #       add: [ "NET_ADMIN" ]
+        #   livenessProbe:
+        #     timeoutSeconds: 10
+        #     failureThreshold: 5
+        #     periodSeconds: 720
+        #     initialDelaySeconds: 5
+        #     exec:
+        #       command: [ "/gluetun-entrypoint", "healthcheck" ]
+        #   env:
+        #     - name: TZ
+        #       value: "Europe/Paris"
+        #     - name: FIREWALL_INPUT_PORTS
+        #       value: "{{ .Values.prowlarr.webUiPort }}"
+        #     - name: SERVER_COUNTRIES
+        #       value: "Netherlands"
+        #     - name: VPN_SERVICE_PROVIDER
+        #       value: "protonvpn"
+        #     - name: DNS_KEEP_NAMESERVER
+        #       value: "off"
+        #     - name: DOT
+        #       value: "off"
+        #     - name: VPN_TYPE
+        #       value: "wireguard"
+        #     - name: WIREGUARD_PRIVATE_KEY
+        #       valueFrom:
+        #         secretKeyRef:
+        #           name: protonvpn-credentials
+        #           key: PROTONVPN_PRIVATE_KEY
         - name: prowlarr
           image: {{ .Values.prowlarr.image }}
           imagePullPolicy: IfNotPresent
