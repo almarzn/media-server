@@ -1,0 +1,24 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+    name: radarr
+    namespace: media-server
+spec:
+    image: ghcr.io/home-operations/radarr
+    interval: 1h
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+    name: radarr
+    namespace: media-server
+spec:
+    imageRepositoryRef:
+        name: radarr
+    digestReflectionPolicy: Always
+    interval: 1d
+    policy:
+        semver:
+            # anchored to the current chart version you provided:
+            range: "^6.2.1"
