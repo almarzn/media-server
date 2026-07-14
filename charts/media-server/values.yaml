@@ -13,7 +13,7 @@ global:
   downloadsMount: /downloads
 # Plex Media Server
 plex:
-  image: ghcr.io/home-operations/plex:1.43.2@sha256:be00a2ad851ea3193cd870636f908eb6425ad89390f23cdb08daa35ab5cceacc # {"$imagepolicy": "media-server:plex"}
+  image: ghcr.io/home-operations/plex:1.43.3@sha256:0c0b6899339503af17cb190b25af6acf10f0030e2820985e16ee14ef428f49d7 # {"$imagepolicy": "media-server:plex"}
   advertiseIp: invalid
 qbittorrent:
   image: ghcr.io/linuxserver/qbittorrent:5.2.3_v2.0.13-ls468@sha256:352371a7242e8b4aa10958ca02076d1023758070519b89a10251475fb9f1a35a # {"$imagepolicy": "media-server:qbittorrent"}
