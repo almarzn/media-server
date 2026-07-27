@@ -26,12 +26,15 @@ spec:
             capabilities:
               add: [ "NET_ADMIN" ]
           livenessProbe:
-            timeoutSeconds: 10
-            failureThreshold: 5
-            periodSeconds: 720
-            initialDelaySeconds: 5
             exec:
-              command: [ "/gluetun-entrypoint", "healthcheck" ]
+              command:
+                - /bin/sh
+                - -c
+                - test "$(wget -qO- http://127.0.0.1:8000/v1/vpn/status)" = '{"status":"running"}' && test -s /tmp/gluetun/forwarded_port
+            initialDelaySeconds: 15
+            periodSeconds: 30
+            timeoutSeconds: 10
+            failureThreshold: 3
           env:
             - name: TZ
               value: "Europe/Paris"
