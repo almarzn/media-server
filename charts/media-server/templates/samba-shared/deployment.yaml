@@ -35,7 +35,10 @@ spec:
                   key: GUEST_PASSWORD
           volumeMounts:
             - name: downloads
-              mountPath: /storage
+              mountPath: /storage/downloads
+              readOnly: true
+            - name: library
+              mountPath: /storage/library
               readOnly: true
           resources:
             requests:
@@ -48,4 +51,8 @@ spec:
         - name: downloads
           hostPath:
             path: {{ .Values.global.downloadsPath }}/share
+            type: Directory
+        - name: library
+          hostPath:
+            path: {{ .Values.global.libraryPath }}
             type: Directory
