@@ -17,7 +17,7 @@ spec:
     imageRepositoryRef:
         name: radarr
     digestReflectionPolicy: Always
-    interval: 1day
+    interval: 1d
     policy:
         semver:
             # anchored to the current chart version you provided:
