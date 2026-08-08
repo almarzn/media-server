@@ -32,4 +32,4 @@ prowlarr:
   image: ghcr.io/home-operations/prowlarr:2.6.1@sha256:ce5d6bdd5be6529f503df77aa9d2bad20239031d7c660406e8fb1c6d621dd020 # {"$imagepolicy": "media-server:prowlarr"}
   webUiPort: 9696
 radarr:
-  image: ghcr.io/home-operations/radarr:6.2.1.10461@sha256:a566e7d364b96ce8ffb1b582266e656c69f3a12dec289d72bb0daa647ed4725e # {"$imagepolicy": "media-server:radarr"}
+  image: ghcr.io/home-operations/radarr:6.4.1@sha256:260469d707617f4b5be1cd11a40be7e4889c63c5e7cdbc6a429626dc05863b6b # {"$imagepolicy": "media-server:radarr"}
