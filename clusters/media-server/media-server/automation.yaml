@@ -1,42 +1,42 @@
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImageUpdateAutomation
 metadata:
-  name: media-server
-  namespace: media-server
+    name: media-server
+    namespace: media-server
 spec:
-  interval: 1h
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-    namespace: flux-system
-  git:
-    checkout:
-      ref:
-        branch: main
-    commit:
-      author:
-        name: flux-bot
-        email: flux-bot@example.com
-      messageTemplate: |
-        Automated image update
-        
-        Automation name: {{ .AutomationObject }}
-  
-        Files:
-        {{ range $filename, $_ := .Changed.FileChanges -}}
-        - {{ $filename }}
-        {{ end -}}
-  
-        Objects:
-        {{ range $resource, $changes := .Changed.Objects -}}
-        - {{ $resource.Kind }} {{ $resource.Name }}
-            Changes:
-        {{- range $_, $change := $changes }}
-        - {{ $change.OldValue }} -> {{ $change.NewValue }}
-        {{ end -}}
-        {{ end -}}
-    push:
-      branch: main
-  update:
-    path: ./charts/media-server
-    strategy: Setters
+    interval: 1h
+    sourceRef:
+        kind: GitRepository
+        name: flux-system
+        namespace: flux-system
+    git:
+        checkout:
+            ref:
+                branch: main
+        commit:
+            author:
+                name: flux-bot
+                email: flux-bot@example.com
+            messageTemplate: |
+                Automated image update
+
+                Automation name: {{ .AutomationObject }}
+
+                Files:
+                {{ range $filename, $_ := .Changed.FileChanges -}}
+                - {{ $filename }}
+                {{ end -}}
+
+                Objects:
+                {{ range $resource, $changes := .Changed.Objects -}}
+                - {{ $resource.Kind }} {{ $resource.Name }}
+                    Changes:
+                {{- range $_, $change := $changes }}
+                - {{ $change.OldValue }} -> {{ $change.NewValue }}
+                {{ end -}}
+                {{ end -}}
+        push:
+            branch: main
+    update:
+        path: ./charts/media-server
+        strategy: Setters
