@@ -13,23 +13,23 @@ global:
   downloadsMount: /downloads
 # Plex Media Server
 plex:
-  image: ghcr.io/home-operations/plex:1.43.3@sha256:235402dacb4c66224052de3dfd4c444044e792185ab27dc83b5c200a55370492 # {"$imagepolicy": "media-server:plex"}
+  image: ghcr.io/home-operations/plex:1.43.3@sha256:4f1d88882a9883cc525e7c84b22c67c57416b7d3b35c3412329eeb07786433a7 # {"$imagepolicy": "media-server:plex"}
   advertiseIp: invalid
 qbittorrent:
-  image: ghcr.io/linuxserver/qbittorrent:5.2.3_v2.0.14-ls471@sha256:6816d2b144b1eb97665f886e41e18a14d026ba78c9d0953fc68a1211ea819433 # {"$imagepolicy": "media-server:qbittorrent"}
+  image: ghcr.io/linuxserver/qbittorrent:5.2.3_v2.0.14-ls475@sha256:8d48fa8c619caadfb103f04efea8747e2a2762d6c7551690919cffb987e61cee # {"$imagepolicy": "media-server:qbittorrent"}
   webUiPort: 13000
 qui:
-  image: ghcr.io/autobrr/qui:v1.25.0@sha256:3285c52f0258645d1d5a1684e25596c7355ef525363f0f9464d1c7b2cad14be8 # {"$imagepolicy": "media-server:qui"}
+  image: ghcr.io/autobrr/qui:v1.28.0@sha256:0bfe512eca0ec2ad639927f46a1a2a914feb75492d8032b7f866025162f562d5 # {"$imagepolicy": "media-server:qui"}
 gluetun:
   image: qmcgaw/gluetun:v3.41.3@sha256:fa19cc76b2af13d57a8d3dc3066f2ada061b1c761b8aecf989b3877c0486e027 # {"$imagepolicy": "media-server:gluetun"}
 samba:
-  image: ghcr.io/dockur/samba:4.23.10@sha256:6164872d767ead51d4a6ee9f6449b0a3577f875cefcc85525f9e184dbd5da16d # {"$imagepolicy": "media-server:samba"}
+  image: ghcr.io/dockur/samba:4.23.10@sha256:404f91bdf317d390241a41165579cd25199f34171b44677d877c75dc40184042 # {"$imagepolicy": "media-server:samba"}
 sonarr:
   image: ghcr.io/home-operations/sonarr:4.0.19@sha256:47d56de90c81eb2a8f0d36771328a95e7299609579b88db82b1473c314f26a47 # {"$imagepolicy": "media-server:sonarr"}
 tailscale:
-  image: docker.io/tailscale/tailscale:v1.102.2@sha256:321ce041508c19079b57a28b6666c8d81ab0b08accc0a2585b3ab663d557ac24 # {"$imagepolicy": "media-server:tailscale"}
+  image: docker.io/tailscale/tailscale:v1.102.3@sha256:8c42c4574ab066384fcb72f69e086a2ff1dd3652eb6f56856cee34bcf0d2f680 # {"$imagepolicy": "media-server:tailscale"}
 prowlarr:
-  image: ghcr.io/home-operations/prowlarr:2.6.1@sha256:ce5d6bdd5be6529f503df77aa9d2bad20239031d7c660406e8fb1c6d621dd020 # {"$imagepolicy": "media-server:prowlarr"}
+  image: ghcr.io/home-operations/prowlarr:2.6.3@sha256:8c9ee448bb6de0e3e8b9c2f536b7a3455ec6ff5e184c2fb2a8602791b2757442 # {"$imagepolicy": "media-server:prowlarr"}
   webUiPort: 9696
 radarr:
-  image: ghcr.io/home-operations/radarr:6.4.1@sha256:260469d707617f4b5be1cd11a40be7e4889c63c5e7cdbc6a429626dc05863b6b # {"$imagepolicy": "media-server:radarr"}
+  image: ghcr.io/home-operations/radarr:6.4.3@sha256:0ebb4ae26ee9522674a4ad1855e926fd6b97c534ff982644c9c9a87bca740077 # {"$imagepolicy": "media-server:radarr"}
