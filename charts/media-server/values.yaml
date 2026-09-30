@@ -33,3 +33,9 @@ prowlarr:
   webUiPort: 9696
 radarr:
   image: ghcr.io/home-operations/radarr:6.4.4@sha256:be53998a2d39cfa3c3315b70c7509a6a1f2a10c3aee9337653efc9f4c970430e # {"$imagepolicy": "media-server:radarr"}
+# amstram (Gram recipe reader). No semver tags published yet, so the image is pinned by digest, not image-automated.
+amstram:
+  image: ghcr.io/almarzn/amstram:sha-7df7d8b@sha256:f66ebc3943d5f8e82d023b98a2b4c30b11c2cc1302ce2a13df9ae54bc0d46eeb
+  repo: invalid
+  branch: ""
+  path: ""

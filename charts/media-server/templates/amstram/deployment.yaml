@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: amstram
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: amstram
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: amstram
+  template:
+    metadata:
+      name: amstram
+      labels:
+        app: amstram
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+      containers:
+        - name: amstram
+          image: {{ .Values.amstram.image }}
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: GRAM_REPO
+              value: {{ .Values.amstram.repo | quote }}
+            {{- with .Values.amstram.branch }}
+            - name: GRAM_BRANCH
+              value: {{ . | quote }}
+            {{- end }}
+            {{- with .Values.amstram.path }}
+            - name: GRAM_PATH
+              value: {{ . | quote }}
+            {{- end }}
+            - name: GITHUB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: amstram-secret
+                  key: GITHUB_TOKEN
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: [ "ALL" ]
+          startupProbe:
+            httpGet:
+              port: 8080
+              path: /healthz
+            periodSeconds: 5
+            failureThreshold: 6
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /healthz
+            periodSeconds: 30
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /healthz
+            periodSeconds: 60
+            failureThreshold: 3
+          resources:
+            requests:
+              cpu: "20m"
+              memory: "64Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
