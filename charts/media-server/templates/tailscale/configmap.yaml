@@ -61,3 +61,8 @@ data:
      --https=443 \
      http://qui.{{ .Values.namespace }}.svc.cluster.local:7476
 
+     # amstram (recipes)
+     tailscale serve \
+     --service=svc:recipes \
+     --https=443 \
+     http://amstram.{{ .Values.namespace }}.svc.cluster.local:8080

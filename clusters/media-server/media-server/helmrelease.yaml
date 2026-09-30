@@ -21,3 +21,5 @@ spec:
       advertiseIp: http://192.168.1.123:32400
     qbittorrent:
       webUiPort: 31300
+    amstram:
+      repo: almarzn/recipes
