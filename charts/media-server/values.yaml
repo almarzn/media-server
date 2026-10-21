@@ -32,7 +32,7 @@ prowlarr:
   image: ghcr.io/home-operations/prowlarr:2.6.5@sha256:0e2e6e9a2a16683a160ff1c6830d8192231a0502ab0d605b416023b2ca225ff9 # {"$imagepolicy": "media-server:prowlarr"}
   webUiPort: 9696
 radarr:
-  image: ghcr.io/home-operations/radarr:6.4.4@sha256:be53998a2d39cfa3c3315b70c7509a6a1f2a10c3aee9337653efc9f4c970430e # {"$imagepolicy": "media-server:radarr"}
+  image: ghcr.io/home-operations/radarr:6.4.4@sha256:1902ad2c08e9bac276ff9a1429af2eaa2f3c635a51f138f1b3eb734995171537 # {"$imagepolicy": "media-server:radarr"}
 # amstram (Gram recipe reader). No semver tags published yet, so the image is pinned by digest, not image-automated.
 amstram:
   image: ghcr.io/almarzn/amstram:sha-7df7d8b@sha256:f66ebc3943d5f8e82d023b98a2b4c30b11c2cc1302ce2a13df9ae54bc0d46eeb
