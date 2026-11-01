@@ -16,7 +16,7 @@ plex:
   image: ghcr.io/home-operations/plex:1.43.5@sha256:06ef0fc23e9af9bbaf284c3f27972f94e703d13d6f745edeb6818fcbebf6c673 # {"$imagepolicy": "media-server:plex"}
   advertiseIp: invalid
 qbittorrent:
-  image: ghcr.io/linuxserver/qbittorrent:5.3.0_v2.1.2-ls485@sha256:75ecbb1c89ab7b0a21c4bde40b4820e4f1649d2d56d83b91913422155e8d2a5f # {"$imagepolicy": "media-server:qbittorrent"}
+  image: ghcr.io/linuxserver/qbittorrent:5.3.0_v2.1.2-ls486@sha256:05c1454f9a32967affc1f34f67f8cc0cc57dd805dca45489fe797095a6286556 # {"$imagepolicy": "media-server:qbittorrent"}
   webUiPort: 13000
 qui:
   image: ghcr.io/autobrr/qui:v1.34.0@sha256:e320bfff0780caff49fee18a6738659c629f863f2dd9347f32b41d287eddde25 # {"$imagepolicy": "media-server:qui"}
