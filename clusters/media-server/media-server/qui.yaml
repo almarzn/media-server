@@ -8,19 +8,33 @@ spec:
   image: ghcr.io/autobrr/qui
   interval: 1h
 ---
+# Fork build with the Space Management feature (almarzn/qui).
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: almarzn-qui
+  namespace: media-server
+spec:
+  image: ghcr.io/almarzn/qui
+  interval: 10m
+---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: qui
   namespace: media-server
 spec:
+  # Tracks the fork's "pr-1" image (Space Management, built by the fork's
+  # "Build PR image" workflow) by digest, so a rebuild of the tag rolls out.
+  # To go back to upstream releases, point this at autobrr-qui and restore:
+  #   filterTags: {pattern: '^(?:v)?(?P<ver>\d+\.\d+\.\d+)', extract: '$ver'}
+  #   policy: {semver: {range: '^1.11.0'}}
   imageRepositoryRef:
-    name: autobrr-qui
-  digestReflectionPolicy: IfNotPresent
+    name: almarzn-qui
+  digestReflectionPolicy: Always
+  interval: 10m
   filterTags:
-    pattern: '^(?:v)?(?P<ver>\d+\.\d+\.\d+)'
-    extract: '$ver'
+    pattern: '^pr-1$'
   policy:
-    semver:
-      # caret-style range that keeps us on major 5 (compatible updates)
-      range: '^1.11.0'
+    alphabetical:
+      order: asc
