@@ -24,8 +24,9 @@ metadata:
   name: qui
   namespace: media-server
 spec:
-  # Tracks the fork's "pr-1" image (Space Management, built by the fork's
-  # "Build PR image" workflow) by digest, so a rebuild of the tag rolls out.
+  # Tracks the fork's "develop" image (upstream develop plus Space Management,
+  # built by the fork's Release workflow on each push to develop) by digest,
+  # so a rebuild of the tag rolls out.
   # To go back to upstream releases, point this at autobrr-qui and restore:
   #   filterTags: {pattern: '^(?:v)?(?P<ver>\d+\.\d+\.\d+)', extract: '$ver'}
   #   policy: {semver: {range: '^1.11.0'}}
@@ -34,7 +35,7 @@ spec:
   digestReflectionPolicy: Always
   interval: 10m
   filterTags:
-    pattern: '^pr-1$'
+    pattern: '^develop$'
   policy:
     alphabetical:
       order: asc
