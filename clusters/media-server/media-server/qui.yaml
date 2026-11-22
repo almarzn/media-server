@@ -24,9 +24,13 @@ metadata:
   name: qui
   namespace: media-server
 spec:
-  # Tracks the fork's "develop" image (upstream develop plus Space Management,
-  # built by the fork's Release workflow on each push to develop) by digest,
-  # so a rebuild of the tag rolls out.
+  # Temporarily pinned to pr-2: the fork's Release workflow can't publish
+  # "develop" while upstream's TestTransferResumesAfterARestart race fails, so
+  # the redesign was built by "Build PR image" from almarzn/qui#2 (develop @
+  # d2e5899e). Switch the pattern back to '^develop$' once develop builds.
+  # Normally tracks the fork's "develop" image (upstream develop plus Space
+  # Management, built by the fork's Release workflow on each push to develop)
+  # by digest, so a rebuild of the tag rolls out.
   # To go back to upstream releases, point this at autobrr-qui and restore:
   #   filterTags: {pattern: '^(?:v)?(?P<ver>\d+\.\d+\.\d+)', extract: '$ver'}
   #   policy: {semver: {range: '^1.11.0'}}
@@ -35,7 +39,7 @@ spec:
   digestReflectionPolicy: Always
   interval: 10m
   filterTags:
-    pattern: '^develop$'
+    pattern: '^pr-2$'
   policy:
     alphabetical:
       order: asc
