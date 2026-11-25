@@ -10,6 +10,13 @@ data:
       errors
       forward . 9.9.9.9
     }
+  trackers.server: |-
+    # Prowlarr indexers: Quad9 times out for these, resolve via Cloudflare/Google
+    tr4ker.net. nostradamus.foo. c411.org. {
+      errors
+      cache 30
+      forward . 1.1.1.1 8.8.8.8
+    }
   quad9.override: |-
     # Use Quad9 as the default upstream DNS
     forward . 9.9.9.9 149.112.112.112
